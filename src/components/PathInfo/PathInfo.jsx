@@ -1,5 +1,13 @@
 const PathInfo = () => {
-  return <div>PathInfo</div>;
+  return (
+    <div
+      style={{
+        marginBottom: 32,
+      }}
+    >
+      PathInfo
+    </div>
+  );
 };
 
 export default PathInfo;
