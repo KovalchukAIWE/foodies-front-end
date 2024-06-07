@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import styles from "./AddRecipeForm.module.css";
 
+// import sprite from "./icons-sprite.svg";
+
 const AddRecipeForm = () => {
   const {
     register,
@@ -14,7 +16,9 @@ const AddRecipeForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.uploadPhoto}>
-        <div>SVG</div>
+        {/* <svg width={50} height={50} className={styles.svgPhoto}>
+          <use href={`${sprite}#photo`}></use>
+        </svg> */}
         <p className={styles.uploadPhotoText}>Upload a photo</p>
       </div>
       <input
@@ -23,21 +27,19 @@ const AddRecipeForm = () => {
         placeholder="THE NAME OF THE RECIPE"
         className={styles.recipeName}
       />
-      <div className={styles.inputCountWrapper}>
+
+      <div className={`${styles.inputCountWrapper} ${styles.decorLine}`}>
         <input
           type="text"
-          className={styles.recipeDescrArea}
           {...register("recipeDescr", { required: true }, { maxLength: 220 })}
           placeholder="Enter a description of the dish"
+          className={` ${styles.inputArea} ${styles.inputText}`}
         />
         <p className={styles.symbCounter}>0/200</p>
       </div>
       <div className={styles.categoryTimeWrapper}>
         <label htmlFor="category">Category</label>
-        <select
-          {...register("category", { required: true })}
-          className={styles.selectInput}
-        >
+        <select {...register("category", { required: true })}>
           <option value="beef">Beef</option>
           <option value="breakfast">Breakfast</option>
           <option value="desserts">Desserts</option>
@@ -51,53 +53,69 @@ const AddRecipeForm = () => {
         </select>
         <label htmlFor="">COOKING TIME</label>
         <div className={styles.counter}>
-          <button type="button" className={styles.counterBtn}>
-            svg-
+          <button type="button" className={styles.roundBtn}>
+            {/* <svg width={16} height={16} className={styles.svgTime}>
+              <use href={`${sprite}#minus`}></use>
+            </svg> */}
           </button>
           <span className={styles.counterNum}>10 min</span>
-          <button type="button" className={styles.counterBtn}>
-            svg+
+          <button type="button" className={styles.roundBtn}>
+            {/* <svg width={16} height={16} className={styles.svgTime}>
+              <use href={`${sprite}#plus`}></use>
+            </svg> */}
           </button>
         </div>
       </div>
-      <label htmlFor="ingredients">Ingredients</label>
-      <select {...register("ingredients", { required: true })}>
-        <option value="Cabbage">Cabbage</option>
-        <option value="Cucumber">Cucumber</option>
-        <option value="desserts">Desserts</option>
-        <option value="Lamb">Lamb</option>
-        <option value="Miscellaneous">Miscellaneous</option>
-        <option value="Pasta">Pasta</option>
-        <option value="Pork">Pork</option>
-        <option value="Seafood">Seafood</option>
-        <option value="Side">Side</option>
-        <option value="Starter">Starter</option>
-      </select>
-      <input
-        type="number"
-        {...register("ingredientsQuantity", { required: true })}
-        placeholder="Enter quantity"
-        className={styles.ingredientsQuantity}
-      />
+      <div className={`${styles.ingredientsWrapper} ${styles.decorLine}`}>
+        <label htmlFor="ingredients">Ingredients</label>
+        <select {...register("ingredients", { required: true })}>
+          <option value="Cabbage">Cabbage</option>
+          <option value="Cucumber">Cucumber</option>
+          <option value="desserts">Desserts</option>
+          <option value="Lamb">Lamb</option>
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Pasta">Pasta</option>
+          <option value="Pork">Pork</option>
+          <option value="Seafood">Seafood</option>
+          <option value="Side">Side</option>
+          <option value="Starter">Starter</option>
+        </select>
+        <input
+          type="text"
+          {...register("ingredientsQuantity", { required: true })}
+          placeholder="Enter quantity"
+          className={`${styles.ingredientsQuantity} ${styles.inputText}`}
+        />
+      </div>
       <button type="button" className={styles.addIngrBtn}>
-        Add ingredient +
+        Add ingredient
+        {/* <svg width={20} height={20} className={styles.svgPlusAdd}>
+          <use href={`${sprite}#plus`}></use>
+        </svg> */}
       </button>
-      <div className={styles.recipePreparation}>
+      <div className={`${styles.recipePreparation} ${styles.decorLine}`}>
         <label htmlFor="recipePreparation">Recipe Preparation</label>
         <div className={styles.inputCountWrapper}>
           <textarea
-            className={styles.recipePreparationArea}
             {...register(
               "recipePreparation",
               { required: true },
               { maxLength: 220 }
             )}
             placeholder="Enter recipe"
+            className={`${styles.inputArea} ${styles.inputText}`}
           />
           <p className={styles.symbCounter}>0/200</p>
         </div>
       </div>
-      <input type="submit" />
+      <div className={styles.bottomBtn}>
+        <button type="button" className={styles.roundBtn}>
+          {/* <svg width={20} height={20} className={styles.svgTrash}>
+            <use href={`${sprite}#trash`}></use>
+          </svg> */}
+        </button>
+        <input type="submit" className={styles.submitBtn} />
+      </div>
     </form>
   );
 };

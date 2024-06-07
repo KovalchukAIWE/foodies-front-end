@@ -14,11 +14,11 @@
   gap: 32px;
 }
 
-/* .form input,
+.form input,
 .form textarea {
   border: transparent;
   outline: transparent;
-} */
+}
 
 .uploadPhoto {
   display: flex;
@@ -40,12 +40,61 @@
   text-decoration-line: underline;
 }
 
-/* .uploadPhotoText {
-  font-size: 14px;
-  line-height: 1.43;
-  letter-spacing: -0.017em;
-  text-decoration-line: underline;
-} */
+@media screen and (min-width: 768px) {
+  .uploadPhoto {
+    width: 704px;
+    height: 400px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .uploadPhoto {
+    width: 551px;
+  }
+}
+
+.svgPhoto {
+  width: 50px;
+  height: 50px;
+  fill: rgba(5, 5, 5, 0.3);
+}
+
+@media screen and (min-width: 768px) {
+  .svgPhoto {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.recipeName {
+  width: 100%;
+  min-height: 24px;
+
+  color: #050505;
+
+  font-family: Mulish;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.33;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+}
+
+.recipeName::placeholder {
+  color: rgba(5, 5, 5, 0.6);
+
+  font-family: Mulish;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.33;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+}
 
 .form label {
   color: #050505;
@@ -66,15 +115,32 @@
 }
 
 .inputCountWrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
   gap: 28px;
 
+  padding-bottom: 16px;
+
   width: 100%;
   max-width: 343px;
+}
 
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.2);
+.decorLine::after {
+  content: "";
+  display: block;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: rgba(5, 5, 5, 0.2);
+
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -83,30 +149,46 @@
   }
 }
 
-.recipeDescrArea {
+.inputText {
+  color: rgba(5, 5, 5, 0.8);
+
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+}
+
+.inputArea {
   width: 270px;
   min-height: 20px;
   max-height: 140px;
-
-  /* padding-bottom: 16px; */
 }
 
 .recipePreparation {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin-top: 32px;
 }
 
-.ingredientsQuantity {
+.ingredientsWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.2);
 }
 
 .addIngrBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 
   width: 188px;
   height: 50px;
@@ -133,6 +215,12 @@
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.svgPlusAdd {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
 @media screen and (min-width: 768px) {
   .addIngrBtn {
     width: 231px;
@@ -141,6 +229,10 @@
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.02em;
+  }
+  .svgPlusAdd {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -151,8 +243,7 @@
   color: #fff;
 }
 
-.recipeDescrArea::placeholder,
-.recipePreparationArea::placeholder,
+.inputArea::placeholder,
 .ingredientsQuantity::placeholder {
   color: rgba(5, 5, 5, 0.6);
   font-family: Mulish;
@@ -183,13 +274,21 @@
   align-items: baseline;
 }
 
-.counterBtn {
+.svgTime {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.roundBtn {
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 48px;
   height: 48px;
+
+  color: #050505;
 
   border-radius: 30px;
   border: 1px solid rgba(5, 5, 5, 0.12);
@@ -200,8 +299,8 @@
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.counterBtn:focus,
-.counterBtn:hover {
+.roundBtn:focus,
+.roundBtn:hover {
   border-color: #050505;
   background-color: #050505;
   color: #fff;
@@ -214,7 +313,78 @@
   letter-spacing: -0.017em;
 }
 
-.selectInput {
+@media screen and (min-width: 768px) {
+  .roundBtn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .svgTime {
+    width: 24px;
+    height: 24px;
+  }
+
+  .counterNum {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+}
+
+.svgTrash {
+  fill: currentColor;
+}
+
+.bottomBtn {
+  display: flex;
+  gap: 8px;
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 124px;
+  height: 48px;
+  padding: 14px 32px;
+
+  color: #fff;
+  font-family: Mulish;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  text-transform: uppercase;
+
+  border-radius: 30px;
+  border: 1px solid rgba(5, 5, 5, 0.85);
+  background-color: rgba(5, 5, 5, 0.85);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitBtn:focus,
+.submitBtn:hover {
+  border-color: #050505;
+  background-color: #050505;
+}
+
+@media screen and (min-width: 768px) {
+  .submitBtn {
+    width: 146px;
+    height: 56px;
+
+    padding: 16px 39px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* .selectInput {
   padding: 14px 34px 14px 14px;
 
   border-radius: 30px;
@@ -229,4 +399,4 @@
   font-weight: 500;
   line-height: 1.43;
   letter-spacing: -0.017em;
-}
+} */
