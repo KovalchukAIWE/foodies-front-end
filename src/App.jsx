@@ -1,16 +1,14 @@
 import "./App.css";
-// import Button from "./components/Button/Button";
-// import MainTitle from "./components/MainTitle/MainTitle";
-// import Subtitle from "./components/Subtitle/Subtitle";
-import AddRecipePage from "./pages/AddRecipePage/AddRecipePage";
+import Button from "./components/Button/Button";
+import MainTitle from "./components/MainTitle/MainTitle";
+import Subtitle from "./components/Subtitle/Subtitle";
 
 function App() {
   return (
     <>
-      <AddRecipePage />
-      {/* <Button text="button" />
+      <Button text="button" />
       <MainTitle text="Categories" />
-      <Subtitle text="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen." /> */}
+      <Subtitle text="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen." />
     </>
   );
 }
