@@ -1,7 +1,13 @@
 import { useForm } from "react-hook-form";
 import styles from "./AddRecipeForm.module.css";
 
-// import sprite from "./icons-sprite.svg";
+import sprite from "../../../assets/img/icons-sprite.svg";
+import {
+  DeleteButton,
+  AddIngrButton,
+  MinusButton,
+  PlusButton,
+} from "../../../components/Buttons/Buttons";
 
 const AddRecipeForm = () => {
   const {
@@ -16,9 +22,9 @@ const AddRecipeForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.uploadPhoto}>
-        {/* <svg width={50} height={50} className={styles.svgPhoto}>
+        <svg width={50} height={50} className={styles.svgPhoto}>
           <use href={`${sprite}#photo`}></use>
-        </svg> */}
+        </svg>
         <p className={styles.uploadPhotoText}>Upload a photo</p>
       </div>
       <input
@@ -53,17 +59,9 @@ const AddRecipeForm = () => {
         </select>
         <label htmlFor="">COOKING TIME</label>
         <div className={styles.counter}>
-          <button type="button" className={styles.roundBtn}>
-            {/* <svg width={16} height={16} className={styles.svgTime}>
-              <use href={`${sprite}#minus`}></use>
-            </svg> */}
-          </button>
+          <MinusButton />
           <span className={styles.counterNum}>10 min</span>
-          <button type="button" className={styles.roundBtn}>
-            {/* <svg width={16} height={16} className={styles.svgTime}>
-              <use href={`${sprite}#plus`}></use>
-            </svg> */}
-          </button>
+          <PlusButton />
         </div>
       </div>
       <div className={`${styles.ingredientsWrapper} ${styles.decorLine}`}>
@@ -87,12 +85,13 @@ const AddRecipeForm = () => {
           className={`${styles.ingredientsQuantity} ${styles.inputText}`}
         />
       </div>
-      <button type="button" className={styles.addIngrBtn}>
+      <AddIngrButton text="Add ingredient" />
+      {/* <button type="button" className={styles.addIngrBtn}>
         Add ingredient
-        {/* <svg width={20} height={20} className={styles.svgPlusAdd}>
+        <svg width={20} height={20} className={styles.svgPlusAdd}>
           <use href={`${sprite}#plus`}></use>
-        </svg> */}
-      </button>
+        </svg>
+      </button> */}
       <div className={`${styles.recipePreparation} ${styles.decorLine}`}>
         <label htmlFor="recipePreparation">Recipe Preparation</label>
         <div className={styles.inputCountWrapper}>
@@ -108,12 +107,8 @@ const AddRecipeForm = () => {
           <p className={styles.symbCounter}>0/200</p>
         </div>
       </div>
-      <div className={styles.bottomBtn}>
-        <button type="button" className={styles.roundBtn}>
-          {/* <svg width={20} height={20} className={styles.svgTrash}>
-            <use href={`${sprite}#trash`}></use>
-          </svg> */}
-        </button>
+      <div className={styles.bottomBtns}>
+        <DeleteButton />
         <input type="submit" className={styles.submitBtn} />
       </div>
     </form>
