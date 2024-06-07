@@ -3,7 +3,6 @@
   width: 100%;
   max-width: 343px;
 
-  color: rgba(5, 5, 5, 0.8);
   font-size: 14px;
   line-height: 1.43;
   letter-spacing: -0.017em;
@@ -13,7 +12,7 @@
 @media screen and (min-width: 768px) {
   .subtitle {
     margin-bottom: 40px;
-    min-width: 443px;
+    min-width: 442px;
     max-width: 540px;
 
     font-size: 16px;

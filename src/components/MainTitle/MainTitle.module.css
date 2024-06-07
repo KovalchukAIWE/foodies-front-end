@@ -1,6 +1,8 @@
 .mainTitle {
   margin-bottom: 16px;
 
+  color: var(--main-black);
+
   font-size: 28px;
   font-weight: 800;
   line-height: 1.14;

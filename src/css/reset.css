@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--main-black);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--main-black);
+}
+
+a:focus {
+  outline: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  padding: 0;
+
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+
+  outline: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  line-height: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
