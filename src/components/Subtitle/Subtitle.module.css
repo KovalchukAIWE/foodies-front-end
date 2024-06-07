@@ -1,7 +1,22 @@
 .subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 343px;
+
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
   text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .subtitle {
+    margin-bottom: 40px;
+    min-width: 442px;
+    max-width: 540px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
 }
