@@ -1,3 +1,6 @@
+@import "./css/variables.css";
+@import "./css/reset.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,19 +13,11 @@
   font-weight: 500;
   font-style: normal;
 
-  color: #050505;
-  background-color: #ffffff;
+  color: var(--text-black);
+  background-color: var(--white);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: #050505;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #050505;
 }
