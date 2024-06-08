@@ -48,7 +48,6 @@ ol {
 button {
   padding: 0;
 
-  color: inherit;
   background-color: inherit;
   border: inherit;
 
@@ -61,7 +60,12 @@ textarea,
 select,
 button {
   font: inherit;
+  color: inherit;
   line-height: inherit;
+  letter-spacing: inherit;
+  outline: none;
+  border: none;
+  background-color: inherit;
 }
 
 img {
