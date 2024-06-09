@@ -1,26 +1,28 @@
-import "./App.css";
-import {
-  AddIngrButton,
-  DeleteButton,
-  FavoriteButton,
-  DetailsButtonRecipe,
-  AddToFavButton,
-} from "./components/Buttons/Buttons";
-import MainTitle from "./components/MainTitle/MainTitle";
-import Subtitle from "./components/Subtitle/Subtitle";
+import { useEffect, lazy, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
+import { refresh } from "./redux/user/operations.js";
+import { selectIsRefreshing } from "./redux/user/selectors.js";
+import Loader from "./components/Loader/Loader.jsx";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
+
+const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
-      <DeleteButton />
-      <FavoriteButton />
-      <DetailsButtonRecipe />
-      <AddToFavButton text="Add to favorites" />
-      <AddIngrButton text="Add ingredient" />
-      <MainTitle text="Categories" />
-      <Subtitle text="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen." />
+      <p>components</p>
     </>
   );
-}
+};
 
 export default App;
