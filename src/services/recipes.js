@@ -1,7 +1,21 @@
 import { foodiesApiClient } from "./apiClient.js";
 
-export const getAllRecipes = async () => {
-  const { data } = await foodiesApiClient.get("recipes");
+export const getAllRecipes = async ({
+  category = "",
+  area = "",
+  ingredient = [],
+  page = 1,
+  limit = 12,
+}) => {
+  const { data } = await foodiesApiClient.get("recipes", {
+    params: {
+      category,
+      ingredient,
+      area,
+      page,
+      limit,
+    },
+  });
   return data;
 };
 

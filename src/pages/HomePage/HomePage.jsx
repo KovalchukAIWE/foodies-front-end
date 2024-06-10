@@ -1,41 +1,103 @@
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import Hero from "../../components/Hero/Hero.jsx";
 import Categories from "../../components/Categories/Categories.jsx";
 import Recipes from "../../components/Recipes/Recipes.jsx";
 import Testimonials from "../../components/Testimonials/Testimonials.jsx";
 import { getTestimonials } from "../../services/testimonials.js";
+import { getCategories } from "../../services/categories.js";
+import { getAllRecipes } from "../../services/recipes.js";
 
 const HomePage = () => {
-  const [selectedCategories, setSelectedCategories] = useState(null);
-  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [recipes, setRecipes] = useState(null);
   const [testimonials, setTestimonials] = useState(null);
+
+  const [selectedCategories, setSelectedCategories] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(null);
+  const [selectedIngredient, setSelectedIngredient] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
+  const limit = isMobile ? 8 : 12;
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
-        const result = await getTestimonials();
-        setTestimonials(result);
+        const testimonials = await getTestimonials();
+        const categories = await getCategories();
+        setTestimonials(testimonials);
+        setCategories(categories);
       } catch (error) {
         setError(error.message);
       }
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      if (!selectedCategories) return;
+      try {
+        const { result, total } = await getAllRecipes({
+          category: selectedCategories,
+          area: selectedArea,
+          ingredient: selectedIngredient,
+          page,
+          limit,
+        });
+        setTotalPage(total);
+        setRecipes(result);
+      } catch (error) {
+        setError(error.message);
+      }
+    })();
+  }, [selectedCategories, selectedIngredient, selectedArea, page, limit]);
+
   const handleSelectedCategory = (categoryName) => {
     setSelectedCategories(categoryName);
   };
+  const handleSelectedArea = (areaName) => {
+    setSelectedArea(areaName);
+  };
+  const handleSelectedIngredient = (ingredientName) => {
+    setSelectedIngredient(ingredientName);
+  };
+  const handleSetPage = (page) => {
+    setPage(page);
+  };
   const handleBack = () => {
     setSelectedCategories(null);
+    setSelectedIngredient(null);
+    setSelectedArea(null);
+    setRecipes(null);
+    setPage(1);
+    setTotalPage(0);
   };
 
   return (
     <>
       <Hero />
       {selectedCategories ? (
-        <Recipes selectedCategories={selectedCategories} onBack={handleBack} />
+        Array.isArray(recipes) && (
+          <Recipes
+            selectedCategories={selectedCategories}
+            selectedIngredient={selectedIngredient}
+            selectedArea={selectedArea}
+            onSelectedArea={handleSelectedArea}
+            onSelectedIngredient={handleSelectedIngredient}
+            onSetPage={handleSetPage}
+            totalPage={totalPage}
+            onBack={handleBack}
+          />
+        )
       ) : (
-        <Categories onSelectedCategory={handleSelectedCategory} />
+        <Categories
+          onSelectedCategory={handleSelectedCategory}
+          categories={categories}
+        />
       )}
 
       {Array.isArray(testimonials) && (
