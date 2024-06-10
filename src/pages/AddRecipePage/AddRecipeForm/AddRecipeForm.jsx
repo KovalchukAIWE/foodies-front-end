@@ -9,6 +9,7 @@ import {
   MinusButton,
   PlusButton,
 } from "../../../components/Buttons/Buttons";
+import SelectDropDown from "../../../components/SelectDropDown/SelectDropDown";
 
 const AddRecipeForm = () => {
   const {
@@ -52,7 +53,8 @@ const AddRecipeForm = () => {
           </div>
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="category">Category</label>
-            <select
+            <SelectDropDown />
+            {/* <select
               {...register("category", { required: true })}
               placeholder="Select a category"
             >
@@ -66,7 +68,7 @@ const AddRecipeForm = () => {
               <option value="seafood">Seafood</option>
               <option value="side">Side</option>
               <option value="starter">Starter</option>
-            </select>
+            </select> */}
           </div>
 
           <div className={styles.addOptionsWrapper}>
