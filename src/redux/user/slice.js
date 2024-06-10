@@ -1,16 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { isPending, isFulfilled, isRejected } from "@reduxjs/toolkit";
-
 import {
-  register,
-  logIn,
-  refresh,
-  logOut,
-  setUsersAvatar,
-  getFavoriteRecipes,
-  addFavoriteRecipe,
-  deleteFavoriteRecipe,
-} from "./operations";
+  createSlice,
+  isPending,
+  isFulfilled,
+  isRejected,
+} from "@reduxjs/toolkit";
+
+import { register, logIn, refresh, logOut, setUsersAvatar } from "./operations";
 
 const initialUser = {
   id: null,
@@ -23,7 +18,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: initialUser,
-    favoriteRecipes: [],
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -49,36 +43,9 @@ const userSlice = createSlice({
         state.user = payload.avatar;
         state.isLoading = false;
       })
-      .addCase(getFavoriteRecipes.fulfilled, (state, { payload }) => {
-        state.favoriteRecipes = payload;
-        state.isLoading = false;
-      })
-      .addCase(addFavoriteRecipe.fulfilled, (state, { payload }) => {
-        // перевірити, відповідь, що там є айді доданого рецепта
-        state.favoriteRecipes.push(payload.id);
-        state.isLoading = false;
-      })
-      .addCase(deleteFavoriteRecipe.fulfilled, (state, { payload }) => {
-        // перевірити, відповідь, що там є айді видаленого рецепта
-        const index = state.favoriteRecipes.findIndex(
-          (id) => id === payload.id
-        );
-        if (index !== -1) {
-          state.favoriteRecipes.splice(index, 1);
-        }
-        state.isLoading = false;
-      })
+
       .addMatcher(
-        isPending(
-          register,
-          logIn,
-          logOut,
-          refresh,
-          setUsersAvatar,
-          getFavoriteRecipes,
-          addFavoriteRecipe,
-          deleteFavoriteRecipe
-        ),
+        isPending(register, logIn, logOut, refresh, setUsersAvatar),
         (state, { type }) => {
           if (type === refresh.pending.type) {
             state.isRefreshing = true;
@@ -88,16 +55,7 @@ const userSlice = createSlice({
         }
       )
       .addMatcher(
-        isRejected(
-          register,
-          logIn,
-          logOut,
-          refresh,
-          setUsersAvatar,
-          getFavoriteRecipes,
-          addFavoriteRecipe,
-          deleteFavoriteRecipe
-        ),
+        isRejected(register, logIn, logOut, refresh, setUsersAvatar),
         (state, { type, payload }) => {
           if (type === refresh.rejected.type) {
             state.isRefreshing = false;

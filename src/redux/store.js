@@ -11,7 +11,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { userReducer } from "./user/slice";
+import { userReducer } from "./user/slice.js";
+import { recipesReducer } from "./recipes/slice.js";
 
 const userPersistConfig = {
   key: "user",
@@ -22,6 +23,7 @@ const userPersistConfig = {
 export const store = configureStore({
   reducer: {
     user: persistReducer(userPersistConfig, userReducer),
+    recipes: recipesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
