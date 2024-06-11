@@ -1,0 +1,99 @@
+.testimonials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+
+}
+.testimonialsSection {
+    text-align: center;
+    width: 822px;
+        position: relative;
+
+}
+
+.sectionSubtitle {
+font-family: "Mulish", sans-serif;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: -0.02em;
+color: rgba(5, 5, 5, 0.6);
+}
+
+.sectionTitle {
+    font-family: "Mulish", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #050505;
+    margin-top: 16px;
+    margin-bottom: 80px;
+}
+
+.testimonialSlide {
+    position: relative;
+}
+
+.testimonialText {
+font-size: 24px;
+line-height: 1.5;
+letter-spacing: -0.02em;
+text-align: center;
+color: #050505;
+margin-bottom: 80px;
+}
+
+.testimonialAuthor {
+font-family: "Mulish", sans-serif;
+font-weight: 800;
+font-size: 20px;
+line-height: 1.2;
+letter-spacing: -0.02em;
+text-transform: uppercase;
+color: #050505;
+margin-bottom: 40px;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #000000; 
+}
+
+.slick-dots li button:before {
+    font-size: 16px !important; 
+    width: 16px !important; 
+    height: 16px !important; 
+    line-height: 16px !important; 
+    opacity: 1 !important; 
+    color: black !important; 
+}
+
+/* Додатковий стиль для лапок */
+.testimonialQuote {
+    font-size: 160px;
+    color: #E9E9E9;
+    position: absolute;
+    top: 76px;
+    left: 40px;
+}
+
+/* Стилі для кнопок слайдера */
+.slick-prev,
+.slick-next {
+    width: 16px !important;
+    height: 16px !important;
+    z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 16px !important;
+}
