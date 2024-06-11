@@ -65,6 +65,9 @@ export const selectDropDownStyles = {
     ...baseStyles,
     padding: "0",
     color: "var(--main-black)",
+    "&:hover": {
+      color: "var(--main-black)",
+    },
   }),
   menu: (baseStyles) => ({
     ...baseStyles,
