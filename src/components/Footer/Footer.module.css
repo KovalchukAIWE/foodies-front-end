@@ -1,0 +1,23 @@
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #f5f5f5;
+}
+
+.footerContent {
+  /* стилі для footerContent */
+}
+
+.logoFooter {
+  /* стилі для logoFooter */
+}
+
+.footerSocialList {
+  /* стилі для footerSocialList */
+}
+
+.footerCopyright {
+  /* стилі для footerCopyright */
+}
