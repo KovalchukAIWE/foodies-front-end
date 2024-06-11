@@ -10,9 +10,6 @@ import { getAllAreas, getAllIngredients } from "./redux/recipes/operations.js";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const RecipePage = lazy(() => import("./pages/RecipePage/RecipePage.jsx"));
-const AddRecipePage = lazy(() =>
-  import("./pages/AddRecipePage/AddRecipePage.jsx")
-);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +30,6 @@ const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route path="recipe/:id" element={<RecipePage />} />
-            <Route path="recipe/add" element={<AddRecipePage />} />
           </Route>
         </Routes>
       </Suspense>
