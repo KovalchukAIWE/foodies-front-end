@@ -6,8 +6,6 @@ import sprite from "../../../assets/img/icons-sprite.svg";
 import {
   DeleteButton,
   AddIngrButton,
-  MinusButton,
-  PlusButton,
 } from "../../../components/Buttons/Buttons";
 import SelectDropDown from "../../../components/SelectDropDown/SelectDropDown";
 
@@ -20,6 +18,7 @@ import {
   selectCategories,
   selectIngredients,
 } from "../../../redux/recipes/selectors";
+import CookingTime from "./CookingTime/CookingTime";
 
 const AddRecipeForm = () => {
   const {
@@ -118,14 +117,7 @@ const AddRecipeForm = () => {
             />
           </div>
 
-          <div className={styles.addOptionsWrapper}>
-            <label htmlFor="">COOKING TIME</label>
-            <div className={styles.counter}>
-              <MinusButton type="button" />
-              <span className={`${styles.counterNum} text`}>10 min</span>
-              <PlusButton type="button" />
-            </div>
-          </div>
+          <CookingTime />
 
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="ingredients">Ingredients</label>
