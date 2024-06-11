@@ -86,7 +86,7 @@ margin-bottom: 40px;
 }
 
 /* Стилі для кнопок слайдера */
-.slick-prev,
+/* .slick-prev,
 .slick-next {
     width: 16px !important;
     height: 16px !important;
@@ -96,4 +96,7 @@ margin-bottom: 40px;
 .slick-prev:before,
 .slick-next:before {
     font-size: 16px !important;
-}
+} */
+/* .slick-dots li button:before {
+    font-size: 16px !important;
+} */

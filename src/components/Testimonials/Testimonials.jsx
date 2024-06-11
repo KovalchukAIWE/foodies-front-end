@@ -9,7 +9,6 @@ const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([]);
 
     useEffect(() => {
-        // Використовуємо axios для отримання даних з backendу
         axios.get('/api/testimonials')
             .then(response => {
                 const data = response.data;
