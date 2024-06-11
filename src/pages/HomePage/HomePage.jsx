@@ -5,6 +5,7 @@ import Hero from "../../components/Hero/Hero.jsx";
 import Categories from "../../components/Categories/Categories.jsx";
 import Recipes from "../../components/Recipes/Recipes.jsx";
 import Testimonials from "../../components/Testimonials/Testimonials.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 import { getTestimonials } from "../../services/testimonials.js";
 import { getCategories } from "../../services/categories.js";
 import { getAllRecipes } from "../../services/recipes.js";
@@ -19,6 +20,7 @@ const HomePage = () => {
   const [selectedIngredient, setSelectedIngredient] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
   const limit = isMobile ? 8 : 12;
@@ -27,12 +29,15 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       try {
+        setIsLoading(true);
         const testimonials = await getTestimonials();
         const categories = await getCategories();
         setTestimonials(testimonials);
         setCategories(categories);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, []);
@@ -41,6 +46,7 @@ const HomePage = () => {
     (async () => {
       if (!selectedCategories) return;
       try {
+        setIsLoading(true);
         const { result, total } = await getAllRecipes({
           category: selectedCategories,
           area: selectedArea,
@@ -52,6 +58,8 @@ const HomePage = () => {
         setRecipes(result);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, [selectedCategories, selectedIngredient, selectedArea, page, limit]);
@@ -80,25 +88,25 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      {selectedCategories ? (
-        Array.isArray(recipes) && (
-          <Recipes
-            selectedCategories={selectedCategories}
-            selectedIngredient={selectedIngredient}
-            selectedArea={selectedArea}
-            onSelectedArea={handleSelectedArea}
-            onSelectedIngredient={handleSelectedIngredient}
-            onSetPage={handleSetPage}
-            totalPage={totalPage}
-            onBack={handleBack}
-          />
-        )
-      ) : (
-        <Categories
-          onSelectedCategory={handleSelectedCategory}
-          categories={categories}
-        />
-      )}
+      {selectedCategories
+        ? Array.isArray(recipes) && (
+            <Recipes
+              selectedCategories={selectedCategories}
+              selectedIngredient={selectedIngredient}
+              selectedArea={selectedArea}
+              onSelectedArea={handleSelectedArea}
+              onSelectedIngredient={handleSelectedIngredient}
+              onSetPage={handleSetPage}
+              totalPage={totalPage}
+              onBack={handleBack}
+            />
+          )
+        : categories && (
+            <Categories
+              onSelectedCategory={handleSelectedCategory}
+              categories={categories}
+            />
+          )}
 
       {Array.isArray(testimonials) && (
         <Testimonials testimonials={testimonials} />
@@ -106,6 +114,7 @@ const HomePage = () => {
 
       {/* Поміняти на компонент нотифікашки */}
       {error && <p>{error}</p>}
+      {isLoading && <Loader />}
     </>
   );
 };
