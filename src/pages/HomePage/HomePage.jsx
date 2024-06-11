@@ -99,6 +99,7 @@ const HomePage = () => {
               onSetPage={handleSetPage}
               totalPage={totalPage}
               onBack={handleBack}
+              recipes={recipes}
             />
           )
         : categories && (
