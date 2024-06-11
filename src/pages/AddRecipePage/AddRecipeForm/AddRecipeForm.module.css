@@ -184,6 +184,10 @@
   color: var(--text-grey);
 }
 
+.symbBold {
+  color: var(--main-black);
+}
+
 .formOptionsWrapper {
   display: flex;
   flex-direction: column;

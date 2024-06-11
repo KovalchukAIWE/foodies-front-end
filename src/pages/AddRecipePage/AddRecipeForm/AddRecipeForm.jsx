@@ -11,18 +11,15 @@ import {
 } from "../../../components/Buttons/Buttons";
 import SelectDropDown from "../../../components/SelectDropDown/SelectDropDown";
 
-const options = [
-  { value: "beef", label: "Beef" },
-  { value: "breakfast", label: "Breakfast" },
-  { value: "desserts", label: "Desserts" },
-  { value: "lamb", label: "Lamb" },
-  { value: "miscellaneous", label: "Miscellaneous" },
-  { value: "pasta", label: "Pasta" },
-  { value: "pork", label: "Pork" },
-  { value: "seafood", label: "Seafood" },
-  { value: "side", label: "Side" },
-  { value: "starter", label: "Starter" },
-];
+import {
+  // useEffect,
+  useState,
+} from "react";
+import { useSelector } from "react-redux";
+import {
+  selectCategories,
+  selectIngredients,
+} from "../../../redux/recipes/selectors";
 
 const AddRecipeForm = () => {
   const {
@@ -32,16 +29,37 @@ const AddRecipeForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log(errors);
+
+  const categoriesList = useSelector(selectCategories);
+  const ingredientsList = useSelector(selectIngredients);
+
+  const [symbRecipeDescrCount, setSymbRecipeDescrCount] = useState(0);
+  const [symbRecipePrepCount, setSymbRecipePrepCount] = useState(0);
 
   const onSubmit = (data) => console.log(data);
   //reset();
   const onSelectCategory = (value) => console.log(value);
   const onSelectIngredient = (value) => console.log(value);
 
-  console.log(errors);
+  const handleSymbRecipeDescrCount = (e) => {
+    setSymbRecipeDescrCount(e.target.value.length);
+  };
+
+  const handleSymbRecipePrepCount = (e) => {
+    setSymbRecipePrepCount(e.target.value.length);
+  };
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form}
+      autoComplete="off"
+    >
       <div className={styles.uploadPhoto}>
         <svg width={50} height={50} className={styles.svgPhoto}>
           <use href={`${sprite}#photo`}></use>
@@ -67,8 +85,18 @@ const AddRecipeForm = () => {
               )}
               placeholder="Enter a description of the dish"
               className={` ${styles.inputArea} text`}
+              onChange={handleSymbRecipeDescrCount}
             />
-            <p className={`${styles.symbCounter} text`}>0/200</p>
+            <p className={`${styles.symbCounter} text`}>
+              <span
+                className={`${styles.symbCounter} text ${
+                  symbRecipeDescrCount > 0 ? styles.symbBold : ""
+                }`}
+              >
+                {symbRecipeDescrCount}
+              </span>
+              /200
+            </p>
           </div>
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="category">Category</label>
@@ -76,7 +104,9 @@ const AddRecipeForm = () => {
               render={({ field }) => (
                 <SelectDropDown
                   field={field}
-                  options={options}
+                  options={categoriesList.map((option) => {
+                    return { value: option._id, label: option.name };
+                  })}
                   placeholder={"Select a category"}
                   selectedOption={null}
                   onSelect={onSelectCategory}
@@ -86,21 +116,6 @@ const AddRecipeForm = () => {
               name={"category"}
               control={control}
             />
-            {/* <select
-               {...register("category", { required: true })}
-              placeholder="Select a category"
-            >
-              <option value="beef">Beef</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="desserts">Desserts</option>
-              <option value="lamb">Lamb</option>
-              <option value="miscellaneous">Miscellaneous</option>
-              <option value="pasta">Pasta</option>
-              <option value="pork">Pork</option>
-              <option value="seafood">Seafood</option>
-              <option value="side">Side</option>
-              <option value="starter">Starter</option>
-            </select> */}
           </div>
 
           <div className={styles.addOptionsWrapper}>
@@ -116,26 +131,13 @@ const AddRecipeForm = () => {
             <label htmlFor="ingredients">Ingredients</label>
             <SelectDropDown
               placeholder={"Add the ingredient"}
-              options={options}
+              options={ingredientsList.map((option) => {
+                return { value: option._id, label: option.name };
+              })}
               selectedOption={null}
               onSelect={onSelectIngredient}
               name={"ingredients"}
             />
-            {/* <select
-              {...register("ingredients", { required: true })}
-              placeholder="Add the ingredient"
-            >
-              <option value="Cabbage">Cabbage</option>
-              <option value="Cucumber">Cucumber</option>
-              <option value="desserts">Desserts</option>
-              <option value="Lamb">Lamb</option>
-              <option value="Miscellaneous">Miscellaneous</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Pork">Pork</option>
-              <option value="Seafood">Seafood</option>
-              <option value="Side">Side</option>
-              <option value="Starter">Starter</option>
-            </select> */}
           </div>
           <div className={styles.addOptionsWrapper}>
             <input
@@ -159,8 +161,18 @@ const AddRecipeForm = () => {
               )}
               placeholder="Enter recipe"
               className={`${styles.inputArea} text`}
+              onChange={handleSymbRecipePrepCount}
             />
-            <p className={`${styles.symbCounter} text`}>0/200</p>
+            <p className={`${styles.symbCounter} text`}>
+              <span
+                className={`${styles.symbCounter} text ${
+                  symbRecipePrepCount > 0 ? styles.symbBold : ""
+                }`}
+              >
+                {symbRecipePrepCount}
+              </span>
+              /200
+            </p>
           </div>
         </div>
         <div className={styles.bottomBtns}>

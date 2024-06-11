@@ -6,7 +6,11 @@ import { refresh } from "./redux/user/operations.js";
 import { selectIsRefreshing } from "./redux/user/selectors.js";
 import Loader from "./components/Loader/Loader.jsx";
 import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
-import { getAllAreas, getAllIngredients } from "./redux/recipes/operations.js";
+import {
+  getAllAreas,
+  getAllCategories,
+  getAllIngredients,
+} from "./redux/recipes/operations.js";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const RecipePage = lazy(() => import("./pages/RecipePage/RecipePage.jsx"));
@@ -22,6 +26,7 @@ const App = () => {
     dispatch(refresh());
     dispatch(getAllAreas());
     dispatch(getAllIngredients());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   return isRefreshing ? (
