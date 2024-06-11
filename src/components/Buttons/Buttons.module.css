@@ -234,6 +234,11 @@
     height: 56px;
   }
 
+  .rangeButton svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .recipeCardButton {
     width: 42px;
     height: 42px;

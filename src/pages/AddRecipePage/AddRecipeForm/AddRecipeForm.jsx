@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import styles from "./AddRecipeForm.module.css";
 import sprite from "../../../assets/img/icons-sprite.svg";
@@ -11,14 +11,33 @@ import {
 } from "../../../components/Buttons/Buttons";
 import SelectDropDown from "../../../components/SelectDropDown/SelectDropDown";
 
+const options = [
+  { value: "beef", label: "Beef" },
+  { value: "breakfast", label: "Breakfast" },
+  { value: "desserts", label: "Desserts" },
+  { value: "lamb", label: "Lamb" },
+  { value: "miscellaneous", label: "Miscellaneous" },
+  { value: "pasta", label: "Pasta" },
+  { value: "pork", label: "Pork" },
+  { value: "seafood", label: "Seafood" },
+  { value: "side", label: "Side" },
+  { value: "starter", label: "Starter" },
+];
+
 const AddRecipeForm = () => {
   const {
     register,
+    control,
+    //reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
+  //reset();
+  const onSelectCategory = (value) => console.log(value);
+  const onSelectIngredient = (value) => console.log(value);
+
   console.log(errors);
 
   return (
@@ -53,9 +72,22 @@ const AddRecipeForm = () => {
           </div>
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="category">Category</label>
-            <SelectDropDown />
+            <Controller
+              render={({ field }) => (
+                <SelectDropDown
+                  field={field}
+                  options={options}
+                  placeholder={"Select a category"}
+                  selectedOption={null}
+                  onSelect={onSelectCategory}
+                  name={"category"}
+                />
+              )}
+              name={"category"}
+              control={control}
+            />
             {/* <select
-              {...register("category", { required: true })}
+               {...register("category", { required: true })}
               placeholder="Select a category"
             >
               <option value="beef">Beef</option>
@@ -74,15 +106,22 @@ const AddRecipeForm = () => {
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="">COOKING TIME</label>
             <div className={styles.counter}>
-              <MinusButton />
+              <MinusButton type="button" />
               <span className={`${styles.counterNum} text`}>10 min</span>
-              <PlusButton />
+              <PlusButton type="button" />
             </div>
           </div>
 
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="ingredients">Ingredients</label>
-            <select
+            <SelectDropDown
+              placeholder={"Add the ingredient"}
+              options={options}
+              selectedOption={null}
+              onSelect={onSelectIngredient}
+              name={"ingredients"}
+            />
+            {/* <select
               {...register("ingredients", { required: true })}
               placeholder="Add the ingredient"
             >
@@ -96,17 +135,18 @@ const AddRecipeForm = () => {
               <option value="Seafood">Seafood</option>
               <option value="Side">Side</option>
               <option value="Starter">Starter</option>
-            </select>
+            </select> */}
           </div>
-
-          <input
-            type="text"
-            {...register("ingredientsQuantity", { required: true })}
-            placeholder="Enter quantity"
-            className={`${styles.ingredientsQuantity} text`}
-          />
+          <div className={styles.addOptionsWrapper}>
+            <input
+              type="text"
+              {...register("ingredientsQuantity", { required: true })}
+              placeholder="Enter quantity"
+              className={`${styles.ingredientsQuantity} text`}
+            />
+          </div>
         </div>
-        <AddIngrButton text="Add ingredient" />
+        <AddIngrButton text="Add ingredient" type="button" />
 
         <div className={styles.recipePreparation}>
           <label htmlFor="recipePreparation">Recipe Preparation</label>
