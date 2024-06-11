@@ -18,7 +18,7 @@ import {
   selectCategories,
   selectIngredients,
 } from "../../../redux/recipes/selectors";
-import CookingTime from "./CookingTime/CookingTime";
+import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
 
 const AddRecipeForm = () => {
   const {
@@ -35,6 +35,7 @@ const AddRecipeForm = () => {
 
   const [symbRecipeDescrCount, setSymbRecipeDescrCount] = useState(0);
   const [symbRecipePrepCount, setSymbRecipePrepCount] = useState(0);
+  const [cookingTime, setCookingTime] = useState(1);
 
   const onSubmit = (data) => console.log(data);
   //reset();
@@ -117,7 +118,10 @@ const AddRecipeForm = () => {
             />
           </div>
 
-          <CookingTime />
+          <CookingTimeConter
+            cookingTime={cookingTime}
+            setCookingTime={setCookingTime}
+          />
 
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="ingredients">Ingredients</label>
