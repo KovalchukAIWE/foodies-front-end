@@ -1,13 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
 
 import styles from "./AddRecipeForm.module.css";
-import sprite from "../../../assets/img/icons-sprite.svg";
+import sprite from "../../assets/img/icons-sprite.svg";
 
-import {
-  DeleteButton,
-  AddIngrButton,
-} from "../../../components/Buttons/Buttons";
-import SelectDropDown from "../../../components/SelectDropDown/SelectDropDown";
+import { DeleteButton, AddIngrButton } from "../Buttons/Buttons";
+import SelectDropDown from "../SelectDropDown/SelectDropDown";
 
 import {
   // useEffect,
@@ -17,7 +14,7 @@ import { useSelector } from "react-redux";
 import {
   selectCategories,
   selectIngredients,
-} from "../../../redux/recipes/selectors";
+} from "../../redux/recipes/selectors";
 import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
 
 const AddRecipeForm = () => {

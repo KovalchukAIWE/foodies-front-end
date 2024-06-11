@@ -1,9 +1,6 @@
 import styles from "../AddRecipeForm.module.css";
 
-import {
-  MinusButton,
-  PlusButton,
-} from "../../../../components/Buttons/Buttons";
+import { MinusButton, PlusButton } from "../../Buttons/Buttons";
 
 const CookingTimeConter = ({ cookingTime, setCookingTime }) => {
   const decrementTime = () => {
