@@ -1,4 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import addRecipeSchema from "./validationSchema/addRecipeSchema";
 import Select from "react-select";
 
 import { selectStyles } from "../../css/selectStyles";
@@ -18,12 +20,17 @@ import {
 } from "../../redux/recipes/selectors";
 
 const AddRecipeForm = () => {
-  const methods = useForm();
+  const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
+  const {
+    formState: { errors },
+  } = methods;
+
+  console.log("errors :>> ", errors);
 
   const categoriesList = useSelector(selectCategories);
   const ingredientsList = useSelector(selectIngredients);
 
-  const [cookingTime, setCookingTime] = useState(5);
+  const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const onSubmit = (data) => console.log(data);
@@ -40,25 +47,33 @@ const AddRecipeForm = () => {
       >
         <UploadPhoto />
         <div className={styles.formOptionals}>
-          <input
-            type="text"
-            {...methods.register("title", { required: true })}
-            placeholder="THE NAME OF THE RECIPE"
-            className={styles.recipeName}
-          />
+          <div className={styles.errorContainer}>
+            <input
+              type="text"
+              {...methods.register("title")}
+              placeholder="THE NAME OF THE RECIPE"
+              className={styles.recipeName}
+            />
+            {errors.title && (
+              <span className={styles.error}>title is required</span>
+            )}
+          </div>
 
           <div className={styles.formOptionsWrapper}>
+            {/* RECIPE DESCRIPTION */}
             <div className={`${styles.inputAreaWrapper} ${styles.recipeDescr}`}>
-              <input
-                type="text"
-                {...methods.register(
-                  "description",
-                  { required: true },
-                  { maxLength: 220 }
+              <div className={styles.errorContainer}>
+                <textarea
+                  {...methods.register("description")}
+                  placeholder="Enter a description of the dish"
+                  className={` ${styles.inputArea} text`}
+                />
+                {errors.description && (
+                  <span className={`${styles.error} ${styles.errorInputArea}`}>
+                    description is required
+                  </span>
                 )}
-                placeholder="Enter a description of the dish"
-                className={` ${styles.inputArea} text`}
-              />
+              </div>
               <p className={`${styles.symbCounter} text`}>
                 <span
                   className={`${styles.symbCounter} text ${
@@ -70,6 +85,8 @@ const AddRecipeForm = () => {
                 /200
               </p>
             </div>
+
+            {/* SELECT CATEGORY */}
             <div className={styles.addOptionsWrapper}>
               <label htmlFor="category">Category</label>
               <Select
@@ -87,11 +104,13 @@ const AddRecipeForm = () => {
               />
             </div>
 
+            {/* COOKING TIMER */}
             <CookingTimeConter
               cookingTime={cookingTime}
               setCookingTime={setCookingTime}
             />
 
+            {/* SELECT INGREDIENTS */}
             <AddIngredients
               ingredientsList={ingredientsList}
               selectedIngredients={selectedIngredients}
@@ -99,18 +118,22 @@ const AddRecipeForm = () => {
             />
           </div>
 
+          {/* RECIPE PREPARATION */}
           <div className={styles.recipePreparation}>
             <label htmlFor="instructions">Recipe Preparation</label>
             <div className={styles.inputAreaWrapper}>
-              <textarea
-                {...methods.register(
-                  "instructions",
-                  { required: true },
-                  { maxLength: 220 }
+              <div className={styles.errorContainer}>
+                <textarea
+                  {...methods.register("instructions")}
+                  placeholder="Enter recipe"
+                  className={`${styles.inputArea} text`}
+                />
+                {errors.instructions && (
+                  <span className={`${styles.error} ${styles.errorInputArea}`}>
+                    recipe preparation is required
+                  </span>
                 )}
-                placeholder="Enter recipe"
-                className={`${styles.inputArea} text`}
-              />
+              </div>
               <p className={`${styles.symbCounter} text`}>
                 <span
                   className={`${styles.symbCounter} text ${
@@ -123,6 +146,8 @@ const AddRecipeForm = () => {
               </p>
             </div>
           </div>
+
+          {/* FORM BUTTONS */}
           <div className={styles.bottomBtns}>
             <DeleteButton
             // onClick={() => reset({ defaultValues })}

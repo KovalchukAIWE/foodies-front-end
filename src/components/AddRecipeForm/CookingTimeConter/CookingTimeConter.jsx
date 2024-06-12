@@ -5,42 +5,32 @@ import styles from "../AddRecipeForm.module.css";
 import { MinusButton, PlusButton } from "../../Buttons/Buttons";
 
 const CookingTimeConter = ({ cookingTime, setCookingTime }) => {
-  const {
-    register,
-    //setValue,
-    watch,
-    // setError,
-    // clearErrors,
-    formState: { errors },
-  } = useFormContext();
+  const { register, setValue, watch } = useFormContext();
 
   const time = watch("time");
   console.log("time :>> ", time);
 
-  console.log(errors);
   const decrementTime = () => {
-    if (time <= 5) {
+    if (cookingTime <= 10) {
       return;
     }
-    setCookingTime((prevTime) => prevTime - 5);
-    // setValue("time", cookingTime);
+    cookingTime -= 10;
+    setCookingTime(cookingTime);
+    setValue("time", cookingTime);
   };
   const incrementTime = () => {
-    setCookingTime((prevTime) => prevTime + 5);
-    // setValue("time", time);
+    cookingTime += 10;
+    setCookingTime(cookingTime);
+    setValue("time", cookingTime);
   };
 
   return (
     <div className={styles.addOptionsWrapper}>
       <label htmlFor="time">COOKING TIME</label>
       <div className={styles.counter}>
-        <MinusButton type="button" onClick={decrementTime} disabled />
-        <span
-          className={`${styles.counterNum} text`}
-          {...register("time", { required: true })}
-        >
-          {cookingTime} min
-        </span>
+        <MinusButton type="button" onClick={decrementTime} />
+        <input type="hidden" {...register("time")} value={cookingTime} />
+        <span className={`${styles.counterNum} text`}>{cookingTime} min</span>
         <PlusButton type="button" onClick={incrementTime} />
       </div>
     </div>

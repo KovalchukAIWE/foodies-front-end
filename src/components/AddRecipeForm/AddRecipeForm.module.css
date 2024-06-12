@@ -1,3 +1,22 @@
+.errorContainer {
+  position: relative;
+}
+
+/* className={styles.errorContainer} */
+
+.error {
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+
+  font-size: 12px;
+  color: #db0000;
+}
+
+.errorInputArea {
+  bottom: -40px;
+}
+
 .form {
   width: 100%;
   max-width: 343px;
@@ -127,7 +146,7 @@
 
 .inputArea {
   width: 270px;
-  height: auto;
+  height: 20px;
   color: inherit;
 
   @media screen and (min-width: 768px) {
@@ -212,12 +231,12 @@
 }
 
 .counterNum {
-  min-width: 44px;
+  min-width: 52px;
   color: var(--text-grey);
   text-align: center;
 
   @media screen and (min-width: 768px) {
-    min-width: 50px;
+    min-width: 60px;
   }
 }
 
