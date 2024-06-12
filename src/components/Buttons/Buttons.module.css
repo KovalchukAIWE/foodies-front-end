@@ -213,6 +213,7 @@
 
   .addIngrButton {
     width: 230px;
+    margin-top: 0;
   }
 
   .categoriesButton {

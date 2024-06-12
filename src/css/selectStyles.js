@@ -1,4 +1,4 @@
-export const selectDropDownStyles = {
+export const selectStyles = {
   control: (baseStyles, state) => ({
     ...baseStyles,
 

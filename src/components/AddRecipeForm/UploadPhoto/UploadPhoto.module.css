@@ -1,0 +1,47 @@
+.uploadPhoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 32px;
+
+  width: 100%;
+  height: 318px;
+
+  border-radius: 30px;
+  border: 1px dashed var(--border-grey-20);
+
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  text-decoration-line: underline;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 80px;
+
+    width: 704px;
+    height: 400px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0;
+    width: 551px;
+  }
+}
+
+.svgPhoto {
+  width: 50px;
+  height: 50px;
+  fill: var(--black-30);
+
+  @media screen and (min-width: 768px) {
+    width: 64px;
+    height: 64px;
+  }
+}
