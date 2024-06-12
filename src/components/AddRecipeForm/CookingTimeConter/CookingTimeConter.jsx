@@ -29,7 +29,12 @@ const CookingTimeConter = ({ cookingTime, setCookingTime }) => {
       <label htmlFor="time">COOKING TIME</label>
       <div className={styles.counter}>
         <MinusButton type="button" onClick={decrementTime} />
-        <input type="hidden" {...register("time")} value={cookingTime} />
+        <input
+          type="hidden"
+          {...register("time")}
+          value={cookingTime}
+          name="time"
+        />
         <span className={`${styles.counterNum} text`}>{cookingTime} min</span>
         <PlusButton type="button" onClick={incrementTime} />
       </div>
