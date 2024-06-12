@@ -45,6 +45,7 @@ const App = () => {
               path="user/:id"
               element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
             />
+            <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>
       </Suspense>
