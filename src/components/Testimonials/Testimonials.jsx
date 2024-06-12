@@ -54,7 +54,7 @@ const Testimonials = () => {
                 <use href="/vite.svg#untitled"></use>
             </svg>
             {Array.isArray(testimonials) && testimonials.length > 0 ? (
-              <Slider {...settings}>
+                  <Slider {...settings} className={styles.testimonialSlick}>
                     {testimonials.map((testimonial, index) => (
                       <div key={index} className={styles.testimonialSlide}>
                             <p className={styles.testimonialText}>{testimonial.text}</p>
