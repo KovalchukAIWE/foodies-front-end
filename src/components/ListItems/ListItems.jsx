@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { MyRecipeFavoriteCard } from "../MyRecipeFavoriteCard";
+import styles from "./ListItems.module.css";
 
-const ListItems = () => {
-  const [activeTab, setActiveTab] = useState("recipe");
-
-  useEffect(() => {}, [activeTab]);
+const ListItems = ({ activeTab }) => {
+  // const [activeTab, setActiveTab] = useState("recipe");
+  const arr = [];
+  // useEffect(() => {}, [activeTab]);
 
   return activeTab === "recipe" ? (
-    `<ul className=${styles.myRecipesList}>${arr.map(
-      ({ img, text, id, recipeName }) => (
+    <ul className={styles.myRecipesList}>
+      {arr.map(({ img, text, id, recipeName }) => (
         <MyRecipeFavoriteCard
           img={img}
           text={text}
@@ -16,8 +17,8 @@ const ListItems = () => {
           key={id}
           recipeName={recipeName}
         />
-      )
-    )}</ul>`
+      ))}
+    </ul>
   ) : (
     <ul>
       <li>

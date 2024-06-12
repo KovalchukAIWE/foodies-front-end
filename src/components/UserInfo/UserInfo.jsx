@@ -1,47 +1,103 @@
-export const UserInfo = () => {
-  return `<div className="profile-card">
-      <div className="profile-photo-box">
-        <div className="image-wrapper">
-          <img
-            srcset="./img/image.png 1x, ./img/image-2x.png 2x"
-            src="./img/image.png"
-            alt="profile photocard"
-            className="profile-photo"
-          />
-        </div>
-        <button
-          type="button"
-          className="add-profile-photo-btn"
-          id="add-profile-photo-btn"
-          aria-label="button for adding new profile photo"
-        >
-          <svg className="add-photo-icon">
-            <use href="./img/symbol-defs.svg#icon-add"></use>
-          </svg>
-        </button>
-      </div>
-      <h2 className="name">Victoria</h2>
-      <ul className="profile-info-list">
-        <li className="profile-info-item">
-          <p className="info-key">
-            Email: <span className="info-value">viccy.ajhgs@gmail.com</span>
-          </p>
-        </li>
-        <li className="profile-info-item">
-          <p className="info-key">
-            Added recipies: <span className="info-value">9</span>
-          </p>
-        </li>
+import styles from "./UserInfo.module.css";
+import noUserPhoto from "../../assets/img/noUserPhoto.webp";
+import addPhotoIcon from "../../assets/img/icons-sprite.svg";
 
-        <li className="profile-info-item">
-          <p className="info-key">Followers: <span className="info-value">5</span></p>
-        </li>
-        <li className="profile-info-item">
-          <p className="info-key">Favorites: <span className="info-value">9</span></p>
-        </li>
-        <li className="profile-info-item">
-          <p className="info-key">Followings: <span className="info-value">5</span></p>
-        </li>
-      </ul>
-    </div>`;
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/user/selectors";
+import { useDispatch } from "react-redux";
+import { setUsersAvatar } from "../../redux/user/operations";
+
+const UserInfo = ({
+  name,
+  userPhoto,
+  email,
+  myRecipes,
+  favorites,
+  followers,
+  followings,
+  // id,
+}) => {
+  const user = useSelector(selectUser);
+
+  console.log(user);
+
+  const dispatch = useDispatch;
+
+  // const isMyProfileId = id === user.id;
+
+  const isFollowing = false;
+
+  const isMyProfileId = true;
+
+  const updateUserPhoto = () => {
+    dispatch(setUsersAvatar);
+  };
+
+  return (
+    <>
+      <div className={styles.profileCard}>
+        <div className={styles.profilePhotoBox}>
+          <div className={styles.imageWrapper}>
+            <img
+              src={!userPhoto ? noUserPhoto : userPhoto}
+              alt="user photocard"
+              className={styles.profilePhoto}
+            />
+          </div>
+          {isMyProfileId && (
+            <form onSubmit={updateUserPhoto}>
+              <input
+                type="file"
+                className={styles.addProfilePhotoInput}
+                id="add-profile-photo-btn"
+                aria-label="button for adding new profile photo"
+              ></input>
+              <svg className={styles.addPhotoIcon}>
+                <use href={`${addPhotoIcon}#icon-add`}></use>
+              </svg>
+            </form>
+          )}
+        </div>
+        <h2 className={styles.name}>{name}</h2>
+        <ul className={styles.profileInfoList}>
+          <li className="profile-info-item">
+            <p className={styles.infoKey}>
+              Email: <span className="info-value">{email}</span>
+            </p>
+          </li>
+          <li className="profile-info-item">
+            <p className={styles.infoKey}>
+              Added recipies :{" "}
+              <span className={styles.infoValue}>{myRecipes}</span>
+            </p>
+          </li>
+          {isMyProfileId && (
+            <li className="profile-info-item">
+              <p className={styles.infoKey}>
+                Favorites: <span className={styles.infoValue}>{favorites}</span>
+              </p>
+            </li>
+          )}
+          <li className="profile-info-item">
+            <p className={styles.infoKey}>
+              Followers: <span className={styles.infoValue}>{followers}</span>
+            </p>
+          </li>
+          {isMyProfileId && (
+            <li className="profile-info-item">
+              <p className={styles.infoKey}>
+                Followings:{" "}
+                <span className={styles.infoValue}>{followings}</span>
+              </p>
+            </li>
+          )}
+        </ul>
+      </div>
+      <button type="button" className={styles.profileBtn} onClick={() => {}}>
+        {isMyProfileId ? "Log Out" : `${isFollowing ? "Unfollow" : "Follow"}`}
+      </button>
+    </>
+  );
 };
+
+export default UserInfo;
