@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 // const recipeIngredientsSchema = yup
 //   .object({
-//     ingredientId: yup.string().required(),
+//     id: yup.string().required(),
 //     measure: yup.string().required(),
 //   })
 //   .required();
@@ -39,7 +39,7 @@ const addRecipeSchema = yup
 
     category: yup.string().required("Category is required"),
     time: yup.string().min(1, "Cooking time must be at least 1 min").required(),
-    // ingredients: yup.array(recipeIngredientsSchema).required(),
+    ingredientsCount: yup.number().min(1, "Ing  is required").required(),
     instructions: yup
       .string()
       .required("Recipe preparation is required")

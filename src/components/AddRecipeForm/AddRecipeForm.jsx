@@ -34,7 +34,13 @@ const AddRecipeForm = () => {
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const ingredients = selectedIngredients.map((ing) => {
+      return { _id: ing.id, measure: ing.measure };
+    });
+    console.log({ ...data, ingredients });
+    // Send Backend
+  };
 
   const RecipePrep = methods.watch("instructions");
   const wordsRecipePrepCount = RecipePrep?.length
@@ -68,20 +74,27 @@ const AddRecipeForm = () => {
 
             {/* SELECT CATEGORY */}
             <div className={styles.addOptionsWrapper}>
-              <label htmlFor="category">Category</label>
-              <Select
-                name={"category"}
-                placeholder={"Select a category"}
-                selectedOption={null}
-                options={categoriesList.map((option) => {
-                  return { value: option._id, label: option.name };
-                })}
-                {...methods.register("category", { required: true })}
-                onChange={(selectedOption) =>
-                  methods.setValue("category", selectedOption.label)
-                }
-                styles={selectStyles}
-              />
+              <label>Category</label>
+              <div className={styles.errorContainer}>
+                <Select
+                  name="category"
+                  placeholder={"Select a category"}
+                  selectedOption={null}
+                  options={categoriesList.map((option) => {
+                    return { value: option._id, label: option.name };
+                  })}
+                  {...methods.register("category", { required: true })}
+                  onChange={(selectedOption) =>
+                    methods.setValue("category", selectedOption.label)
+                  }
+                  styles={selectStyles}
+                />
+                {errors.category && (
+                  <span className={styles.error}>
+                    {errors.category?.message}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* COOKING TIMER */}

@@ -1,5 +1,5 @@
-import Select from "react-select";
 import { useFormContext } from "react-hook-form";
+import Select from "react-select";
 
 import { selectStyles } from "../../../css/selectStyles";
 import styles from "../AddRecipeForm.module.css";
@@ -14,14 +14,12 @@ const AddIngredients = ({
 }) => {
   const {
     register,
-    setValue,
     watch,
-    // setError,
-    // clearErrors,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
-  console.log(errors);
+  setValue("ingredientsCount", selectedIngredients.length);
 
   const handleAddIngredient = () => {
     const ingredient = watch("ingredient");
@@ -36,6 +34,8 @@ const AddIngredients = ({
         ...selectedIngredients,
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
+
+      setValue("ingredientsCount", selectedIngredients.length);
 
       setValue("ingredient", "");
       setValue("measure", "");
@@ -93,6 +93,19 @@ const AddIngredients = ({
       ) : (
         <></>
       )}
+      <div className={styles.errorContainer}>
+        <input
+          type="hidden"
+          {...register("ingredientsCount")}
+          value={selectedIngredients.length}
+          name="ingredientsCount"
+        />
+        {errors.ingredientsCount && (
+          <span className={`${styles.error} ${styles.errorInputArea}`}>
+            {errors.ingredientsCount?.message}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
