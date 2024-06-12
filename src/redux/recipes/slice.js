@@ -1,6 +1,7 @@
 import { createSlice, isPending, isRejected } from "@reduxjs/toolkit";
 
 import {
+  getAllCategories,
   getAllIngredients,
   getAllAreas,
   getFavoriteRecipes,
@@ -11,6 +12,7 @@ import {
 const recipesSlice = createSlice({
   name: "recipes",
   initialState: {
+    categories: [],
     ingredients: [],
     areas: [],
     favoriteRecipes: [],
@@ -19,6 +21,10 @@ const recipesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getAllCategories.fulfilled, (state, { payload }) => {
+        state.categories = payload;
+        state.isLoading = false;
+      })
       .addCase(getAllIngredients.fulfilled, (state, { payload }) => {
         state.ingredients = payload;
         state.isLoading = false;
@@ -49,6 +55,7 @@ const recipesSlice = createSlice({
       .addMatcher(
         isPending(
           getAllAreas,
+          getAllCategories,
           getAllIngredients,
           getFavoriteRecipes,
           addFavoriteRecipe,
@@ -62,6 +69,7 @@ const recipesSlice = createSlice({
       .addMatcher(
         isRejected(
           getAllAreas,
+          getAllCategories,
           getAllIngredients,
           getFavoriteRecipes,
           addFavoriteRecipe,
