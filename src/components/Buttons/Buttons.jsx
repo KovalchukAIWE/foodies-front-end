@@ -1,9 +1,25 @@
 import styles from "./Buttons.module.css";
 import sprite from "../../assets/img/icons-sprite.svg";
 
+export const SignUpButton = ({ onClick, text }) => {
+  return (
+    <button type="button" onClick={onClick} className={styles.signUpButton}>
+      {text}
+    </button>
+  );
+};
+
+export const SignInButton = ({ onClick, text }) => {
+  return (
+    <button type="button" onClick={onClick} className={styles.signInButton}>
+      {text}
+    </button>
+  );
+};
+
 export const HeroButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.heroButton}>
+    <button type="button" onClick={onClick} className={styles.heroButton}>
       {text}
     </button>
   );
@@ -11,7 +27,7 @@ export const HeroButton = ({ onClick, text }) => {
 
 export const CategoriesButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.categoriesButton}>
+    <button type="button" onClick={onClick} className={styles.categoriesButton}>
       {text}
     </button>
   );
@@ -19,7 +35,7 @@ export const CategoriesButton = ({ onClick, text }) => {
 
 export const AddIngrButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.addIngrButton}>
+    <button type="button" onClick={onClick} className={styles.addIngrButton}>
       {text}
       <svg width={20} height={20}>
         <use href={`${sprite}#plus`}></use>
@@ -30,7 +46,7 @@ export const AddIngrButton = ({ onClick, text }) => {
 
 export const DeleteButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.deleteButton}>
+    <button type="button" onClick={onClick} className={styles.deleteButton}>
       {text}
       <svg width={20} height={20}>
         <use href={`${sprite}#trash`}></use>
@@ -41,7 +57,7 @@ export const DeleteButton = ({ onClick, text }) => {
 
 export const MinusButton = ({ onClick }) => {
   return (
-    <button onClick={onClick} className={styles.rangeButton}>
+    <button type="button" onClick={onClick} className={styles.rangeButton}>
       <svg width={16} height={16}>
         <use href={`${sprite}#minus`}></use>
       </svg>
@@ -51,7 +67,7 @@ export const MinusButton = ({ onClick }) => {
 
 export const PlusButton = ({ onClick }) => {
   return (
-    <button onClick={onClick} className={styles.rangeButton}>
+    <button type="button" onClick={onClick} className={styles.rangeButton}>
       <svg width={16} height={16}>
         <use href={`${sprite}#plus`}></use>
       </svg>
@@ -61,7 +77,7 @@ export const PlusButton = ({ onClick }) => {
 
 export const FavoriteButton = ({ onClick }) => {
   return (
-    <button onClick={onClick} className={styles.recipeCardButton}>
+    <button type="button" onClick={onClick} className={styles.recipeCardButton}>
       <svg width={16} height={16}>
         <use href={`${sprite}#heart`}></use>
       </svg>
@@ -71,7 +87,7 @@ export const FavoriteButton = ({ onClick }) => {
 
 export const DetailsButtonRecipe = ({ onClick }) => {
   return (
-    <button onClick={onClick} className={styles.recipeCardButton}>
+    <button type="button" onClick={onClick} className={styles.recipeCardButton}>
       <svg width={16} height={16}>
         <use href={`${sprite}#arrow-up-right`}></use>
       </svg>
@@ -81,7 +97,11 @@ export const DetailsButtonRecipe = ({ onClick }) => {
 
 export const DetailsButtonCategory = ({ onClick }) => {
   return (
-    <button onClick={onClick} className={styles.categoryCardButton}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={styles.categoryCardButton}
+    >
       <svg width={18} height={18}>
         <use href={`${sprite}#arrow-up-right`}></use>
       </svg>
@@ -91,7 +111,7 @@ export const DetailsButtonCategory = ({ onClick }) => {
 
 export const AddToFavButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.addToFavButton}>
+    <button type="button" onClick={onClick} className={styles.addToFavButton}>
       {text}
     </button>
   );
@@ -99,7 +119,7 @@ export const AddToFavButton = ({ onClick, text }) => {
 
 export const FollowButton = ({ onClick, text }) => {
   return (
-    <button onClick={onClick} className={styles.followButton}>
+    <button type="button" onClick={onClick} className={styles.followButton}>
       {text}
     </button>
   );

@@ -1,3 +1,39 @@
+.signUpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: 30px;
+  color: var(--white);
+  background-color: #050505e5;
+  border: 1px solid #e8e8e8;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}
+
+.signUpButton::hover {
+  background-color: #050505;
+}
+
+.signInButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: 30px;
+  color: #050505;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}
+
 .heroButton {
   display: flex;
   justify-content: center;
@@ -47,6 +83,7 @@
   gap: 8px;
 
   padding: 14px 20px;
+  width: 188px;
 
   background-color: transparent;
   border-radius: 30px;
@@ -210,6 +247,10 @@
     letter-spacing: -0.02em;
   }
 
+  .addIngrButton {
+    width: 230px;
+  }
+
   .categoriesButton {
     padding: 10px 14px;
 
@@ -227,6 +268,11 @@
   .rangeButton {
     width: 56px;
     height: 56px;
+  }
+
+  .rangeButton svg {
+    width: 22px;
+    height: 22px;
   }
 
   .recipeCardButton {

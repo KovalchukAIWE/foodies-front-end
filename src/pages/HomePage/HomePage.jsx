@@ -10,6 +10,9 @@ import { getTestimonials } from "../../services/testimonials.js";
 import { getCategories } from "../../services/categories.js";
 import { getAllRecipes } from "../../services/recipes.js";
 
+import css from "./HomePage.module.css";
+import Container from "../../components/Container/Container.jsx";
+
 const HomePage = () => {
   const [categories, setCategories] = useState(null);
   const [recipes, setRecipes] = useState(null);
@@ -21,10 +24,10 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
   const limit = isMobile ? 8 : 12;
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -88,30 +91,37 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      {selectedCategories
-        ? Array.isArray(recipes) && (
-            <Recipes
-              selectedCategories={selectedCategories}
-              selectedIngredient={selectedIngredient}
-              selectedArea={selectedArea}
-              onSelectedArea={handleSelectedArea}
-              onSelectedIngredient={handleSelectedIngredient}
-              onSetPage={handleSetPage}
-              totalPage={totalPage}
-              onBack={handleBack}
-            />
-          )
-        : categories && (
-            <Categories
-              onSelectedCategory={handleSelectedCategory}
-              categories={categories}
-            />
+      <section className={css.sectionCategories}>
+        <Container>
+          {selectedCategories
+            ? Array.isArray(recipes) && (
+                <Recipes
+                  selectedCategories={selectedCategories}
+                  selectedIngredient={selectedIngredient}
+                  selectedArea={selectedArea}
+                  onSelectedArea={handleSelectedArea}
+                  onSelectedIngredient={handleSelectedIngredient}
+                  onSetPage={handleSetPage}
+                  totalPage={totalPage}
+                  onBack={handleBack}
+                  recipes={recipes}
+                />
+              )
+            : categories && (
+                <Categories
+                  onSelectedCategory={handleSelectedCategory}
+                  categories={categories}
+                />
+              )}
+        </Container>
+      </section>
+      <section className={css.sectionTestimonail}>
+        <Container>
+          {Array.isArray(testimonials) && (
+            <Testimonials testimonials={testimonials} />
           )}
-
-      {Array.isArray(testimonials) && (
-        <Testimonials testimonials={testimonials} />
-      )}
-
+        </Container>
+      </section>
       {/* Поміняти на компонент нотифікашки */}
       {error && <p>{error}</p>}
       {isLoading && <Loader />}

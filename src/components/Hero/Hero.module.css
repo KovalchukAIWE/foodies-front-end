@@ -1,0 +1,85 @@
+.hero {
+  width: 100%;
+  padding: 194px 16px 100px;
+  background-color: #050505;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 217px 0 91px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1400px;
+    padding: 154px 0 82px;
+  }
+}
+
+.heroTitle {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 90px;
+    line-height: 90px;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 875px;
+  }
+}
+
+.heroSubtitle {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffffcc;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 40px;
+    width: 577px;
+  }
+}
+
+.heroImages {
+  display: flex;
+  margin-top: 30px;
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 40px;
+  }
+}
+
+.heroImageLarge {
+  width: 190px;
+
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
+}
+
+.heroImageSm {
+  width: 77px;
+  height: fit-content;
+  margin-top: 90px;
+
+  @media screen and (min-width: 768px) {
+    width: 150px;
+    margin-top: 135px;
+  }
+}
