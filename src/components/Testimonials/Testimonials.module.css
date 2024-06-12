@@ -76,10 +76,10 @@ margin-bottom: 40px;
     color: black !important; 
 }
 
-/* Додатковий стиль для лапок */
 .testimonialQuote {
-    font-size: 160px;
-    color: #E9E9E9;
+    width: 59px;
+    height: 48px;
+    fill: #E9E9E9;
     position: absolute;
     top: 76px;
     left: 40px;

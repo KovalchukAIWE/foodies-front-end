@@ -50,7 +50,9 @@ const Testimonials = () => {
         <div className={styles.testimonialsSection}>
             <h2 className={styles.sectionSubtitle}>What our customer say</h2>
             <h1 className={styles.sectionTitle}>Testimonials</h1>
-            <div className={styles.testimonialQuote}>“</div>
+            <svg className={styles.testimonialQuote}>
+                <use href="/footerSprite.svg#untitled"></use>
+            </svg>
             {Array.isArray(testimonials) && testimonials.length > 0 ? (
               <Slider {...settings}>
                     {testimonials.map((testimonial, index) => (
