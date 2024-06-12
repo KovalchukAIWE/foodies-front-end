@@ -1,10 +1,7 @@
-import Container from "../Container/Container";
 import css from "./Footer.module.css";
 
 const Footer = () => {
-  return (
-    <Container>
-    <footer className={css.footer}>
+  return <footer className={css.footer}>
     <div className={css.footerContent}>
       <a href="#" className={css.logoFooter}>Foodies</a>
       <ul className={css.footerSocialList}>
@@ -44,9 +41,7 @@ const Footer = () => {
     <div className={css.footerCopyrightBlock}>
       <p className={css.footerCopyright}>@2024, Foodies. All rights reserved</p>
     </div>
-    </footer>
-  </Container>
-  );
+  </footer>;
 };
 
 export default Footer;
