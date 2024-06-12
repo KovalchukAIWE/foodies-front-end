@@ -35,8 +35,15 @@ const AddRecipeForm = () => {
 
   const onSubmit = (data) => console.log(data);
 
-  const symbRecipeDescrCount = methods.watch("description")?.length;
-  const symbRecipePrepCount = methods.watch("instructions")?.length;
+  const RecipeDescr = methods.watch("description");
+  const wordsRecipeDescrCount = RecipeDescr?.length
+    ? RecipeDescr?.trim().split(" ").length
+    : 0;
+
+  const RecipePrep = methods.watch("instructions");
+  const wordsRecipePrepCount = RecipePrep?.length
+    ? RecipePrep.trim().split(" ").length
+    : 0;
 
   return (
     <FormProvider {...methods}>
@@ -55,7 +62,7 @@ const AddRecipeForm = () => {
               className={styles.recipeName}
             />
             {errors.title && (
-              <span className={styles.error}>title is required</span>
+              <span className={styles.error}>{errors.title?.message}</span>
             )}
           </div>
 
@@ -70,17 +77,17 @@ const AddRecipeForm = () => {
                 />
                 {errors.description && (
                   <span className={`${styles.error} ${styles.errorInputArea}`}>
-                    description is required
+                    {errors.description?.message}
                   </span>
                 )}
               </div>
               <p className={`${styles.symbCounter} text`}>
                 <span
                   className={`${styles.symbCounter} text ${
-                    symbRecipeDescrCount > 0 ? styles.symbBold : ""
+                    wordsRecipeDescrCount > 0 ? styles.symbBold : ""
                   }`}
                 >
-                  {symbRecipeDescrCount || 0}
+                  {wordsRecipeDescrCount}
                 </span>
                 /200
               </p>
@@ -130,17 +137,17 @@ const AddRecipeForm = () => {
                 />
                 {errors.instructions && (
                   <span className={`${styles.error} ${styles.errorInputArea}`}>
-                    recipe preparation is required
+                    {errors.instructions?.message}
                   </span>
                 )}
               </div>
               <p className={`${styles.symbCounter} text`}>
                 <span
                   className={`${styles.symbCounter} text ${
-                    symbRecipePrepCount > 0 ? styles.symbBold : ""
+                    wordsRecipePrepCount > 0 ? styles.symbBold : ""
                   }`}
                 >
-                  {symbRecipePrepCount || 0}
+                  {wordsRecipePrepCount}
                 </span>
                 /200
               </p>

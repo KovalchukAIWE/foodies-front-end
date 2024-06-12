@@ -7,25 +7,44 @@ import * as yup from "yup";
 //   })
 //   .required();
 
+yup.addMethod(yup.string, "wordsMaxCount", function (maxWords, errorMessage) {
+  return this.test(`test-words-count`, errorMessage, function (value) {
+    const { path, createError } = this;
+    const words = value.trim().split(" ").length;
+
+    return words < maxWords || createError({ path, message: errorMessage });
+  });
+});
+
+yup.addMethod(yup.string, "wordsMinCount", function (minWords, errorMessage) {
+  return this.test(`test-words-count`, errorMessage, function (value) {
+    const { path, createError } = this;
+    const words = value.trim().split(" ").length;
+
+    return minWords <= words || createError({ path, message: errorMessage });
+  });
+});
+
 const addRecipeSchema = yup
   .object({
     title: yup
       .string()
-      .min(3, "Recipe title must be at least 3 characters long")
-      .required(),
+      .required("Title is required")
+      .min(3, "Recipe title must be at least 3 characters long"),
     description: yup
       .string()
-      .min(3, "Recipe description must be at least 3 characters long")
-      .max(200, "Recipe description must be 200 characters long")
-      .required(),
-    category: yup.string().required(),
+      .required("Recipe description is required")
+      .wordsMinCount(3, "Recipe description must be at least 3 words long")
+      .wordsMaxCount(200, "Recipe description must be maximum 200 words long"),
+
+    category: yup.string().required("Category is required"),
     time: yup.string().min(1, "Cooking time must be at least 1 min").required(),
     // ingredients: yup.array(recipeIngredientsSchema).required(),
     instructions: yup
       .string()
-      .min(3, "Recipe preparation must be at least 3 characters long")
-      .max(200, "Recipe preparation must be 200 characters long")
-      .required(),
+      .required("Recipe preparation is required")
+      .wordsMinCount(3, "Recipe preparation must be at least 3 words long")
+      .wordsMaxCount(200, "Recipe preparation must be maximum 200 words long"),
   })
   .required();
 

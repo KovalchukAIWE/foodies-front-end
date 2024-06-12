@@ -5,11 +5,7 @@ import styles from "../AddRecipeForm.module.css";
 import { MinusButton, PlusButton } from "../../Buttons/Buttons";
 
 const CookingTimeConter = ({ cookingTime, setCookingTime }) => {
-  const { register, setValue, watch } = useFormContext();
-
-  const time = watch("time");
-  console.log("time :>> ", time);
-
+  const { register, setValue } = useFormContext();
   const decrementTime = () => {
     if (cookingTime <= 10) {
       return;
