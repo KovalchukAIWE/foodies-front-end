@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css'; 
 import styles from './Testimonials.module.css'; 
+import Container from "../Container/Container";
 
 const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([]);
@@ -45,7 +46,8 @@ const Testimonials = () => {
         pauseOnHover: true
     };
 
-  return (
+    return (
+        <Container>
       <section className={styles.testimonials}>
         <div className={styles.testimonialsSection}>
             <h2 className={styles.sectionSubtitle}>What our customer say</h2>
@@ -66,7 +68,8 @@ const Testimonials = () => {
                 <p>There are currently no reviews.</p>
             )}
       </div>
-      </section>
+            </section>
+        </Container>
     );
 };
 
