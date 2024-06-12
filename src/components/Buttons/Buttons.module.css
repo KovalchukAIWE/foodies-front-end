@@ -1,0 +1,301 @@
+.signUpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: 30px;
+  color: var(--white);
+  background-color: #050505e5;
+  border: 1px solid #e8e8e8;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}
+
+.signUpButton::hover {
+  background-color: #050505;
+}
+
+.signInButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 28px;
+  border-radius: 30px;
+  color: #050505;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}
+
+.heroButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 24px;
+
+  background-color: transparent;
+  border-radius: 30px;
+  border: 1px solid var(--white-90);
+
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  color: var(--white);
+  text-transform: uppercase;
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.categoriesButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 12px;
+
+  background-color: var(--white-30);
+  border-radius: 30px;
+  border: 1px solid var(--white-40);
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  color: var(--white);
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.addIngrButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 20px;
+  width: 188px;
+
+  background-color: transparent;
+  border-radius: 30px;
+  border: 1px solid var(--black-90);
+
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  color: var(--main-black);
+  text-transform: uppercase;
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: var(--black-90);
+
+  border-radius: 30px;
+  border: 1px solid var(--border-grey-12);
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.rangeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: var(--main-black);
+
+  border-radius: 30px;
+  border: 1px solid var(--border-grey-12);
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.recipeCardButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  color: var(--main-black);
+
+  border-radius: 30px;
+  border: 1px solid var(--border-grey-10);
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.categoryCardButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: var(--white);
+
+  border-radius: 30px;
+  border: 1px solid var(--white-30);
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.addIngrButton svg,
+.deleteButton svg,
+.rangeButton svg,
+.recipeCardButton svg,
+.categoryCardButton svg {
+  fill: currentColor;
+}
+
+.addToFavButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  background-color: transparent;
+  border-radius: 30px;
+  border: 1px solid var(--border-grey-12);
+
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  color: var(--black-90);
+  text-transform: uppercase;
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.followButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 16px;
+
+  background-color: transparent;
+  border-radius: 30px;
+  border: 1px solid var(--border-grey-12);
+
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  color: var(--black-90);
+  text-transform: uppercase;
+
+  transition: color var(--transition-func), border-color var(--transition-func),
+    background-color var(--transition-func);
+}
+
+.heroButton:hover,
+.heroButton:focus,
+.addIngrButton:hover,
+.addIngrButton:focus,
+.addToFavButton:hover,
+.addToFavButton:focus,
+.deleteButton:hover,
+.deleteButton:focus,
+.rangeButton:hover,
+.rangeButton:focus,
+.recipeCardButton:hover,
+.recipeCardButton:focus,
+.followButton:hover,
+.followButton:focus {
+  color: var(--white);
+  border-color: var(--main-black);
+  background-color: var(--main-black);
+}
+
+@media screen and (min-width: 768px) {
+  .heroButton,
+  .addIngrButton,
+  .addToFavButton {
+    padding: 16px 32px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+
+  .addIngrButton {
+    width: 230px;
+    margin-top: 0;
+  }
+
+  .categoriesButton {
+    padding: 10px 14px;
+
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .addIngrButton svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .deleteButton,
+  .rangeButton {
+    width: 56px;
+    height: 56px;
+  }
+
+  .rangeButton svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .recipeCardButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .recipeCardButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .categoryCardButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .followButton {
+    padding: 10px 24px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+}

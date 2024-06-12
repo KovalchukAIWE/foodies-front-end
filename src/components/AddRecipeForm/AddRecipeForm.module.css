@@ -1,0 +1,287 @@
+.form {
+  width: 100%;
+  max-width: 343px;
+
+  @media screen and (min-width: 768px) {
+    max-width: none;
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    gap: 80px;
+    width: 1280px;
+  }
+}
+
+.formOptionals {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  width: 100%;
+  max-width: 343px;
+
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+
+    max-width: none;
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 649px;
+  }
+}
+
+.recipeName {
+  width: 100%;
+
+  color: var(--main-black);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.33;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: -0.03em;
+  }
+}
+
+.recipeName::placeholder {
+  color: var(--text-grey);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.33;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: -0.03em;
+  }
+}
+
+.form label {
+  color: var(--main-black);
+
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.002em;
+  }
+}
+
+.inputAreaWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+
+  padding-bottom: 16px;
+  width: 100%;
+
+  border-bottom: 1px solid var(--border-grey-12);
+
+  transition: border-bottom var(--transition-func);
+
+  @media screen and (min-width: 768px) {
+    width: 649px;
+  }
+}
+
+.inputAreaWrapper:hover,
+.inputAreaWrapper:focus {
+  border-bottom: 1px solid var(--border-grey-20);
+}
+
+.recipeDescr {
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.ingredientsOptionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 19px;
+  }
+}
+
+.inputArea {
+  width: 270px;
+  height: auto;
+  color: inherit;
+
+  @media screen and (min-width: 768px) {
+    width: 550px;
+  }
+}
+
+.ingredientsQuantity {
+  width: 100%;
+  max-height: 40px;
+
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-grey-12);
+
+  @media screen and (min-width: 768px) {
+    width: 314px;
+  }
+}
+
+.inputArea::placeholder,
+.ingredientsQuantity::placeholder {
+  color: var(--text-grey);
+}
+
+.symbCounter {
+  color: var(--text-grey);
+}
+
+.symbBold {
+  color: var(--main-black);
+}
+
+.formOptionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 60px;
+    column-gap: 19px;
+  }
+}
+
+.addOptionsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+    width: 315px;
+  }
+}
+
+.ingrList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 343px;
+
+  @media screen and (min-width: 768px) {
+    gap: 28px;
+    max-width: none;
+    width: 649px;
+  }
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.counterNum {
+  min-width: 44px;
+  color: var(--text-grey);
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    min-width: 50px;
+  }
+}
+
+.addIngredientsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.recipePreparation {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+    margin-top: 40px;
+  }
+}
+
+.bottomBtns {
+  display: flex;
+  gap: 8px;
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 124px;
+  height: 48px;
+  padding: 14px 32px;
+
+  color: var(--white);
+  font-family: Mulish;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.017em;
+  text-transform: uppercase;
+
+  border-radius: 30px;
+  border: 1px solid var(--black-85);
+  background-color: var(--black-85);
+
+  transition: border-color var(--transition-func),
+    background-color var(--transition-func);
+
+  @media screen and (min-width: 768px) {
+    width: 146px;
+    height: 56px;
+
+    padding: 16px 39px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+}
+
+.submitBtn:focus,
+.submitBtn:hover {
+  border-color: var(--main-black);
+  background-color: var(--main-black);
+}
