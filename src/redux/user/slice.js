@@ -40,7 +40,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(setUsersAvatar.fulfilled, (state, { payload }) => {
-        state.user = payload.avatar;
+        state.user.avatar = payload.avatar;
         state.isLoading = false;
       })
 
