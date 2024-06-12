@@ -185,15 +185,11 @@
   gap: 16px;
 
   width: 100%;
-  max-width: 334px;
+  max-width: 343px;
 
   @media screen and (min-width: 768px) {
     gap: 28px;
     max-width: none;
-    width: 704px;
-  }
-
-  @media screen and (min-width: 1440px) {
     width: 649px;
   }
 }

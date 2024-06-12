@@ -1,18 +1,43 @@
 .ingrItem {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 10px;
 
   color: var(--main-black);
 
-  max-width: 163px;
+  width: calc((100% - 16px) / 2);
 
   @media screen and (min-width: 768px) {
     gap: 14px;
-    /* width: 178px; */
+    width: calc((100% - 28px * 2) / 3);
   }
+}
+
+.btnRemove {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 16px;
+  height: 16px;
+
+  background-color: transparent;
+
+  transition: transform var(--transition-func);
+}
+
+.btnRemove svg {
+  fill: currentColor;
+}
+
+.btnRemove:hover,
+.btnRemove:focus {
+  transform: scale(1.2);
 }
 
 .ingrImg {
@@ -28,8 +53,8 @@
   border: 1px solid var(--border-grey-10);
 
   @media screen and (min-width: 768px) {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     padding: 15px;
   }
 }
@@ -39,18 +64,13 @@
   flex-direction: column;
   gap: 2px;
 
-  padding: 16px 16px 16px 0;
   color: var(--text-grey);
+
+  @media screen and (min-width: 768px) {
+    gap: 4px;
+  }
 }
 
-/* .ingrName {
+.ingrName {
   color: var(--main-black);
-} */
-
-.btnRemove svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  fill: currentColor;
 }

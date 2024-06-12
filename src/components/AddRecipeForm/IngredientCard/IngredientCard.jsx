@@ -7,6 +7,11 @@ const IngredientCard = ({ ingredient }) => {
   };
   return (
     <li className={styles.ingrItem}>
+      <button type="button" className={styles.btnRemove} onClick={handleClick}>
+        <svg width={16} height={16}>
+          <use href={`${sprite}#close`}></use>
+        </svg>
+      </button>
       <img
         className={styles.ingrImg}
         src={ingredient.img}
@@ -16,11 +21,6 @@ const IngredientCard = ({ ingredient }) => {
         <p className={styles.ingrName}>{ingredient.name}</p>
         <p>{ingredient.measure}</p>
       </div>
-      <button type="button" className={styles.btnRemove} onClick={handleClick}>
-        <svg width={16} height={16}>
-          <use href={`${sprite}#close`}></use>
-        </svg>
-      </button>
     </li>
   );
 };
