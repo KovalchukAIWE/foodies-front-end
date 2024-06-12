@@ -1,17 +1,23 @@
-import Container from "../../components/Container/Container";
-import PathInfo from "../../components/PathInfo/PathInfo";
-import MainTitle from "../../components/MainTitle/MainTitle";
-import Subtitle from "../../components/Subtitle/Subtitle";
-import AddRecipeForm from "./AddRecipeForm/AddRecipeForm";
+import Container from "../../components/Container/Container.jsx";
+import PathInfo from "../../components/PathInfo/PathInfo.jsx";
+import MainTitle from "../../components/MainTitle/MainTitle.jsx";
+import Subtitle from "../../components/Subtitle/Subtitle.jsx";
+import AddRecipeForm from "../../components/AddRecipeForm/AddRecipeForm.jsx";
+
+import css from "./AddRecipePage.module.css";
 
 const AddRecipePage = () => {
   return (
-    <Container>
-      <PathInfo />
-      <MainTitle text="Add recipe" />
-      <Subtitle text="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us." />
-      <AddRecipeForm />
-    </Container>
+    <>
+      <section className={css.sectionAddRecipe}>
+        <Container>
+          <PathInfo pageName="Add recipe" />
+          <MainTitle text="Add recipe" />
+          <Subtitle text="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us." />
+          <AddRecipeForm />
+        </Container>
+      </section>
+    </>
   );
 };
 

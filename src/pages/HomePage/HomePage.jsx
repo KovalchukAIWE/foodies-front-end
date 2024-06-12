@@ -10,6 +10,9 @@ import { getTestimonials } from "../../services/testimonials.js";
 import { getCategories } from "../../services/categories.js";
 import { getAllRecipes } from "../../services/recipes.js";
 
+import css from "./HomePage.module.css";
+import Container from "../../components/Container/Container.jsx";
+
 const HomePage = () => {
   const [categories, setCategories] = useState(null);
   const [recipes, setRecipes] = useState(null);
@@ -88,31 +91,37 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      {selectedCategories
-        ? Array.isArray(recipes) && (
-            <Recipes
-              selectedCategories={selectedCategories}
-              selectedIngredient={selectedIngredient}
-              selectedArea={selectedArea}
-              onSelectedArea={handleSelectedArea}
-              onSelectedIngredient={handleSelectedIngredient}
-              onSetPage={handleSetPage}
-              totalPage={totalPage}
-              onBack={handleBack}
-              recipes={recipes}
-            />
-          )
-        : categories && (
-            <Categories
-              onSelectedCategory={handleSelectedCategory}
-              categories={categories}
-            />
+      <section className={css.sectionCategories}>
+        <Container>
+          {selectedCategories
+            ? Array.isArray(recipes) && (
+                <Recipes
+                  selectedCategories={selectedCategories}
+                  selectedIngredient={selectedIngredient}
+                  selectedArea={selectedArea}
+                  onSelectedArea={handleSelectedArea}
+                  onSelectedIngredient={handleSelectedIngredient}
+                  onSetPage={handleSetPage}
+                  totalPage={totalPage}
+                  onBack={handleBack}
+                  recipes={recipes}
+                />
+              )
+            : categories && (
+                <Categories
+                  onSelectedCategory={handleSelectedCategory}
+                  categories={categories}
+                />
+              )}
+        </Container>
+      </section>
+      <section className={css.sectionTestimonail}>
+        <Container>
+          {Array.isArray(testimonials) && (
+            <Testimonials testimonials={testimonials} />
           )}
-
-      {Array.isArray(testimonials) && (
-        <Testimonials testimonials={testimonials} />
-      )}
-
+        </Container>
+      </section>
       {/* Поміняти на компонент нотифікашки */}
       {error && <p>{error}</p>}
       {isLoading && <Loader />}
