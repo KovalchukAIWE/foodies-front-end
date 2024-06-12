@@ -40,13 +40,12 @@ const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route path="recipe/:id" element={<RecipePage />} />
-            {/* <Route
+            <Route
               path="recipe/add"
               element={
                 <PrivateRoute redirectTo="/" component={<AddRecipePage />} />
               }
-            /> */}
-            <Route path="recipe/add" element={<AddRecipePage />} />
+            />
             <Route
               path="user/:id"
               element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
