@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import Select from "react-select";
 
 import { selectStyles } from "../../css/selectStyles";
@@ -18,14 +18,7 @@ import {
 } from "../../redux/recipes/selectors";
 
 const AddRecipeForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm();
-  console.log(errors);
+  const methods = useForm();
 
   const categoriesList = useSelector(selectCategories);
   const ingredientsList = useSelector(selectIngredients);
@@ -35,112 +28,112 @@ const AddRecipeForm = () => {
 
   const onSubmit = (data) => console.log(data);
 
-  const symbRecipeDescrCount = watch("description")?.length;
-  const symbRecipePrepCount = watch("instructions")?.length;
+  const symbRecipeDescrCount = methods.watch("description")?.length;
+  const symbRecipePrepCount = methods.watch("instructions")?.length;
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={styles.form}
-      autoComplete="off"
-    >
-      <UploadPhoto />
-      <div className={styles.formOptionals}>
-        <input
-          type="text"
-          {...register("title", { required: true })}
-          placeholder="THE NAME OF THE RECIPE"
-          className={styles.recipeName}
-        />
-
-        <div className={styles.formOptionsWrapper}>
-          <div className={`${styles.inputAreaWrapper} ${styles.recipeDescr}`}>
-            <input
-              type="text"
-              {...register(
-                "description",
-                { required: true },
-                { maxLength: 220 }
-              )}
-              placeholder="Enter a description of the dish"
-              className={` ${styles.inputArea} text`}
-            />
-            <p className={`${styles.symbCounter} text`}>
-              <span
-                className={`${styles.symbCounter} text ${
-                  symbRecipeDescrCount > 0 ? styles.symbBold : ""
-                }`}
-              >
-                {symbRecipeDescrCount || 0}
-              </span>
-              /200
-            </p>
-          </div>
-          <div className={styles.addOptionsWrapper}>
-            <label htmlFor="category">Category</label>
-            <Select
-              name={"category"}
-              placeholder={"Select a category"}
-              selectedOption={null}
-              options={categoriesList.map((option) => {
-                return { value: option._id, label: option.name };
-              })}
-              {...register("category", { required: true })}
-              onChange={(selectedOption) =>
-                setValue("category", selectedOption.label)
-              }
-              styles={selectStyles}
-            />
-          </div>
-
-          <CookingTimeConter
-            cookingTime={cookingTime}
-            setCookingTime={setCookingTime}
-            // {...register("time", { required: true })}
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className={styles.form}
+        autoComplete="off"
+      >
+        <UploadPhoto />
+        <div className={styles.formOptionals}>
+          <input
+            type="text"
+            {...methods.register("title", { required: true })}
+            placeholder="THE NAME OF THE RECIPE"
+            className={styles.recipeName}
           />
 
-          <AddIngredients
-            ingredientsList={ingredientsList}
-            register={register}
-            setValue={setValue}
-            watch={watch}
-            selectedIngredients={selectedIngredients}
-            setSelectedIngredients={setSelectedIngredients}
-          />
-        </div>
+          <div className={styles.formOptionsWrapper}>
+            <div className={`${styles.inputAreaWrapper} ${styles.recipeDescr}`}>
+              <input
+                type="text"
+                {...methods.register(
+                  "description",
+                  { required: true },
+                  { maxLength: 220 }
+                )}
+                placeholder="Enter a description of the dish"
+                className={` ${styles.inputArea} text`}
+              />
+              <p className={`${styles.symbCounter} text`}>
+                <span
+                  className={`${styles.symbCounter} text ${
+                    symbRecipeDescrCount > 0 ? styles.symbBold : ""
+                  }`}
+                >
+                  {symbRecipeDescrCount || 0}
+                </span>
+                /200
+              </p>
+            </div>
+            <div className={styles.addOptionsWrapper}>
+              <label htmlFor="category">Category</label>
+              <Select
+                name={"category"}
+                placeholder={"Select a category"}
+                selectedOption={null}
+                options={categoriesList.map((option) => {
+                  return { value: option._id, label: option.name };
+                })}
+                {...methods.register("category", { required: true })}
+                onChange={(selectedOption) =>
+                  methods.setValue("category", selectedOption.label)
+                }
+                styles={selectStyles}
+              />
+            </div>
 
-        <div className={styles.recipePreparation}>
-          <label htmlFor="instructions">Recipe Preparation</label>
-          <div className={styles.inputAreaWrapper}>
-            <textarea
-              {...register(
-                "instructions",
-                { required: true },
-                { maxLength: 220 }
-              )}
-              placeholder="Enter recipe"
-              className={`${styles.inputArea} text`}
+            <CookingTimeConter
+              cookingTime={cookingTime}
+              setCookingTime={setCookingTime}
             />
-            <p className={`${styles.symbCounter} text`}>
-              <span
-                className={`${styles.symbCounter} text ${
-                  symbRecipePrepCount > 0 ? styles.symbBold : ""
-                }`}
-              >
-                {symbRecipePrepCount || 0}
-              </span>
-              /200
-            </p>
+
+            <AddIngredients
+              ingredientsList={ingredientsList}
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
+          </div>
+
+          <div className={styles.recipePreparation}>
+            <label htmlFor="instructions">Recipe Preparation</label>
+            <div className={styles.inputAreaWrapper}>
+              <textarea
+                {...methods.register(
+                  "instructions",
+                  { required: true },
+                  { maxLength: 220 }
+                )}
+                placeholder="Enter recipe"
+                className={`${styles.inputArea} text`}
+              />
+              <p className={`${styles.symbCounter} text`}>
+                <span
+                  className={`${styles.symbCounter} text ${
+                    symbRecipePrepCount > 0 ? styles.symbBold : ""
+                  }`}
+                >
+                  {symbRecipePrepCount || 0}
+                </span>
+                /200
+              </p>
+            </div>
+          </div>
+          <div className={styles.bottomBtns}>
+            <DeleteButton
+            // onClick={() => reset({ defaultValues })}
+            />
+            <button type="submit" className={styles.submitBtn}>
+              Publish
+            </button>
           </div>
         </div>
-        <div className={styles.bottomBtns}>
-          <DeleteButton />
-          <button type="submit" className={styles.submitBtn}>
-            Publish
-          </button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </FormProvider>
   );
 };
 

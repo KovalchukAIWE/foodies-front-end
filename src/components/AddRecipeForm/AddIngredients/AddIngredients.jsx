@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { useFormContext } from "react-hook-form";
 
 import { selectStyles } from "../../../css/selectStyles";
 import styles from "../AddRecipeForm.module.css";
@@ -8,12 +9,20 @@ import IngredientCard from "../IngredientCard/IngredientCard";
 
 const AddIngredients = ({
   ingredientsList,
-  register,
-  setValue,
-  watch,
   selectedIngredients,
   setSelectedIngredients,
 }) => {
+  const {
+    register,
+    setValue,
+    watch,
+    // setError,
+    // clearErrors,
+    formState: { errors },
+  } = useFormContext();
+
+  console.log(errors);
+
   const handleAddIngredient = () => {
     const ingredient = watch("ingredient");
     const measure = watch("measure");
