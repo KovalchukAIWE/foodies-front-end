@@ -1,57 +1,60 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import styles from "./AddRecipeForm.module.css";
-import sprite from "../../assets/img/icons-sprite.svg";
 
-import {
-  DeleteButton,
-  AddIngrButton,
-  MinusButton,
-  PlusButton,
-} from "../Buttons/Buttons";
+import { DeleteButton } from "../Buttons/Buttons";
 import SelectDropDown from "../SelectDropDown/SelectDropDown";
 
-const options = [
-  { value: "beef", label: "Beef" },
-  { value: "breakfast", label: "Breakfast" },
-  { value: "desserts", label: "Desserts" },
-  { value: "lamb", label: "Lamb" },
-  { value: "miscellaneous", label: "Miscellaneous" },
-  { value: "pasta", label: "Pasta" },
-  { value: "pork", label: "Pork" },
-  { value: "seafood", label: "Seafood" },
-  { value: "side", label: "Side" },
-  { value: "starter", label: "Starter" },
-];
+import {
+  // useEffect,
+  useState,
+} from "react";
+import { useSelector } from "react-redux";
+import {
+  selectCategories,
+  selectIngredients,
+} from "../../redux/recipes/selectors";
+import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
+import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import AddIngredients from "./AddIngredients/AddIngredients";
 
 const AddRecipeForm = () => {
   const {
     register,
-    control,
-    //reset,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => console.log(data);
-  //reset();
-  const onSelectCategory = (value) => console.log(value);
-  const onSelectIngredient = (value) => console.log(value);
-
   console.log(errors);
 
+  const categoriesList = useSelector(selectCategories);
+  const ingredientsList = useSelector(selectIngredients);
+
+  const [cookingTime, setCookingTime] = useState(5);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+
+  const onSubmit = (data) => console.log(data);
+  const onSelectCategory = (value) => console.log(value);
+
+  const symbRecipeDescrCount = watch("description")?.length;
+  const symbRecipePrepCount = watch("instructions")?.length;
+
+  // useEffect(() => {
+
+  // }, []);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div className={styles.uploadPhoto}>
-        <svg width={50} height={50} className={styles.svgPhoto}>
-          <use href={`${sprite}#photo`}></use>
-        </svg>
-        <p className={styles.uploadPhotoText}>Upload a photo</p>
-      </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form}
+      autoComplete="off"
+    >
+      <UploadPhoto />
       <div className={styles.formOptionals}>
         <input
           type="text"
-          {...register("recipeName", { required: true })}
+          {...register("title", { required: true })}
           placeholder="THE NAME OF THE RECIPE"
           className={styles.recipeName}
         />
@@ -61,106 +64,80 @@ const AddRecipeForm = () => {
             <input
               type="text"
               {...register(
-                "recipeDescr",
+                "description",
                 { required: true },
                 { maxLength: 220 }
               )}
               placeholder="Enter a description of the dish"
               className={` ${styles.inputArea} text`}
             />
-            <p className={`${styles.symbCounter} text`}>0/200</p>
+            <p className={`${styles.symbCounter} text`}>
+              <span
+                className={`${styles.symbCounter} text ${
+                  symbRecipeDescrCount > 0 ? styles.symbBold : ""
+                }`}
+              >
+                {symbRecipeDescrCount || 0}
+              </span>
+              /200
+            </p>
           </div>
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="category">Category</label>
-            <Controller
-              render={({ field }) => (
-                <SelectDropDown
-                  field={field}
-                  options={options}
-                  placeholder={"Select a category"}
-                  selectedOption={null}
-                  onSelect={onSelectCategory}
-                  name={"category"}
-                />
-              )}
-              name={"category"}
-              control={control}
-            />
-            {/* <select
-               {...register("category", { required: true })}
-              placeholder="Select a category"
-            >
-              <option value="beef">Beef</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="desserts">Desserts</option>
-              <option value="lamb">Lamb</option>
-              <option value="miscellaneous">Miscellaneous</option>
-              <option value="pasta">Pasta</option>
-              <option value="pork">Pork</option>
-              <option value="seafood">Seafood</option>
-              <option value="side">Side</option>
-              <option value="starter">Starter</option>
-            </select> */}
-          </div>
 
-          <div className={styles.addOptionsWrapper}>
-            <label htmlFor="">COOKING TIME</label>
-            <div className={styles.counter}>
-              <MinusButton type="button" />
-              <span className={`${styles.counterNum} text`}>10 min</span>
-              <PlusButton type="button" />
-            </div>
-          </div>
-
-          <div className={styles.addOptionsWrapper}>
-            <label htmlFor="ingredients">Ingredients</label>
             <SelectDropDown
-              placeholder={"Add the ingredient"}
-              options={options}
+              options={categoriesList.map((option) => {
+                return { value: option._id, label: option.name };
+              })}
+              placeholder={"Select a category"}
               selectedOption={null}
-              onSelect={onSelectIngredient}
-              name={"ingredients"}
-            />
-            {/* <select
-              {...register("ingredients", { required: true })}
-              placeholder="Add the ingredient"
-            >
-              <option value="Cabbage">Cabbage</option>
-              <option value="Cucumber">Cucumber</option>
-              <option value="desserts">Desserts</option>
-              <option value="Lamb">Lamb</option>
-              <option value="Miscellaneous">Miscellaneous</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Pork">Pork</option>
-              <option value="Seafood">Seafood</option>
-              <option value="Side">Side</option>
-              <option value="Starter">Starter</option>
-            </select> */}
-          </div>
-          <div className={styles.addOptionsWrapper}>
-            <input
-              type="text"
-              {...register("ingredientsQuantity", { required: true })}
-              placeholder="Enter quantity"
-              className={`${styles.ingredientsQuantity} text`}
+              onSelect={onSelectCategory}
+              name={"category"}
+              // {...register("category")}
+              // onChange={(selectedOption) =>
+              //   setValue("category", selectedOption.value)
+              // }
             />
           </div>
+
+          <CookingTimeConter
+            cookingTime={cookingTime}
+            setCookingTime={setCookingTime}
+            // {...register("time", { required: true })}
+          />
+
+          <AddIngredients
+            ingredientsList={ingredientsList}
+            register={register}
+            setValue={setValue}
+            watch={watch}
+            selectedIngredients={selectedIngredients}
+            setSelectedIngredients={setSelectedIngredients}
+          />
         </div>
-        <AddIngrButton text="Add ingredient" type="button" />
 
         <div className={styles.recipePreparation}>
-          <label htmlFor="recipePreparation">Recipe Preparation</label>
+          <label htmlFor="instructions">Recipe Preparation</label>
           <div className={styles.inputAreaWrapper}>
             <textarea
               {...register(
-                "recipePreparation",
+                "instructions",
                 { required: true },
                 { maxLength: 220 }
               )}
               placeholder="Enter recipe"
               className={`${styles.inputArea} text`}
             />
-            <p className={`${styles.symbCounter} text`}>0/200</p>
+            <p className={`${styles.symbCounter} text`}>
+              <span
+                className={`${styles.symbCounter} text ${
+                  symbRecipePrepCount > 0 ? styles.symbBold : ""
+                }`}
+              >
+                {symbRecipePrepCount || 0}
+              </span>
+              /200
+            </p>
           </div>
         </div>
         <div className={styles.bottomBtns}>
