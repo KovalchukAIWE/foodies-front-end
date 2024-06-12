@@ -6,14 +6,35 @@ const Footer = () => {
       <a href="#" className={css.logoFooter}>Foodies</a>
       <ul className={css.footerSocialList}>
         <li className={css.footerSocialItem}>
-        <a href="https://www.facebook.com/goITclub/" target="_blank"><svg><use></use></svg></a>
+          <a href="https://www.facebook.com/goITclub/" target="_blank" className="footerSocialLink">
+            <svg className={css.footerSocialIcon}>
+              <use href="/footerSprite.svg#facebook">
+              
+              </use>
+            </svg>
+            
+            </a>
         </li>
         <li className={css.footerSocialItem}>
-        <a href="https://www.instagram.com/goitclub/" target="_blank"><svg><use></use></svg></a>
+          <a href="https://www.instagram.com/goitclub/" target="_blank" className="footerSocialLink">
+            <svg className={css.footerSocialIcon}>
+              <use href="/footerSprite.svg#instagram" >
+              
+              </use>
+            </svg>
+            
+            </a>
         </li>
         <li className={css.footerSocialItem}>
           <a href="https://www.youtube.com/c/GoIT"
-            target="_blank"><svg><use></use></svg></a>
+            target="_blank" className="footerSocialLink">
+            <svg className={css.footerSocialIcon}>
+              <use href="/footerSprite.svg#youtube">
+              
+              </use>
+            </svg>
+            
+            </a>
         </li>
       </ul>
     </div>
