@@ -1,12 +1,13 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addRecipeSchema from "./validationSchema/addRecipeSchema";
-import Select from "react-select";
 
+import Select from "react-select";
 import { selectStyles } from "../../css/selectStyles";
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import RecipeDescription from "./RecipeDescription/RecipeDescription";
 import { DeleteButton } from "../Buttons/Buttons";
 import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
 import AddIngredients from "./AddIngredients/AddIngredients";
@@ -34,11 +35,6 @@ const AddRecipeForm = () => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const onSubmit = (data) => console.log(data);
-
-  const RecipeDescr = methods.watch("description");
-  const wordsRecipeDescrCount = RecipeDescr?.length
-    ? RecipeDescr?.trim().split(" ").length
-    : 0;
 
   const RecipePrep = methods.watch("instructions");
   const wordsRecipePrepCount = RecipePrep?.length
@@ -68,30 +64,7 @@ const AddRecipeForm = () => {
 
           <div className={styles.formOptionsWrapper}>
             {/* RECIPE DESCRIPTION */}
-            <div className={`${styles.inputAreaWrapper} ${styles.recipeDescr}`}>
-              <div className={styles.errorContainer}>
-                <textarea
-                  {...methods.register("description")}
-                  placeholder="Enter a description of the dish"
-                  className={` ${styles.inputArea} text`}
-                />
-                {errors.description && (
-                  <span className={`${styles.error} ${styles.errorInputArea}`}>
-                    {errors.description?.message}
-                  </span>
-                )}
-              </div>
-              <p className={`${styles.symbCounter} text`}>
-                <span
-                  className={`${styles.symbCounter} text ${
-                    wordsRecipeDescrCount > 0 ? styles.symbBold : ""
-                  }`}
-                >
-                  {wordsRecipeDescrCount}
-                </span>
-                /200
-              </p>
-            </div>
+            <RecipeDescription />
 
             {/* SELECT CATEGORY */}
             <div className={styles.addOptionsWrapper}>
