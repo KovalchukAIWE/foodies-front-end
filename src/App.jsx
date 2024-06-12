@@ -25,11 +25,11 @@ const App = () => {
     <Loader />
   ) : (
     <>
-      <Suspense fallback={<Loader />}>
+      <Suspense>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="recipe/:id" element={<RecipePage />} />
+            <Route path="recipe/:recipeId" element={<RecipePage />} />
           </Route>
         </Routes>
       </Suspense>

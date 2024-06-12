@@ -21,10 +21,10 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
   const limit = isMobile ? 8 : 12;
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
