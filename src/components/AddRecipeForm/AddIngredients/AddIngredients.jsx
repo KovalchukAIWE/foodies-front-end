@@ -53,7 +53,6 @@ const AddIngredients = ({
             })}
             {...register("ingredient")}
             onChange={(selectedOption) => {
-              console.log("selectedOption :>> ", selectedOption);
               setValue("ingredient", selectedOption);
             }}
             styles={selectStyles}
