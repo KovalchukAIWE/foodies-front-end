@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
+import Select from "react-select";
 
+import { selectStyles } from "../../css/selectStyles";
 import styles from "./AddRecipeForm.module.css";
 
+import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import { DeleteButton } from "../Buttons/Buttons";
-import SelectDropDown from "../SelectDropDown/SelectDropDown";
+import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
+import AddIngredients from "./AddIngredients/AddIngredients";
 
-import {
-  // useEffect,
-  useState,
-} from "react";
+import { useState } from "react";
+
 import { useSelector } from "react-redux";
 import {
   selectCategories,
   selectIngredients,
 } from "../../redux/recipes/selectors";
-import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
-import UploadPhoto from "./UploadPhoto/UploadPhoto";
-import AddIngredients from "./AddIngredients/AddIngredients";
 
 const AddRecipeForm = () => {
   const {
@@ -35,14 +34,9 @@ const AddRecipeForm = () => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   const onSubmit = (data) => console.log(data);
-  const onSelectCategory = (value) => console.log(value);
 
   const symbRecipeDescrCount = watch("description")?.length;
   const symbRecipePrepCount = watch("instructions")?.length;
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <form
@@ -84,19 +78,18 @@ const AddRecipeForm = () => {
           </div>
           <div className={styles.addOptionsWrapper}>
             <label htmlFor="category">Category</label>
-
-            <SelectDropDown
+            <Select
+              name={"category"}
+              placeholder={"Select a category"}
+              selectedOption={null}
               options={categoriesList.map((option) => {
                 return { value: option._id, label: option.name };
               })}
-              placeholder={"Select a category"}
-              selectedOption={null}
-              onSelect={onSelectCategory}
-              name={"category"}
-              // {...register("category")}
-              // onChange={(selectedOption) =>
-              //   setValue("category", selectedOption.value)
-              // }
+              {...register("category", { required: true })}
+              onChange={(selectedOption) =>
+                setValue("category", selectedOption.label)
+              }
+              styles={selectStyles}
             />
           </div>
 
@@ -142,7 +135,9 @@ const AddRecipeForm = () => {
         </div>
         <div className={styles.bottomBtns}>
           <DeleteButton />
-          <input type="submit" className={styles.submitBtn} />
+          <button type="submit" className={styles.submitBtn}>
+            Publish
+          </button>
         </div>
       </div>
     </form>

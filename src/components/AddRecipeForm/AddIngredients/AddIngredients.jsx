@@ -47,20 +47,22 @@ const AddIngredients = ({
           <Select
             name={"ingredients"}
             placeholder={"Add the ingredient"}
+            selectedOption={null}
             options={ingredientsList.map((option) => {
               return { value: option._id, label: option.name };
             })}
             {...register("ingredient")}
-            onChange={(selectedOption) =>
-              setValue("ingredient", selectedOption)
-            }
+            onChange={(selectedOption) => {
+              console.log("selectedOption :>> ", selectedOption);
+              setValue("ingredient", selectedOption);
+            }}
             styles={selectStyles}
           />
         </div>
         <div className={styles.addOptionsWrapper}>
           <input
             type="text"
-            {...register("measure", { required: true })}
+            {...register("measure")}
             placeholder="Enter quantity"
             className={`${styles.ingredientsQuantity} text`}
           />
