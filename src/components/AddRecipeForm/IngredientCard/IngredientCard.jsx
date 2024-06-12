@@ -1,13 +1,16 @@
 import styles from "./IngredientCard.module.css";
 import sprite from "../../../assets/img/icons-sprite.svg";
 
-const IngredientCard = ({ ingredient }) => {
-  const handleClick = () => {
-    console.log("click :>> REMOVE");
-  };
+const IngredientCard = ({ id, ingredient, handleRemoveIngredient }) => {
   return (
     <li className={styles.ingrItem}>
-      <button type="button" className={styles.btnRemove} onClick={handleClick}>
+      <button
+        type="button"
+        className={styles.btnRemove}
+        onClick={() => {
+          handleRemoveIngredient(id);
+        }}
+      >
         <svg width={16} height={16}>
           <use href={`${sprite}#close`}></use>
         </svg>

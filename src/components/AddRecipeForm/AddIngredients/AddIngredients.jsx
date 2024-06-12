@@ -1,11 +1,9 @@
-import styles from "../AddRecipeForm.module.css";
-
-import { AddIngrButton } from "../../Buttons/Buttons";
-//import SelectDropDown from "../../SelectDropDown/SelectDropDown";
-
 import Select from "react-select";
 
 import { selectStyles } from "../../../css/selectStyles";
+import styles from "../AddRecipeForm.module.css";
+
+import { AddIngrButton } from "../../Buttons/Buttons";
 import IngredientCard from "../IngredientCard/IngredientCard";
 
 const AddIngredients = ({
@@ -33,6 +31,12 @@ const AddIngredients = ({
       setValue("ingredient", "");
       setValue("measure", "");
     }
+  };
+
+  const handleRemoveIngredient = (ingredientId) => {
+    return setSelectedIngredients(
+      selectedIngredients.filter((ing) => ing.id !== ingredientId)
+    );
   };
 
   return (
@@ -67,7 +71,12 @@ const AddIngredients = ({
         <ul className={styles.ingrList}>
           {selectedIngredients.map((ingredient) => {
             return (
-              <IngredientCard key={ingredient.id} ingredient={ingredient} />
+              <IngredientCard
+                key={ingredient.id}
+                id={ingredient.id}
+                ingredient={ingredient}
+                handleRemoveIngredient={handleRemoveIngredient}
+              />
             );
           })}
         </ul>

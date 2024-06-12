@@ -51,6 +51,7 @@
 
   border-radius: 15px;
   border: 1px solid var(--border-grey-10);
+  background-color: var(--white);
 
   @media screen and (min-width: 768px) {
     width: 90px;
