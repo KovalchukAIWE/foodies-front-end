@@ -1,6 +1,9 @@
+
+import "./App.css";
 import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+
 
 import { refresh } from "./redux/user/operations.js";
 import { selectIsRefreshing } from "./redux/user/selectors.js";
