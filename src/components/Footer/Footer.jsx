@@ -8,7 +8,7 @@ const Footer = () => {
         <li className={css.footerSocialItem}>
           <a href="https://www.facebook.com/goITclub/" target="_blank" className="footerSocialLink">
             <svg className={css.footerSocialIcon}>
-              <use href="/footerSprite.svg#facebook">
+              <use href="/vite.svg#Facebook">
               
               </use>
             </svg>
@@ -18,7 +18,7 @@ const Footer = () => {
         <li className={css.footerSocialItem}>
           <a href="https://www.instagram.com/goitclub/" target="_blank" className="footerSocialLink">
             <svg className={css.footerSocialIcon}>
-              <use href="/footerSprite.svg#instagram" >
+              <use href="/vite.svg#instagram" >
               
               </use>
             </svg>
@@ -29,7 +29,7 @@ const Footer = () => {
           <a href="https://www.youtube.com/c/GoIT"
             target="_blank" className="footerSocialLink">
             <svg className={css.footerSocialIcon}>
-              <use href="/footerSprite.svg#youtube">
+              <use href="/vite.svg#youtube">
               
               </use>
             </svg>

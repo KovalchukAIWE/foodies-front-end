@@ -51,7 +51,7 @@ const Testimonials = () => {
             <h2 className={styles.sectionSubtitle}>What our customer say</h2>
             <h1 className={styles.sectionTitle}>Testimonials</h1>
             <svg className={styles.testimonialQuote}>
-                <use href="/footerSprite.svg#untitled"></use>
+                <use href="/vite.svg#untitled"></use>
             </svg>
             {Array.isArray(testimonials) && testimonials.length > 0 ? (
               <Slider {...settings}>
