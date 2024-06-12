@@ -1,4 +1,4 @@
-.profileLinksList {
+.profileTabsList {
   display: flex;
   gap: 30px;
 
@@ -11,6 +11,7 @@
   scroll-behavior: smooth;
 
   padding-bottom: 14px;
+  margin-bottom: 32px;
 
   &::before {
     content: "";
@@ -28,6 +29,7 @@
   @media screen and (min-width: 768px) {
     gap: 40px;
     max-width: 100%;
+    margin-bottom: 40px;
 
     &::before {
       width: 100%;
@@ -35,13 +37,13 @@
   }
 }
 
-.profileLinksItem {
+.profileTabsItem {
   min-width: fit-content;
   position: relative;
 }
 
-.profileItemLink {
-  padding-bottom: 14px;
+.tabBtn {
+  /* padding-bottom: 14px; */
 
   font-family: "Mulish", sans-serif;
   font-weight: 800;
@@ -50,7 +52,6 @@
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: rgba(5, 5, 5, 0.6);
-
   @media (min-width: 768px) {
     font-size: 20px;
     line-height: 120%;
@@ -58,7 +59,6 @@
 }
 
 .activeLink {
-  padding-bottom: 14px;
   color: #050505;
   &::after {
     content: "";

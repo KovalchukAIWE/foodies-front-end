@@ -2,8 +2,8 @@ import styles from "./UserInfo.module.css";
 import noUserPhoto from "../../assets/img/noUserPhoto.webp";
 import addPhotoIcon from "../../assets/img/icons-sprite.svg";
 
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/user/selectors";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "../../redux/user/selectors";
 import { useDispatch } from "react-redux";
 import { setUsersAvatar } from "../../redux/user/operations";
 
@@ -17,9 +17,9 @@ const UserInfo = ({
   followings,
   // id,
 }) => {
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
-  console.log(user);
+  // console.log(user);
 
   const dispatch = useDispatch;
 
@@ -34,7 +34,7 @@ const UserInfo = ({
   };
 
   return (
-    <>
+    <div>
       <div className={styles.profileCard}>
         <div className={styles.profilePhotoBox}>
           <div className={styles.imageWrapper}>
@@ -96,7 +96,7 @@ const UserInfo = ({
       <button type="button" className={styles.profileBtn} onClick={() => {}}>
         {isMyProfileId ? "Log Out" : `${isFollowing ? "Unfollow" : "Follow"}`}
       </button>
-    </>
+    </div>
   );
 };
 

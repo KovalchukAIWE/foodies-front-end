@@ -9,7 +9,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 import { getTestimonials } from "../../services/testimonials.js";
 import { getCategories } from "../../services/categories.js";
 import { getAllRecipes } from "../../services/recipes.js";
-
+import UserCard from "../../components/UserCard/UserCard.jsx";
 import css from "./HomePage.module.css";
 import Container from "../../components/Container/Container.jsx";
 
@@ -90,6 +90,7 @@ const HomePage = () => {
 
   return (
     <>
+      <UserCard />
       <Hero />
       <section className={css.sectionCategories}>
         <Container>

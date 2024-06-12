@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./TabsList.module.css";
+import ListItems from "../ListItems/ListItems";
 
 const TabsList = () => {
   const [activeTab, setActiveTab] = useState("recipiesActiveTab");
@@ -14,6 +15,7 @@ const TabsList = () => {
     if (activeElement) {
       activeElement.classList.add(styles.activeLink);
     }
+
     return () => {
       if (activeElement) {
         activeElement.classList.remove(styles.activeLink);
@@ -22,48 +24,47 @@ const TabsList = () => {
   }, [activeTab]);
 
   return (
-    <ul className={styles.profileLinksList}>
-      <li className={styles.profileLinksItem}>
-        <a
-          href=""
-          className={styles.profileItemLink}
-          id="recipiesActiveTab"
-          onClick={handleTabClick("recipiesActiveTab")}
-        >
-          My recipes
-        </a>
-      </li>
-      <li className={styles.profileLinksItem}>
-        <a
-          href=""
-          className={styles.profileItemLink}
-          id="favoritesActiveTab"
-          onClick={handleTabClick("favoritesActiveTab")}
-        >
-          My favorites
-        </a>
-      </li>
-      <li className={styles.profileLinksItem}>
-        <a
-          href=""
-          className={styles.profileItemLink}
-          id="followersActiveTab"
-          onClick={handleTabClick("followersActiveTab")}
-        >
-          Followers
-        </a>
-      </li>
-      <li className={styles.profileLinksItem}>
-        <a
-          href=""
-          className={styles.profileItemLink}
-          id="followingActiveTab"
-          onClick={handleTabClick("followingActiveTab")}
-        >
-          Following
-        </a>
-      </li>
-    </ul>
+    <div>
+      <ul className={styles.profileTabsList}>
+        <li className={styles.profileTabsItem}>
+          <button
+            className={styles.tabBtn}
+            id="recipiesActiveTab"
+            onClick={handleTabClick("recipiesActiveTab")}
+          >
+            My recipes
+          </button>
+        </li>
+        <li className={styles.profileTabsItem}>
+          <button
+            className={styles.tabBtn}
+            id="favoritesActiveTab"
+            onClick={handleTabClick("favoritesActiveTab")}
+          >
+            My favorites
+          </button>
+        </li>
+        <li className={styles.profileTabsItem}>
+          <button
+            className={styles.tabBtn}
+            id="followersActiveTab"
+            onClick={handleTabClick("followersActiveTab")}
+          >
+            Followers
+          </button>
+        </li>
+        <li className={styles.profileTabsItem}>
+          <button
+            className={styles.tabBtn}
+            id="followingActiveTab"
+            onClick={handleTabClick("followingActiveTab")}
+          >
+            Following
+          </button>
+        </li>
+      </ul>
+      <ListItems activeTab={activeTab} />
+    </div>
   );
 };
 

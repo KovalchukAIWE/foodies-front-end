@@ -1,5 +1,6 @@
 import UserInfo from "../UserInfo/UserInfo";
 import TabsList from "../TabsList/TabsList";
+import styles from "./UserCard.module.css";
 
 const UserCard = ({
   name,
@@ -12,7 +13,7 @@ const UserCard = ({
   id,
 }) => {
   return (
-    <div>
+    <div className={styles.userCard}>
       <UserInfo
         name={name}
         userPhoto={userPhoto}
@@ -24,7 +25,7 @@ const UserCard = ({
         id={id}
       />
       <div>
-        <TabsList /> listItems, pagination
+        <TabsList />
       </div>
     </div>
   );
