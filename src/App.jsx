@@ -43,11 +43,7 @@ const App = () => {
             />
             <Route
               path="user/:id"
-              element={
-                // <PrivateRoute redirectTo="/" component={
-                <UserPage />
-                // }/>
-              }
+              element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
             />
           </Route>
         </Routes>
