@@ -24,7 +24,7 @@ export const logOutUser = async () => {
 };
 
 export const getUserDataByUserId = async (userId) => {
-  const { data } = await foodiesApiClient.get(`user/${userId}`);
+  const { data } = await foodiesApiClient.get(`users/${userId}`);
   return data;
 };
 

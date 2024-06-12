@@ -1,0 +1,24 @@
+.text {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px; /* 150% */
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+}
+.dark {
+  color: #050505;
+}
+
+.grey {
+  color: rgba(5, 5, 5, 0.4);
+}
+
+.path {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}

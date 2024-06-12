@@ -1,6 +1,22 @@
 import styles from "./Buttons.module.css";
 import sprite from "../../assets/img/icons-sprite.svg";
 
+export const SignUpButton = ({ onClick, text }) => {
+  return (
+    <button type="button" onClick={onClick} className={styles.signUpButton}>
+      {text}
+    </button>
+  );
+};
+
+export const SignInButton = ({ onClick, text }) => {
+  return (
+    <button type="button" onClick={onClick} className={styles.signInButton}>
+      {text}
+    </button>
+  );
+};
+
 export const HeroButton = ({ onClick, text }) => {
   return (
     <button type="button" onClick={onClick} className={styles.heroButton}>
