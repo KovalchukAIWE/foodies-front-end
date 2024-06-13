@@ -19,7 +19,7 @@ const UploadPhoto = ({ imagePreview, setImagePreview }) => {
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
-      setValue("thumb", previewUrl);
+      setValue("thumb", e.target.files[0]);
     }
   };
 

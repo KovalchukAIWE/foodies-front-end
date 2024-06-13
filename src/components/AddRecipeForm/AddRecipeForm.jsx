@@ -19,6 +19,7 @@ import {
   selectCategories,
   selectIngredients,
 } from "../../redux/recipes/selectors";
+import { createRecipe } from "../../services/recipes";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
@@ -37,10 +38,19 @@ const AddRecipeForm = () => {
 
   const onSubmit = (data) => {
     const ingredients = selectedIngredients.map((ing) => {
-      return { _id: ing.id, measure: ing.measure };
+      return { id: ing.id, measure: ing.measure };
     });
     console.log({ ...data, ingredients });
-    // Send Backend
+
+    createRecipe({
+      title: data.title,
+      category: data.category,
+      instructions: data.instructions,
+      description: data.description,
+      time: data.time,
+      ingredients,
+      thumb: data.thumb,
+    });
   };
 
   const RecipePrep = methods.watch("instructions");
