@@ -26,7 +26,9 @@ yup.addMethod(yup.string, "wordsMinCount", function (minWords, errorMessage) {
 });
 
 const addRecipeSchema = yup
-  .object({
+  .object()
+  .shape({
+    thumb: yup.mixed().required("Photo is required"),
     title: yup
       .string()
       .required("Title is required")

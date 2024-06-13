@@ -33,6 +33,7 @@ const AddRecipeForm = () => {
 
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const onSubmit = (data) => {
     const ingredients = selectedIngredients.map((ing) => {
@@ -54,7 +55,10 @@ const AddRecipeForm = () => {
         className={styles.form}
         autoComplete="off"
       >
-        <UploadPhoto />
+        <UploadPhoto
+          imagePreview={imagePreview}
+          setImagePreview={setImagePreview}
+        />
         <div className={styles.formOptionals}>
           <div className={styles.errorContainer}>
             <input
@@ -74,7 +78,7 @@ const AddRecipeForm = () => {
 
             {/* SELECT CATEGORY */}
             <div className={styles.addOptionsWrapper}>
-              <label>Category</label>
+              <label className={styles.labelText}>Category</label>
               <div className={styles.errorContainer}>
                 <Select
                   name="category"
@@ -113,7 +117,9 @@ const AddRecipeForm = () => {
 
           {/* RECIPE PREPARATION */}
           <div className={styles.recipePreparation}>
-            <label htmlFor="instructions">Recipe Preparation</label>
+            <label htmlFor="instructions" className={styles.labelText}>
+              Recipe Preparation
+            </label>
             <div className={styles.inputAreaWrapper}>
               <div className={styles.errorContainer}>
                 <textarea

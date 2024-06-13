@@ -22,7 +22,9 @@ const CookingTimeCounter = ({ cookingTime, setCookingTime }) => {
 
   return (
     <div className={styles.addOptionsWrapper}>
-      <label htmlFor="time">COOKING TIME</label>
+      <label htmlFor="time" className={styles.labelText}>
+        COOKING TIME
+      </label>
       <div className={styles.counter}>
         <MinusButton type="button" onClick={decrementTime} />
         <input

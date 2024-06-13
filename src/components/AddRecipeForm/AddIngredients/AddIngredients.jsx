@@ -52,7 +52,9 @@ const AddIngredients = ({
     <div className={styles.addIngredientsWrapper}>
       <div className={styles.ingredientsOptionsWrapper}>
         <div className={styles.addOptionsWrapper}>
-          <label htmlFor="ingredients">Ingredients</label>
+          <label htmlFor="ingredients" className={styles.labelText}>
+            Ingredients
+          </label>
           <Select
             name={"ingredients"}
             placeholder={"Add the ingredient"}
