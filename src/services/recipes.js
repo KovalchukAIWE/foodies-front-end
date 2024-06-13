@@ -42,7 +42,14 @@ export const getDataRecipeById = async (recipeId) => {
 export const createRecipe = async (body) => {
   const formData = new FormData();
   Object.keys(body).forEach((key) => {
-    formData.append(key, body[key]);
+    if (key === "ingredients") {
+      body[key].forEach((ingredient, i) => {
+        formData.append(`${key}[${i}][id]`, ingredient.id);
+        formData.append(`${key}[${i}][measure]`, ingredient.measure);
+      });
+    } else {
+      formData.append(key, body[key]);
+    }
   });
 
   const { data } = await foodiesApiClient.post("recipes", formData);
