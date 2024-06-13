@@ -1,15 +1,18 @@
-import React from "react";
+import styles from "./RecipeCard.module.css";
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <div className="recipe-card">
-      <img src={recipe.image} alt={recipe.name} />
-      <h2>{recipe.name}</h2>
-      <p>{recipe.description}</p>
-      <button>
-        <img src={recipe.author.avatar} alt={recipe.author.name} />
-        {recipe.author.name}
-      </button>
+    <div className={styles.recipeCard}>
+      <img
+        className={styles.recipeCardImg}
+        loading="lazy"
+        src={recipe.thumb}
+        alt={recipe.title}
+      />
+      <div className={styles.recipeCardContainer}>
+        <h3 className={styles.recipeCardTitle}>{recipe.title}</h3>
+        <p className={styles.recipeCardDescription}>{recipe.description}</p>
+      </div>
     </div>
   );
 };
