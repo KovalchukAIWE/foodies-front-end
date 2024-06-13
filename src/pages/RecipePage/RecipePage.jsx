@@ -5,6 +5,7 @@ import PathInfo from "../../components/PathInfo/PathInfo.jsx";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo.jsx";
 import PopularRecipes from "../../components/PopularRecipes/PopularRecipes.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
+import MainTitle from "../../components/MainTitle/MainTitle.jsx";
 import Container from "../../components/Container/Container.jsx";
 import {
   getDataRecipeById,
@@ -66,7 +67,7 @@ const RecipePage = () => {
           {Array.isArray(popularRecipes) && (
             <PopularRecipes recipes={popularRecipes} />
           )}
-
+          <MainTitle text="Popular recipes" />
           {/* Поміняти на компонент нотифікашки */}
           {error && <p>{error}</p>}
           {isLoading && <Loader />}
