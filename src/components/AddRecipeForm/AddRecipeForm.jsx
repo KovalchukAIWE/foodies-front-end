@@ -9,7 +9,7 @@ import styles from "./AddRecipeForm.module.css";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import RecipeDescription from "./RecipeDescription/RecipeDescription";
 import { DeleteButton } from "../Buttons/Buttons";
-import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
+import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
 import { useState } from "react";
@@ -98,7 +98,7 @@ const AddRecipeForm = () => {
             </div>
 
             {/* COOKING TIMER */}
-            <CookingTimeConter
+            <CookingTimeCounter
               cookingTime={cookingTime}
               setCookingTime={setCookingTime}
             />
