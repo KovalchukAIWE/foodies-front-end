@@ -39,7 +39,7 @@ const addRecipeSchema = yup
 
     category: yup.string().required("Category is required"),
     time: yup.string().min(1, "Cooking time must be at least 1 min").required(),
-    ingredientsCount: yup.number().min(1, "Ing  is required").required(),
+    ingredientsCount: yup.number().min(1, "Ingredient is required").required(),
     instructions: yup
       .string()
       .required("Recipe preparation is required")

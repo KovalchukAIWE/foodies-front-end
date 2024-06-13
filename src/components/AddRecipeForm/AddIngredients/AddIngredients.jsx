@@ -76,7 +76,21 @@ const AddIngredients = ({
           />
         </div>
       </div>
-      <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
+      <div className={styles.errorContainer}>
+        <input
+          type="hidden"
+          {...register("ingredientsCount")}
+          value={selectedIngredients.length}
+          name="ingredientsCount"
+        />
+        {errors.ingredientsCount && (
+          <span className={styles.error}>
+            {errors.ingredientsCount?.message}
+          </span>
+        )}
+        <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
+      </div>
+
       {selectedIngredients.length ? (
         <ul className={styles.ingrList}>
           {selectedIngredients.map((ingredient) => {
@@ -93,19 +107,6 @@ const AddIngredients = ({
       ) : (
         <></>
       )}
-      <div className={styles.errorContainer}>
-        <input
-          type="hidden"
-          {...register("ingredientsCount")}
-          value={selectedIngredients.length}
-          name="ingredientsCount"
-        />
-        {errors.ingredientsCount && (
-          <span className={`${styles.error} ${styles.errorInputArea}`}>
-            {errors.ingredientsCount?.message}
-          </span>
-        )}
-      </div>
     </div>
   );
 };
