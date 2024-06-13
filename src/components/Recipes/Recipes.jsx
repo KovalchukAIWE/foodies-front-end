@@ -33,9 +33,11 @@ const Recipes = ({
           onSelectedIngredient={onSelectedIngredient}
           onSelectedArea={onSelectedArea}
         />
-        <RecipeList recipes={recipes} />
+        <div>
+          <RecipeList recipes={recipes} />
+          <RecipePagination />
+        </div>
       </div>
-      <RecipePagination />
     </>
   );
 };
