@@ -1,0 +1,11 @@
+.resipesContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 1440px) {
+  .resipesContainer {
+    flex-direction: row;
+  }
+}
