@@ -1,6 +1,7 @@
 import RecipeFilters from "../RecipeFilters/RecipeFilters";
 import RecipeList from "../RecipeList/RecipeList";
 import RecipePagination from "../RecipePagination/RecipePagination";
+import sprite from "../../assets/img/icons-sprite.svg";
 import styles from "./Recipes.module.css";
 
 const Recipes = ({
@@ -13,12 +14,15 @@ const Recipes = ({
 }) => {
   return (
     <>
-      <div>
-        <button type="button" onClick={onBack}>
+      <div className={styles.recipesNav}>
+        <button className={styles.backButton} type="button" onClick={onBack}>
+          <svg className={styles.recipesArrowLeft}>
+            <use xlinkHref={`${sprite}#arrow-left`} />
+          </svg>
           BACK
         </button>
       </div>
-      <div>
+      <div className={styles.resipesTitleContainer}>
         <h2>Name caregory</h2>
         <p>description caregory</p>
       </div>
