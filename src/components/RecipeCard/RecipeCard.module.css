@@ -36,6 +36,60 @@
   margin-bottom: 8px;
 }
 
+.recipeCardBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipeCardAuthor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-light-black);
+}
+.authorAvatar {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.recipeCardSocial {
+  display: flex;
+  gap: 4px;
+}
+
+.recipeIconCircle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 50%;
+  padding: 12px;
+  transition: transform 0.3s ease;
+}
+.recipeIconCircle:hover {
+  transform: scale(0.855);
+}
+.recipeIconCircle:active {
+  transform: scale(1);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.recipeSocialIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-white);
+  stroke: var(--color-black);
+}
+.recipeSocialIcon:active {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-black);
+  stroke: var(--color-white);
+}
+
 @media (min-width: 768px) {
   .recipeCard {
     width: 342px;
