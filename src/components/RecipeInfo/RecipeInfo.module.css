@@ -1,0 +1,108 @@
+.recipeInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+.recipeImage {
+  object-fit: cover;
+  border-radius: 30px;
+  width: 551px;
+  height: 400px;
+}
+
+.recipeDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.recipeTitleAndAuthor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recipeTitle {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.16667;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+.recipeCategory {
+  border: 1px solid rgba(5, 5, 5, 0.12);
+  border-radius: 20px;
+  padding: 10px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 0.6);
+  text-align: center;
+}
+
+.recipeTime {
+  border: 1px solid rgba(5, 5, 5, 0.12);
+  border-radius: 20px;
+  padding: 10px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 0.6);
+  text-align: center;
+}
+
+.categoryAndTime {
+  display: flex;
+  gap: 8px;
+}
+
+.recipeAuthor {
+  display: flex;
+}
+
+.recipeDetailsIngredients {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recipeTitleIngredients {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+.recipeIngredientsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.recipeIngredient {
+}
+
+.recipeDetailsInstructions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.recipeTitleInstructions {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+.recipeInstructions {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 0.8);
+}
