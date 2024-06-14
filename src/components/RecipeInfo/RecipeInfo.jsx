@@ -53,7 +53,7 @@ const RecipeInfo = ({ isAuthenticated }) => {
           <button
             onClick={handleAuthorClick}
             className={css.recipeAuthor}>
-            Created by {recipe.owner}
+            Created by {recipe.owner.name}
           </button>
         </div>
         <div className={css.recipeDetailsIngredients}>
@@ -75,6 +75,8 @@ const RecipeInfo = ({ isAuthenticated }) => {
         <AddToFavButton
           recipe={recipe}
           className={css.addToFavButton}
+          text='Add to favorites'
+          onClick={() => console.log('Add to favorites')}
         />
 
         {showSignInModal && (

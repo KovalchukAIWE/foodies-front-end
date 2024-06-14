@@ -1,7 +1,5 @@
 import styles from './RecipeIngredients.module.css';
-// import getIngredients from '../../services/ingredients';
 
-// console.log(getIngredients('640c2dd963a319ea671e382c'));
 const RecipeIngredients = ({ ingredient }) => {
   return (
     <li className={styles.ingrItem}>
