@@ -2,8 +2,6 @@ import styles from "./UserInfo.module.css";
 import noUserPhoto from "../../assets/img/noUserPhoto.webp";
 import addPhotoIcon from "../../assets/img/icons-sprite.svg";
 
-// import { useSelector } from "react-redux";
-// import { selectUser } from "../../redux/user/selectors";
 import { useDispatch } from "react-redux";
 import { setUsersAvatar } from "../../redux/user/operations";
 
@@ -15,19 +13,10 @@ const UserInfo = ({
   favorites,
   followers,
   followings,
-  // id,
+  isOwner,
+  isFollowing,
 }) => {
-  // const user = useSelector(selectUser);
-
-  // console.log(user);
-
   const dispatch = useDispatch;
-
-  // const isMyProfileId = id === user.id;
-
-  const isFollowing = false;
-
-  const isMyProfileId = true;
 
   const updateUserPhoto = () => {
     dispatch(setUsersAvatar);
@@ -44,7 +33,7 @@ const UserInfo = ({
               className={styles.profilePhoto}
             />
           </div>
-          {isMyProfileId && (
+          {isOwner && (
             <form onSubmit={updateUserPhoto}>
               <input
                 type="file"
@@ -71,7 +60,7 @@ const UserInfo = ({
               <span className={styles.infoValue}>{myRecipes}</span>
             </p>
           </li>
-          {isMyProfileId && (
+          {isOwner && (
             <li className="profile-info-item">
               <p className={styles.infoKey}>
                 Favorites: <span className={styles.infoValue}>{favorites}</span>
@@ -83,7 +72,7 @@ const UserInfo = ({
               Followers: <span className={styles.infoValue}>{followers}</span>
             </p>
           </li>
-          {isMyProfileId && (
+          {isOwner && (
             <li className="profile-info-item">
               <p className={styles.infoKey}>
                 Followings:{" "}
@@ -94,7 +83,7 @@ const UserInfo = ({
         </ul>
       </div>
       <button type="button" className={styles.profileBtn} onClick={() => {}}>
-        {isMyProfileId ? "Log Out" : `${isFollowing ? "Unfollow" : "Follow"}`}
+        {isOwner ? "Log Out" : `${isFollowing ? "Unfollow" : "Follow"}`}
       </button>
     </div>
   );
