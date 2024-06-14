@@ -4,24 +4,24 @@ import styles from "./UserCard.module.css";
 
 const UserCard = ({
   name,
-  userPhoto,
+  avatar,
   email,
-  myRecipes,
-  favorites,
-  followers,
-  followings,
+  ownRecipesCount,
+  favoriteRecipesCount,
+  followersCount,
+  followingCount,
   id,
 }) => {
   return (
     <div className={styles.userCard}>
       <UserInfo
         name={name}
-        userPhoto={userPhoto}
+        userPhoto={avatar}
         email={email}
-        myRecipes={myRecipes}
-        favorites={favorites}
-        followers={followers}
-        followings={followings}
+        myRecipes={ownRecipesCount}
+        favorites={favoriteRecipesCount}
+        followers={followersCount}
+        followings={followingCount}
         id={id}
       />
       <div>
