@@ -1,25 +1,25 @@
 import { foodiesApiClient, setAuthHeader } from "./apiClient.js";
 
 export const registerUser = async (credentials) => {
-  const { data } = await foodiesApiClient.post("user/signup", credentials);
+  const { data } = await foodiesApiClient.post("users/signup", credentials);
   setAuthHeader(data.token);
   return data;
 };
 
 export const logInUser = async (credentials) => {
-  const { data } = await foodiesApiClient.post("user/signin", credentials);
+  const { data } = await foodiesApiClient.post("users/signin", credentials);
   setAuthHeader(data.token);
   return data;
 };
 
 export const refreshUser = async (token) => {
   setAuthHeader(token);
-  const { data } = await foodiesApiClient.get("user/current");
+  const { data } = await foodiesApiClient.get("users/current");
   return data;
 };
 
 export const logOutUser = async () => {
-  await foodiesApiClient.post("user/signout");
+  await foodiesApiClient.post("users/signout");
   setAuthHeader();
 };
 
