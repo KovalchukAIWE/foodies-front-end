@@ -1,10 +1,11 @@
 import RecipeCard from "../RecipeCard/RecipeCard";
+import styles from "./RecipeList.module.css";
 
 const RecipeList = ({ recipes }) => {
   return (
-    <div className="recipe-list">
+    <div className={styles.resipeList}>
       {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
+        <RecipeCard key={recipe._id} recipe={recipe} />
       ))}
     </div>
   );
