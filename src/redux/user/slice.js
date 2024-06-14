@@ -20,7 +20,7 @@ const userSlice = createSlice({
     user: initialUser,
     token: null,
     isLoggedIn: false,
-    isRefreshing: false,
+    isRefreshing: true,
     isLoading: false,
     errorMessage: "",
   },

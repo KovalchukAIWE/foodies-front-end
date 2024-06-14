@@ -1,69 +1,84 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./TabsList.module.css";
 import ListItems from "../ListItems/ListItems";
+import clsx from "clsx";
 
-const TabsList = () => {
+const TabsList = ({ isOwner }) => {
   const [activeTab, setActiveTab] = useState("recipiesActiveTab");
+  const [updating, setUpdating] = useState(true);
 
-  const handleTabClick = (tabId) => (event) => {
-    event.preventDefault();
+  const handleTabClick = (tabId) => {
     setActiveTab(tabId);
+    setUpdating(true);
   };
 
-  useEffect(() => {
-    const activeElement = document.getElementById(activeTab);
-    if (activeElement) {
-      activeElement.classList.add(styles.activeLink);
-    }
-
-    return () => {
-      if (activeElement) {
-        activeElement.classList.remove(styles.activeLink);
-      }
-    };
-  }, [activeTab]);
+  const handleUpdating = (bool) => {
+    setUpdating(bool);
+  };
 
   return (
-    <div>
+    <div className={styles.tabsContainer}>
       <ul className={styles.profileTabsList}>
         <li className={styles.profileTabsItem}>
           <button
-            className={styles.tabBtn}
+            className={clsx(
+              styles.tabBtn,
+              activeTab === "recipiesActiveTab" && styles.activeTab
+            )}
             id="recipiesActiveTab"
-            onClick={handleTabClick("recipiesActiveTab")}
+            onClick={() => handleTabClick("recipiesActiveTab")}
           >
             My recipes
           </button>
         </li>
+        {isOwner && (
+          <li className={styles.profileTabsItem}>
+            <button
+              className={clsx(
+                styles.tabBtn,
+                activeTab === "favoritesActiveTab" && styles.activeTab
+              )}
+              id="favoritesActiveTab"
+              onClick={() => handleTabClick("favoritesActiveTab")}
+            >
+              My favorites
+            </button>
+          </li>
+        )}
         <li className={styles.profileTabsItem}>
           <button
-            className={styles.tabBtn}
-            id="favoritesActiveTab"
-            onClick={handleTabClick("favoritesActiveTab")}
-          >
-            My favorites
-          </button>
-        </li>
-        <li className={styles.profileTabsItem}>
-          <button
-            className={styles.tabBtn}
+            className={clsx(
+              styles.tabBtn,
+              activeTab === "followersActiveTab" && styles.activeTab
+            )}
             id="followersActiveTab"
-            onClick={handleTabClick("followersActiveTab")}
+            onClick={() => handleTabClick("followersActiveTab")}
           >
             Followers
           </button>
         </li>
-        <li className={styles.profileTabsItem}>
-          <button
-            className={styles.tabBtn}
-            id="followingActiveTab"
-            onClick={handleTabClick("followingActiveTab")}
-          >
-            Following
-          </button>
-        </li>
+        {isOwner && (
+          <li className={styles.profileTabsItem}>
+            <button
+              className={clsx(
+                styles.tabBtn,
+                activeTab === "followingActiveTab" && styles.activeTab
+              )}
+              id="followingActiveTab"
+              onClick={() => handleTabClick("followingActiveTab")}
+            >
+              Following
+            </button>
+          </li>
+        )}
       </ul>
-      <ListItems activeTab={activeTab} />
+      <div className={styles.itemsListContainer}>
+        <ListItems
+          activeTab={activeTab}
+          updating={updating}
+          onUpdating={handleUpdating}
+        />
+      </div>
     </div>
   );
 };

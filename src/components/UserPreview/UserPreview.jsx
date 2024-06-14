@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import styles from "./UserPreview.module.css";
 
 const UserPreview = ({
@@ -9,8 +8,10 @@ const UserPreview = ({
   recipesPhotos,
   id,
   onClick,
+  // total,
+  // page,
+  // limit,
 }) => {
-  const { userId } = useParams();
   return (
     <div className={styles.userPreviewCard} key={id}>
       <div className={styles.userInfo}>
@@ -27,7 +28,7 @@ const UserPreview = ({
           <button
             type="button"
             className={styles.userPreviewBtn}
-            onClick={() => onClick(id, userId)}
+            onClick={() => onClick(id)}
           >
             {isFollow ? "Unfollow" : "Follow"}
           </button>
