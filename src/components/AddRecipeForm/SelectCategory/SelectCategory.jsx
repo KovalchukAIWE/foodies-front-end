@@ -7,7 +7,6 @@ const SelectCategory = ({ categoriesList }) => {
   const {
     register,
     setValue,
-    //watch,
     formState: { errors },
   } = useFormContext();
 
@@ -22,7 +21,7 @@ const SelectCategory = ({ categoriesList }) => {
           options={categoriesList.map((option) => {
             return { value: option._id, label: option.name };
           })}
-          {...register("category", { required: true })}
+          {...register("category")}
           onChange={(selectedOption) =>
             setValue("category", selectedOption.label)
           }

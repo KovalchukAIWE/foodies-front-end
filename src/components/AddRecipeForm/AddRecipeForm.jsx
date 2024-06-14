@@ -2,8 +2,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addRecipeSchema from "./validationSchema/addRecipeSchema";
 
-// import Select from "react-select";
-// import { selectStyles } from "../../css/selectStyles";
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
@@ -13,7 +11,6 @@ import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
 import { useState } from "react";
-
 import { useSelector } from "react-redux";
 import {
   selectCategories,
@@ -21,6 +18,8 @@ import {
 } from "../../redux/recipes/selectors";
 import { createRecipe } from "../../services/recipes";
 import SelectCategory from "./SelectCategory/SelectCategory";
+import RecipePreparation from "./RecipePreparation/RecipePreparation";
+import RecipeTitle from "./RecipeTitle/RecipeTitle";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
@@ -55,11 +54,6 @@ const AddRecipeForm = () => {
     });
   };
 
-  const RecipePrep = methods.watch("instructions");
-  const wordsRecipePrepCount = RecipePrep?.length
-    ? RecipePrep.trim().split(" ").length
-    : 0;
-
   return (
     <FormProvider {...methods}>
       <form
@@ -67,22 +61,14 @@ const AddRecipeForm = () => {
         className={styles.form}
         autoComplete="off"
       >
+        {/* UPLOAD PHOTO */}
         <UploadPhoto
           imagePreview={imagePreview}
           setImagePreview={setImagePreview}
         />
         <div className={styles.formOptionals}>
-          <div className={styles.errorContainer}>
-            <input
-              type="text"
-              {...methods.register("title")}
-              placeholder="THE NAME OF THE RECIPE"
-              className={styles.recipeName}
-            />
-            {errors.title && (
-              <span className={styles.error}>{errors.title?.message}</span>
-            )}
-          </div>
+          {/* RECIPE TITLE*/}
+          <RecipeTitle />
 
           <div className={styles.formOptionsWrapper}>
             {/* RECIPE DESCRIPTION */}
@@ -106,35 +92,7 @@ const AddRecipeForm = () => {
           </div>
 
           {/* RECIPE PREPARATION */}
-          <div className={styles.recipePreparation}>
-            <label htmlFor="instructions" className={styles.labelText}>
-              Recipe Preparation
-            </label>
-            <div className={styles.inputAreaWrapper}>
-              <div className={styles.errorContainer}>
-                <textarea
-                  {...methods.register("instructions")}
-                  placeholder="Enter recipe"
-                  className={`${styles.inputArea} text`}
-                />
-                {errors.instructions && (
-                  <span className={`${styles.error} ${styles.errorInputArea}`}>
-                    {errors.instructions?.message}
-                  </span>
-                )}
-              </div>
-              <p className={`${styles.symbCounter} text`}>
-                <span
-                  className={`${styles.symbCounter} text ${
-                    wordsRecipePrepCount > 0 ? styles.symbBold : ""
-                  }`}
-                >
-                  {wordsRecipePrepCount}
-                </span>
-                /200
-              </p>
-            </div>
-          </div>
+          <RecipePreparation />
 
           {/* FORM BUTTONS */}
           <div className={styles.bottomBtns}>
