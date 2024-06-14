@@ -77,21 +77,29 @@ const CategoryList = ({ name, image, index }) => {
   }
 
   if (name === "All categories") {
-    imageClass = `${styles.smallImage} ${styles.allCategories}`;
+    imageClass = `${styles.allCategories}`;
   }
 
   return (
     <li className={`${styles.categoryItem} ${imageClass}`}>
-      <div className={styles.categoryImageWrapper}>
-        <img
-          src={image ? image : noImage}
-          alt={name}
-          className={styles.categoryImage}
-        />
-        <div className={styles.categoriesBottomContainer}>
-          <p className={styles.categoryName}>{name}</p>
-          <CategoriesButton onClick={handleClickButton} />
-        </div>
+      <div className={styles.categoryContentWrapper}>
+        {name === "All categories" ? (
+          <div className={styles.allCategoriesText}>
+            <p>All Categories</p>
+          </div>
+        ) : (
+          <img
+            src={image ? image : noImage}
+            alt={name}
+            className={styles.categoryImage}
+          />
+        )}
+        {name !== "All categories" && (
+          <div className={styles.categoriesBottomContainer}>
+            <p className={styles.categoryName}>{name}</p>
+            <CategoriesButton onClick={handleClickButton} />
+          </div>
+        )}
       </div>
     </li>
   );
