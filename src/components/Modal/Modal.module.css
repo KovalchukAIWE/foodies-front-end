@@ -12,22 +12,30 @@
 
 .modal {
   background-color: white;
-  padding: 80px;
+  padding: 60px 30px;
   border-radius: 30px;
   overflow: auto;
   position: relative;
+  max-width: 343px;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    padding: 80px;
+    max-width: 561px;
+  }
 }
 
 .closeButton {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 20px;
-}
 
-.modalContent {
-  margin-top: 20px;
+  @media screen and (min-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
 }

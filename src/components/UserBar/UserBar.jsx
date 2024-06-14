@@ -1,9 +1,15 @@
 import { useState } from "react";
 import styles from "./UserBar.module.css";
 import noImage from "../../images/avatar.png";
+import Modal from "../Modal/Modal";
+import LogOutModal from "../LogOutModal/LogOutModal";
 
 const UserBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isLogOutModalOpen, setIsLogOutnModalOpen] = useState(false);
+
+  const openLogOutModal = () => setIsLogOutnModalOpen(true);
+  const closeLogOutModal = () => setIsLogOutnModalOpen(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -43,9 +49,14 @@ const UserBar = () => {
       {showDropdown && (
         <ul className={styles.dropdownMenu}>
           <li className={styles.dropdownItem}>Profile</li>
-          <li className={styles.dropdownItemArrow}>Log Out</li>
+          <li className={styles.dropdownItemArrow}>
+            <button onClick={openLogOutModal}>Log Out</button>
+          </li>
         </ul>
       )}
+      <Modal isOpen={isLogOutModalOpen} onClose={closeLogOutModal}>
+        <LogOutModal onClose={closeLogOutModal} />
+      </Modal>
     </div>
   );
 };

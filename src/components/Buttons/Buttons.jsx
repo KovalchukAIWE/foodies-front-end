@@ -132,3 +132,11 @@ export const FormButton = ({ onClick, text }) => {
     </button>
   );
 };
+
+export const FormButtonCancel = ({ onClick, text }) => {
+  return (
+    <button type="submit" onClick={onClick} className={styles.formButtonCancel}>
+      {text}
+    </button>
+  );
+};

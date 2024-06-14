@@ -1,54 +1,78 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { FormButton } from "../Buttons/Buttons";
+import styles from "./SignUpForm.module.css";
 
-const SignUpForm = ({ onSubmit }) => {
+const schema = yup.object().shape({
+  firstName: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+
+const SignUpForm = ({ onClose }) => {
   const {
-    register,
     handleSubmit,
+    register,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const submitForm = (data) => {
-    onSubmit(data);
+  const onSubmit = (data) => {
+    // Handle form submission here (e.g., send data to server)
+    console.log(data);
+    onClose();
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
-      <div>
-        <label>Name</label>
-        <input
-          type="text"
-          {...register("name", { required: "Name is required" })}
-        />
-        <p>{errors.name && errors.name.message}</p>
+    <div className={styles.signUpForm}>
+      <div className={styles.signUpFormContent}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.signUpFormGroup}>
+            <input
+              className={styles.signUpFormInput}
+              type="text"
+              placeholder="Name*"
+              {...register("firstName")}
+            />
+            <p className={styles.signUpFormError}>
+              {errors.firstName && errors.firstName.message}
+            </p>
+          </div>
+
+          <div className={styles.signUpFormGroup}>
+            <input
+              className={styles.signUpFormInput}
+              type="email"
+              placeholder="Email*"
+              {...register("email")}
+            />
+            <p className={styles.signUpFormError}>
+              {errors.email && errors.email.message}
+            </p>
+          </div>
+
+          <div className={styles.signUpFormGroup}>
+            <input
+              className={styles.signUpFormInput}
+              type="password"
+              placeholder="Password"
+              {...register("password")}
+            />
+            <p className={styles.signUpFormError}>
+              {errors.password && errors.password.message}
+            </p>
+          </div>
+          <div className={styles.signUpFormButton}>
+            <FormButton text="Create" />
+          </div>
+        </form>
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" },
-          })}
-        />
-        <p>{errors.email && errors.email.message}</p>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-          })}
-        />
-        <p>{errors.password && errors.password.message}</p>
-      </div>
-      <FormButton text="sign up" />
-    </form>
+    </div>
   );
 };
 

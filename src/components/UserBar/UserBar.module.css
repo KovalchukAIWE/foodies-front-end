@@ -4,6 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #050505;
+  border-radius: 30px;
 }
 
 .userBarDropdown {
@@ -46,6 +48,7 @@
   padding: 16px;
   border-radius: 15px;
   width: 148px;
+  background-color: #050505;
 }
 
 .dropdownItem {

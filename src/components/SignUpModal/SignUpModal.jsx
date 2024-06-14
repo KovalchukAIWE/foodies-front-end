@@ -1,4 +1,5 @@
 import SignUpForm from "../SignUpForm/SignUpForm";
+import styles from "./SignUpModal.module.css";
 
 const SignUpModal = ({ onClose }) => {
   const onSubmit = (data) => {
@@ -7,10 +8,16 @@ const SignUpModal = ({ onClose }) => {
   };
 
   return (
-    <div>
-      <h2>Sign Up Modal</h2>
+    <>
+      <h3 className={styles.signUpTitle}>Sign Up</h3>
       <SignUpForm onSubmit={onSubmit} />
-    </div>
+      <p className={styles.signUpText}>
+        I already have an account?{" "}
+        <button className={styles.signUpLink} type="button">
+          Sign in
+        </button>
+      </p>
+    </>
   );
 };
 
