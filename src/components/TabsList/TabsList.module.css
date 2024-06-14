@@ -58,7 +58,7 @@
   }
 }
 
-.activeLink {
+.activeTab {
   color: #050505;
   &::after {
     content: "";

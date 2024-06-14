@@ -16,9 +16,10 @@ import UserPreview from "../UserPreview/UserPreview";
 import styles from "./ListItems.module.css";
 import { useParams } from "react-router-dom";
 
-const ListItems = ({ activeTab }) => {
+const ListItems = ({ activeTab, updating, onUpdating }) => {
   const { id } = useParams();
   const [arrToRender, setArrToRender] = useState([]);
+
   const [messageEmptyData, setMessageEmptyData] = useState(
     "Nothing has been added to your recipes list yet. Please browse our recipes and add your favorites for easy access in the future."
   );
@@ -26,67 +27,77 @@ const ListItems = ({ activeTab }) => {
   const handleDeleteRecipeById = async (id) => {
     try {
       const response = await deleteRecipeById(id);
-      if (response.ok) {
-        const updatedRecipes = await getOwnUsersRecipes();
-        setArrToRender(updatedRecipes);
-      } else {
-        throw new Error("Failed to delete the recipe");
-      }
+      console.log(response);
+      // if (response.ok) {
+      // const updatedRecipes = await getOwnUsersRecipes();
+      // setArrToRender(updatedRecipes);
+      onUpdating(true);
+      // }
+      // else {
+      //   throw new Error("Failed to delete the recipe");
+      // }
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const handleFollowUserById = async (id, userId) => {
+  const handleFollowUserById = async (id) => {
     try {
-      const response = await setFollowUserByUserId(id);
-      if (response.ok) {
-        const updatedFollowings = await getUsersFollowingsByUserId(userId);
-        setArrToRender(updatedFollowings);
-      } else {
-        throw new Error("Failed to follow this user");
-      }
+      const { follow } = await setFollowUserByUserId(id);
+      console.log(follow);
+
+      // if (follow) {
+      onUpdating(true);
+      // } else {
+      //   throw new Error("Failed to follow this user");
+      // }
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const handleUnfollowUserById = async (id, userId) => {
+  const handleUnfollowUserById = async (id) => {
     try {
       const response = await setUnfollowUserByUserId(id);
-      if (response.ok) {
-        const updatedFollowers = await getUsersFollowersByUserId(userId);
-        setArrToRender(updatedFollowers);
-      } else {
-        throw new Error("Failed to Unfollow this user, try later");
-      }
+      console.log(response);
+
+      // if (response.ok) {
+      onUpdating(true);
+      // } else {
+      //   throw new Error("Failed to Unfollow this user, try later");
+      // }
     } catch (error) {
       console.log(error.message);
     }
   };
 
   useEffect(() => {
-    try {
-      if (activeTab === "followingActiveTab") {
-        const userFollowings = getUsersFollowingsByUserId(id);
-        setArrToRender(userFollowings);
-        setMessage("followingActiveTab", setMessageEmptyData);
-      } else if (activeTab === "favoritesActiveTab") {
-        const myFavoritesRecipes = getUsersFavoriteRecipes();
-        setArrToRender(myFavoritesRecipes);
-        setMessage("favoritesActiveTab", setMessageEmptyData);
-      } else if (activeTab === "followersActiveTab") {
-        const userFollowers = getUsersFollowersByUserId(id);
-        setArrToRender(userFollowers);
-        setMessage("followersActiveTab", setMessageEmptyData);
-      } else {
-        const myOwnRecipes = getOwnUsersRecipes();
-        setArrToRender(myOwnRecipes);
+    if (!updating) return;
+    (async () => {
+      try {
+        if (activeTab === "followingActiveTab") {
+          const userFollowings = await getUsersFollowingsByUserId(id);
+          setArrToRender(userFollowings);
+          setMessage("followingActiveTab", setMessageEmptyData);
+        } else if (activeTab === "favoritesActiveTab") {
+          const myFavoritesRecipes = await getUsersFavoriteRecipes();
+          setArrToRender(myFavoritesRecipes);
+          setMessage("favoritesActiveTab", setMessageEmptyData);
+        } else if (activeTab === "followersActiveTab") {
+          const userFollowers = await getUsersFollowersByUserId(id);
+          setArrToRender(userFollowers);
+          setMessage("followersActiveTab", setMessageEmptyData);
+        } else {
+          const myOwnRecipes = await getOwnUsersRecipes();
+          setArrToRender(myOwnRecipes);
+        }
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        onUpdating(false);
       }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [activeTab, id]);
+    })();
+  }, [activeTab, id, updating]);
 
   return arrToRender.length > 0 ? (
     <ul className={styles.myRecipesList}>
@@ -97,8 +108,8 @@ const ListItems = ({ activeTab }) => {
             img={item.thumb}
             recipeName={item.title}
             text={item.description}
-            id={item.id}
-            key={item.id}
+            id={item._id}
+            key={item._id}
             handleDeleteRecipe={handleDeleteRecipeById}
           />
         ) : (
@@ -110,7 +121,12 @@ const ListItems = ({ activeTab }) => {
             recipesPhotos={item.recipesPhotos}
             id={item.id}
             key={item.id}
-            onClick={item.isFollow ? handleUnfollowUserById : handleFollowUserById}
+            onClick={
+              item.isFollow ? handleUnfollowUserById : handleFollowUserById
+            }
+            // total={item.total}
+            // page={item.page}
+            // limit={item.limit}
           />
         )
       )}

@@ -1,17 +1,25 @@
 import UserInfo from "../UserInfo/UserInfo";
 import TabsList from "../TabsList/TabsList";
 import styles from "./UserCard.module.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/user/selectors";
 
 const UserCard = ({
-  name,
-  avatar,
-  email,
-  ownRecipesCount,
-  favoriteRecipesCount,
-  followersCount,
-  followingCount,
-  id,
+  user: {
+    name,
+    avatar,
+    email,
+    ownRecipesCount,
+    favoriteRecipesCount,
+    followersCount,
+    followingCount,
+    isFollowing,
+    id,
+  },
 }) => {
+  const { id: ownerId } = useSelector(selectUser);
+  console.log(ownerId);
+
   return (
     <div className={styles.userCard}>
       <UserInfo
@@ -23,9 +31,15 @@ const UserCard = ({
         followers={followersCount}
         followings={followingCount}
         id={id}
+        // isOwner={id === ownerId}
+        isOwner={true}
+        isFollowing={isFollowing}
       />
       <div>
-        <TabsList />
+        <TabsList
+          // isOwner={id === ownerId}
+          isOwner={true}
+        />
       </div>
     </div>
   );
