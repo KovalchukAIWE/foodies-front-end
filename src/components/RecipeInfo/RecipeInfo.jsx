@@ -53,7 +53,13 @@ const RecipeInfo = ({ isAuthenticated }) => {
           <button
             onClick={handleAuthorClick}
             className={css.recipeAuthor}>
-            Created by {recipe.owner.name}
+            <img
+              src={recipe.owner.avatar || '../../../public/owner.jpg'}
+              alt={recipe.owner.name}></img>
+            <div>
+              <p className={css.btnAuthorText}>Created by:</p>
+              <p className={css.recipeAuthorName}>{recipe.owner.name}</p>
+            </div>
           </button>
         </div>
         <div className={css.recipeDetailsIngredients}>
