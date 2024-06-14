@@ -64,10 +64,10 @@ const RecipePage = () => {
       </section>
       <section className={css.sectionPopularRecipe}>
         <Container>
+          <MainTitle text="Popular recipes" />
           {Array.isArray(popularRecipes) && (
             <PopularRecipes recipes={popularRecipes} />
           )}
-          <MainTitle text="Popular recipes" />
           {/* Поміняти на компонент нотифікашки */}
           {error && <p>{error}</p>}
           {isLoading && <Loader />}
