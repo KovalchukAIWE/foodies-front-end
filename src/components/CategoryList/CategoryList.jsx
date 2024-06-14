@@ -1,5 +1,6 @@
 import noImage from "../../images/no-image.jpg";
 import styles from "./CategoryList.module.css";
+import { CategoriesButton } from "../Buttons/Buttons.jsx";
 
 const CategoryList = ({ name, image, index }) => {
   let imageClass = "";
@@ -34,7 +35,16 @@ const CategoryList = ({ name, image, index }) => {
           alt={name}
           className={styles.categoryImage}
         />
-        <p className={styles.categoryName}>{name}</p>
+        <div className={styles.categoriesBottomContainer}>
+          <p className={styles.categoryName}>{name}</p>
+          <CategoriesButton type="button">
+            <a href="">
+              <svg>
+                <use href="/assets/img/icons-sprite.svg#arrow-up-right"></use>
+              </svg>
+            </a>
+          </CategoriesButton>
+        </div>
       </div>
     </li>
   );
