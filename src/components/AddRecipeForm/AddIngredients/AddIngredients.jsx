@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import Select from "react-select";
 
@@ -19,6 +20,8 @@ const AddIngredients = ({
     formState: { errors },
   } = useFormContext();
 
+  const ingredientRef = useRef();
+
   setValue("ingredientsCount", selectedIngredients.length);
 
   const handleAddIngredient = () => {
@@ -36,15 +39,14 @@ const AddIngredients = ({
       ]);
 
       setValue("ingredientsCount", selectedIngredients.length);
-
-      setValue("ingredient", "");
+      ingredientRef.current.clearValue();
       setValue("measure", "");
     }
   };
 
-  const handleRemoveIngredient = (ingredientId) => {
-    return setSelectedIngredients(
-      selectedIngredients.filter((ing) => ing.id !== ingredientId)
+  const handleRemoveIngredient = (ingId) => {
+    setSelectedIngredients(
+      selectedIngredients.filter((ing) => ing.id !== ingId)
     );
   };
 
@@ -56,13 +58,14 @@ const AddIngredients = ({
             Ingredients
           </label>
           <Select
+            {...register("ingredient")}
             name={"ingredients"}
             placeholder={"Add the ingredient"}
             selectedOption={null}
+            ref={ingredientRef}
             options={ingredientsList.map((option) => {
               return { value: option._id, label: option.name };
             })}
-            {...register("ingredient")}
             onChange={(selectedOption) => {
               setValue("ingredient", selectedOption);
             }}
@@ -73,6 +76,7 @@ const AddIngredients = ({
           <input
             type="text"
             {...register("measure")}
+            name="measure"
             placeholder="Enter quantity"
             className={`${styles.ingredientsQuantity} text`}
           />

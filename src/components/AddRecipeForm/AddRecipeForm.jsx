@@ -11,16 +11,17 @@ import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   selectCategories,
   selectIngredients,
 } from "../../redux/recipes/selectors";
+import { selectUser } from "../../redux/user/selectors";
 import { createRecipe } from "../../services/recipes";
 import SelectCategory from "./SelectCategory/SelectCategory";
 import RecipePreparation from "./RecipePreparation/RecipePreparation";
 import RecipeTitle from "./RecipeTitle/RecipeTitle";
-import { useNavigate } from "react-router-dom";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
@@ -32,6 +33,7 @@ const AddRecipeForm = () => {
 
   const categoriesList = useSelector(selectCategories);
   const ingredientsList = useSelector(selectIngredients);
+  const { id: userId } = useSelector(selectUser);
 
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -46,7 +48,7 @@ const AddRecipeForm = () => {
 
     console.log({ ...data, ingredients });
 
-    createRecipe({
+    const formData = {
       title: data.title,
       category: data.category,
       instructions: data.instructions,
@@ -54,14 +56,28 @@ const AddRecipeForm = () => {
       time: data.time,
       ingredients,
       thumb: data.thumb,
-    });
+    };
+
+    try {
+      createRecipe(formData);
+    } catch (error) {
+      // переписати
+      alert("Error: " + error.response.data.message);
+    }
   };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      navigate(`/user/`);
+      navigate(`/user/${userId}`);
     }
-  }, [isSubmitSuccessful, navigate]);
+  }, [isSubmitSuccessful, navigate, userId]);
+
+  const handleReset = () => {
+    methods.reset();
+    setImagePreview(null);
+    setSelectedIngredients([]);
+    setCookingTime(10);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -105,9 +121,7 @@ const AddRecipeForm = () => {
 
           {/* FORM BUTTONS */}
           <div className={styles.bottomBtns}>
-            <DeleteButton
-            // onClick={() => reset({ defaultValues })}
-            />
+            <DeleteButton onClick={handleReset} />
             <button type="submit" className={styles.submitBtn}>
               Publish
             </button>
