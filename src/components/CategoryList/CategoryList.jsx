@@ -14,8 +14,17 @@ const CategoryList = ({ name, image, index }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // const handleClickButton = () => {
+  //   console.log("Clicked");
+  // };
+
   const handleClickButton = () => {
-    console.log("Clicked");
+    if (name === "All categories") {
+      console.log("Show all categories");
+      // Logic to show all categories
+    } else {
+      console.log("Clicked");
+    }
   };
 
   let imageClass = "";
@@ -65,6 +74,10 @@ const CategoryList = ({ name, image, index }) => {
     }
   } else {
     imageClass = styles.smallImageMobile;
+  }
+
+  if (name === "All categories") {
+    imageClass = `${styles.smallImage} ${styles.allCategories}`;
   }
 
   return (
