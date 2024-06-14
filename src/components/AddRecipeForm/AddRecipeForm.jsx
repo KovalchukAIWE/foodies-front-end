@@ -2,8 +2,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addRecipeSchema from "./validationSchema/addRecipeSchema";
 
-import Select from "react-select";
-import { selectStyles } from "../../css/selectStyles";
+// import Select from "react-select";
+// import { selectStyles } from "../../css/selectStyles";
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
@@ -20,6 +20,7 @@ import {
   selectIngredients,
 } from "../../redux/recipes/selectors";
 import { createRecipe } from "../../services/recipes";
+import SelectCategory from "./SelectCategory/SelectCategory";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
@@ -40,6 +41,7 @@ const AddRecipeForm = () => {
     const ingredients = selectedIngredients.map((ing) => {
       return { id: ing.id, measure: ing.measure };
     });
+
     console.log({ ...data, ingredients });
 
     createRecipe({
@@ -87,29 +89,7 @@ const AddRecipeForm = () => {
             <RecipeDescription />
 
             {/* SELECT CATEGORY */}
-            <div className={styles.addOptionsWrapper}>
-              <label className={styles.labelText}>Category</label>
-              <div className={styles.errorContainer}>
-                <Select
-                  name="category"
-                  placeholder={"Select a category"}
-                  selectedOption={null}
-                  options={categoriesList.map((option) => {
-                    return { value: option._id, label: option.name };
-                  })}
-                  {...methods.register("category", { required: true })}
-                  onChange={(selectedOption) =>
-                    methods.setValue("category", selectedOption.label)
-                  }
-                  styles={selectStyles}
-                />
-                {errors.category && (
-                  <span className={styles.error}>
-                    {errors.category?.message}
-                  </span>
-                )}
-              </div>
-            </div>
+            <SelectCategory categoriesList={categoriesList} />
 
             {/* COOKING TIMER */}
             <CookingTimeCounter
