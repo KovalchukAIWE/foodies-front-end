@@ -86,7 +86,7 @@ const AddIngredients = ({
           name="ingredientsCount"
         />
         {errors.ingredientsCount && (
-          <span className={styles.error}>
+          <span className={`${styles.error} ${styles.errorIngr}`}>
             {errors.ingredientsCount?.message}
           </span>
         )}
