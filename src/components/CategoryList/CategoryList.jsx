@@ -1,30 +1,70 @@
+import { useState, useEffect } from "react";
 import noImage from "../../images/no-image.jpg";
 import styles from "./CategoryList.module.css";
 import { CategoriesButton } from "../Buttons/Buttons.jsx";
 
 const CategoryList = ({ name, image, index }) => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleClickButton = () => {
+    console.log("Clicked");
+  };
+
   let imageClass = "";
 
-  switch (index) {
-    case 0:
-    case 1:
-    case 4:
-    case 5:
-    case 6:
-    case 8:
-    case 10:
-    case 11:
-      imageClass = styles.smallImage;
-      break;
-    case 2:
-    case 3:
-    case 7:
-    case 9:
-      imageClass = styles.largeImage;
-      break;
+  if (width >= 1440) {
+    switch (index) {
+      case 0:
+      case 1:
+      case 4:
+      case 5:
+      case 6:
+      case 8:
+      case 10:
+      case 11:
+        imageClass = styles.smallImage;
+        break;
+      case 2:
+      case 3:
+      case 7:
+      case 9:
+        imageClass = styles.largeImage;
+        break;
 
-    default:
-      imageClass = styles.smallImage;
+      default:
+        imageClass = styles.smallImage;
+    }
+  } else if (width >= 768 && width <= 1439) {
+    switch (index) {
+      case 0:
+      case 1:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+        imageClass = styles.smallImageTablet;
+        break;
+      case 2:
+      case 7:
+        imageClass = styles.largeImageTablet;
+        break;
+      default:
+        imageClass = styles.smallImageTablet;
+    }
+  } else {
+    imageClass = styles.smallImageMobile;
   }
 
   return (
@@ -37,13 +77,7 @@ const CategoryList = ({ name, image, index }) => {
         />
         <div className={styles.categoriesBottomContainer}>
           <p className={styles.categoryName}>{name}</p>
-          <CategoriesButton type="button">
-            <a href="">
-              <svg>
-                <use href="/assets/img/icons-sprite.svg#arrow-up-right"></use>
-              </svg>
-            </a>
-          </CategoriesButton>
+          <CategoriesButton onClick={handleClickButton} />
         </div>
       </div>
     </li>
@@ -51,47 +85,3 @@ const CategoryList = ({ name, image, index }) => {
 };
 
 export default CategoryList;
-
-// import noImage from "../../images/no-image.jpg";
-// import styles from "./CategoryList.module.css";
-
-// const CategoryList = ({ name, image, index }) => {
-//   let imageClass = "";
-
-//   switch (index) {
-//     case 0:
-//     case 1:
-//     case 4:
-//     case 5:
-//     case 6:
-//     case 8:
-//     case 10:
-//     case 11:
-//       imageClass = styles.smallImage;
-//       break;
-//     case 2:
-//     case 3:
-//     case 7:
-//     case 9:
-//       imageClass = styles.largeImage;
-//       break;
-
-//     default:
-//       imageClass = styles.smallImage;
-//   }
-
-//   return (
-//     <li className={`${styles.categoryItem} ${imageClass}`}>
-//       <div className={styles.categoryImageWrapper}>
-//         <img
-//           src={image ? image : noImage}
-//           alt={name}
-//           className={styles.categoryImage}
-//         />
-//         <p className={styles.categoryName}>{name}</p>
-//       </div>
-//     </li>
-//   );
-// };
-
-// export default CategoryList;

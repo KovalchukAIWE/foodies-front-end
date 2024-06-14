@@ -5,11 +5,10 @@ import styles from "./Categories.module.css";
 import Container from "../Container/Container";
 
 const Categories = ({ categories }) => {
-  // console.log(categories);
   return (
-    <Container>
-      <section className={styles.categoriesContainer}>
-        <div>
+    <section className={styles.categoriesContainer}>
+      <Container>
+        <div className={styles.categoriesWrapper}>
           <MainTitle text="Categories" />
           <SubTitle
             text="Discover a limitless world of culinary possibilities
@@ -21,8 +20,8 @@ const Categories = ({ categories }) => {
             ))}
           </ul>
         </div>
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 
