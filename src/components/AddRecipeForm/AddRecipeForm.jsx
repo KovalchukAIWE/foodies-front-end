@@ -10,7 +10,7 @@ import { DeleteButton } from "../Buttons/Buttons";
 import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   selectCategories,
@@ -20,11 +20,12 @@ import { createRecipe } from "../../services/recipes";
 import SelectCategory from "./SelectCategory/SelectCategory";
 import RecipePreparation from "./RecipePreparation/RecipePreparation";
 import RecipeTitle from "./RecipeTitle/RecipeTitle";
+import { useNavigate } from "react-router-dom";
 
 const AddRecipeForm = () => {
   const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
   const {
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = methods;
 
   console.log("errors :>> ", errors);
@@ -35,6 +36,8 @@ const AddRecipeForm = () => {
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
+
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     const ingredients = selectedIngredients.map((ing) => {
@@ -53,6 +56,12 @@ const AddRecipeForm = () => {
       thumb: data.thumb,
     });
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      navigate(`/user/`);
+    }
+  }, [isSubmitSuccessful, navigate]);
 
   return (
     <FormProvider {...methods}>
