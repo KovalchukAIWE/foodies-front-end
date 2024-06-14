@@ -17,6 +17,7 @@ const AddIngredients = ({
     register,
     watch,
     setValue,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
@@ -24,7 +25,7 @@ const AddIngredients = ({
 
   setValue("ingredientsCount", selectedIngredients.length);
 
-  const handleAddIngredient = () => {
+  const handleAddIngredient = async () => {
     const ingredient = watch("ingredient");
     const measure = watch("measure");
 
@@ -38,7 +39,8 @@ const AddIngredients = ({
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
 
-      setValue("ingredientsCount", selectedIngredients.length);
+      await setValue("ingredientsCount", selectedIngredients.length);
+      trigger();
       ingredientRef.current.clearValue();
       setValue("measure", "");
     }

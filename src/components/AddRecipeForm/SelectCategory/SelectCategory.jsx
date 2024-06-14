@@ -1,30 +1,39 @@
+import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 import Select from "react-select";
 import { selectStyles } from "../../../css/selectStyles";
 import styles from "../AddRecipeForm.module.css";
 
-const SelectCategory = ({ categoriesList }) => {
+const SelectCategory = forwardRef(function SelectCategory(
+  { categoriesList },
+  ref
+) {
   const {
     register,
     setValue,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
   return (
     <div className={styles.addOptionsWrapper}>
-      <label className={styles.labelText}>Category</label>
+      <label htmlFor="category" className={styles.labelText}>
+        Category
+      </label>
       <div className={styles.errorContainer}>
         <Select
           name="category"
+          {...register("category")}
           placeholder={"Select a category"}
           selectedOption={null}
+          ref={ref}
           options={categoriesList.map((option) => {
             return { value: option._id, label: option.name };
           })}
-          {...register("category")}
-          onChange={(selectedOption) =>
-            setValue("category", selectedOption.label)
-          }
+          onChange={(selectedOption) => {
+            selectedOption ? setValue("category", selectedOption.label) : null;
+            trigger();
+          }}
           styles={selectStyles}
         />
         {errors.category && (
@@ -33,6 +42,6 @@ const SelectCategory = ({ categoriesList }) => {
       </div>
     </div>
   );
-};
+});
 
 export default SelectCategory;

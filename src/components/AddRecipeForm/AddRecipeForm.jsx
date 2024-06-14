@@ -10,7 +10,7 @@ import { DeleteButton } from "../Buttons/Buttons";
 import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -30,6 +30,8 @@ const AddRecipeForm = () => {
   } = methods;
 
   console.log("errors :>> ", errors);
+
+  const categoryRef = useRef();
 
   const categoriesList = useSelector(selectCategories);
   const ingredientsList = useSelector(selectIngredients);
@@ -77,6 +79,8 @@ const AddRecipeForm = () => {
     setImagePreview(null);
     setSelectedIngredients([]);
     setCookingTime(10);
+    //methods.setValue("category", "");
+    categoryRef.current.clearValue();
   };
 
   return (
@@ -100,7 +104,7 @@ const AddRecipeForm = () => {
             <RecipeDescription />
 
             {/* SELECT CATEGORY */}
-            <SelectCategory categoriesList={categoriesList} />
+            <SelectCategory categoriesList={categoriesList} ref={categoryRef} />
 
             {/* COOKING TIMER */}
             <CookingTimeCounter
