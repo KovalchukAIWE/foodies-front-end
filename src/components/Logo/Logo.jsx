@@ -1,7 +1,7 @@
 import styles from "./Logo.module.css";
 
 const Logo = () => {
-  return <div className={styles.logo}>Foodies</div>;
+  return <p className={styles.logo}>foodies</p>;
 };
 
 export default Logo;

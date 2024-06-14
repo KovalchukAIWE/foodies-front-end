@@ -124,3 +124,11 @@ export const FollowButton = ({ onClick, text }) => {
     </button>
   );
 };
+
+export const FormButton = ({ onClick, text }) => {
+  return (
+    <button type="submit" onClick={onClick} className={styles.formButton}>
+      {text}
+    </button>
+  );
+};

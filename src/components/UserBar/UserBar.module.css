@@ -1,0 +1,78 @@
+.userBar {
+  min-width: 148px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userBarDropdown {
+  display: flex;
+  align-items: center;
+  padding: 16px 14px 16px 6px;
+  gap: 4px;
+}
+
+.userBarAvatar {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.userBarName {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.userBarArrow {
+  transition: transform 0.3s ease;
+}
+
+.userBarArrow.open {
+  transform: rotate(180deg);
+}
+
+.userBarContainer {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  border: 1px solid #ffffff33;
+  padding: 16px;
+  border-radius: 15px;
+  width: 148px;
+}
+
+.dropdownItem {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.dropdownItemArrow {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.dropdownItemArrow::after {
+  position: absolute;
+  content: url(../../images/arrow-up-right.svg);
+  left: 55px;
+  bottom: -5px;
+}
