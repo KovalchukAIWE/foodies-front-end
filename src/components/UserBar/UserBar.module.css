@@ -71,8 +71,12 @@
   font-weight: 700;
   line-height: 18px;
   letter-spacing: -0.02em;
-  margin-bottom: 6px;
   text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.dropdownItem:hover {
+  color: #fff;
 }
 
 .dropdownItemArrow {
@@ -91,4 +95,12 @@
   content: url(../../images/arrow-up-right.svg);
   left: 55px;
   bottom: -5px;
+}
+
+.dropdownItemLogout {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }

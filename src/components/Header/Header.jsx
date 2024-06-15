@@ -1,4 +1,3 @@
-import Container from "../Container/Container";
 import Logo from "../Logo/Logo";
 import styles from "./Header.module.css";
 import Nav from "../Nav/Nav";
@@ -21,24 +20,22 @@ const Header = () => {
   }, [location]);
 
   return (
-    <header className={clsx(theme==='light' ? styles.light : styles.dark)}>
-      <Container>
-        <div className={styles.header}>
-          {isLogged ? (
-            <>
-              <Logo />
-              <Nav />
-              <UserBar />
-              <BurgerMenu />
-            </>
-          ) : (
-            <>
-              <Logo />
-              <AuthBar />
-            </>
-          )}
-        </div>
-      </Container>
+    <header className={clsx(theme === "light" ? styles.light : styles.dark)}>
+      <div className={styles.header}>
+        {isLogged ? (
+          <>
+            <Logo />
+            <Nav />
+            <UserBar />
+            <BurgerMenu />
+          </>
+        ) : (
+          <>
+            <Logo />
+            <AuthBar />
+          </>
+        )}
+      </div>
     </header>
   );
 };

@@ -14,7 +14,6 @@ const Hero = () => {
   const dispatch = useDispatch();
 
   const handleAddRecipe = () => {
-    console.log("123");
     if (isLoggedIn) {
       navigate("/recipe/add");
       return;
@@ -23,18 +22,20 @@ const Hero = () => {
   };
 
   return (
-    <section>
+    <section className={styles.hero}>
       <ContainerHero>
-        <div className={styles.hero}>
-          <h1 className={styles.heroTitle}>Improve Your Culinary Talents</h1>
-          <p className={styles.heroSubtitle}>
-            Amazing recipes for beginners in the world of cooking, enveloping
-            you in the aromas and tastes of various cuisines.
-          </p>
-          <HeroButton onClick={handleAddRecipe} text="Add recipe" />
-          <div className={styles.heroImages}>
-            <img className={styles.heroImageSm} src={imageSmall} alt="" />
-            <img className={styles.heroImageLarge} src={imageLarge} alt="" />
+        <div className={styles.heroWrapper}>
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>Improve Your Culinary Talents</h1>
+            <p className={styles.heroSubtitle}>
+              Amazing recipes for beginners in the world of cooking, enveloping
+              you in the aromas and tastes of various cuisines.
+            </p>
+            <HeroButton onClick={handleAddRecipe} text="Add recipe" />
+            <div className={styles.heroImages}>
+              <img className={styles.heroImageSm} src={imageSmall} alt="" />
+              <img className={styles.heroImageLarge} src={imageLarge} alt="" />
+            </div>
           </div>
         </div>
       </ContainerHero>

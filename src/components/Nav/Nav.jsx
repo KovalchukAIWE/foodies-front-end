@@ -8,7 +8,6 @@ const Nav = () => {
       <NavLink
         to="/"
         className={({ isActive }) => {
-          console.log(isActive);
           return clsx(isActive ? styles.active : "", styles.navLink);
         }}
       >

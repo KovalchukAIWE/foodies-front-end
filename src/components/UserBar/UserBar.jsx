@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./UserBar.module.css";
 import noImage from "../../assets/img/noUserPhoto.webp";
 import Modal from "../Modal/Modal";
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const UserBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isLogOutModalOpen, setIsLogOutnModalOpen] = useState(false);
+  const userBarRef = useRef(null);
 
   const { name, avatar, id } = useSelector(selectUser);
 
@@ -20,13 +21,26 @@ const UserBar = () => {
     setShowDropdown(!showDropdown);
   };
 
+  const handleClickOutside = (event) => {
+    if (userBarRef.current && !userBarRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={styles.userBarContainer}>
+    <div className={styles.userBarContainer} ref={userBarRef}>
       <button type="button" className={styles.userBar} onClick={toggleDropdown}>
         <img
           className={styles.userBarAvatar}
           src={avatar ? avatar : noImage}
-          alt=""
+          alt={name}
         />
         <div className={styles.userBarDropdown}>
           <p className={styles.userBarName}>{name}</p>
@@ -56,7 +70,12 @@ const UserBar = () => {
             profile
           </Link>
           <div className={styles.dropdownItemArrow}>
-            <button onClick={openLogOutModal}>Log Out</button>
+            <button
+              className={styles.dropdownItemLogout}
+              onClick={openLogOutModal}
+            >
+              Log Out
+            </button>
           </div>
         </div>
       )}
