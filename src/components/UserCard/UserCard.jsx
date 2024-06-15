@@ -3,6 +3,7 @@ import TabsList from "../TabsList/TabsList";
 import styles from "./UserCard.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
+import { useParams } from "react-router-dom";
 
 const UserCard = ({
   user: {
@@ -14,10 +15,10 @@ const UserCard = ({
     followersCount,
     followingCount,
     isFollowing,
-    id,
   },
 }) => {
   const { id: ownerId } = useSelector(selectUser);
+  const { id } = useParams();
   console.log(ownerId);
 
   return (
@@ -30,16 +31,12 @@ const UserCard = ({
         favorites={favoriteRecipesCount}
         followers={followersCount}
         followings={followingCount}
-        id={id}
-        // isOwner={id === ownerId}
-        isOwner={true}
+        id={ownerId}
+        isOwner={id === ownerId}
         isFollowing={isFollowing}
       />
       <div>
-        <TabsList
-          // isOwner={id === ownerId}
-          isOwner={true}
-        />
+        <TabsList isOwner={id === ownerId} />
       </div>
     </div>
   );

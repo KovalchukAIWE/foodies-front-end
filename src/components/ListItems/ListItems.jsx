@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/user/selectors";
 import {
   getOwnUsersRecipes,
   getUsersFavoriteRecipes,
@@ -18,6 +20,7 @@ import { useParams } from "react-router-dom";
 
 const ListItems = ({ activeTab, updating, onUpdating }) => {
   const { id } = useParams();
+  const { id: ownerId } = useSelector(selectUser);
   const [arrToRender, setArrToRender] = useState([]);
 
   const [messageEmptyData, setMessageEmptyData] = useState(
@@ -28,14 +31,8 @@ const ListItems = ({ activeTab, updating, onUpdating }) => {
     try {
       const response = await deleteRecipeById(id);
       console.log(response);
-      // if (response.ok) {
-      // const updatedRecipes = await getOwnUsersRecipes();
-      // setArrToRender(updatedRecipes);
+
       onUpdating(true);
-      // }
-      // else {
-      //   throw new Error("Failed to delete the recipe");
-      // }
     } catch (error) {
       console.log(error.message);
     }
@@ -61,11 +58,7 @@ const ListItems = ({ activeTab, updating, onUpdating }) => {
       const response = await setUnfollowUserByUserId(id);
       console.log(response);
 
-      // if (response.ok) {
       onUpdating(true);
-      // } else {
-      //   throw new Error("Failed to Unfollow this user, try later");
-      // }
     } catch (error) {
       console.log(error.message);
     }
@@ -76,20 +69,20 @@ const ListItems = ({ activeTab, updating, onUpdating }) => {
     (async () => {
       try {
         if (activeTab === "followingActiveTab") {
-          const userFollowings = await getUsersFollowingsByUserId(id);
-          setArrToRender(userFollowings);
+          const { result } = await getUsersFollowingsByUserId(ownerId);
+          setArrToRender(result);
           setMessage("followingActiveTab", setMessageEmptyData);
         } else if (activeTab === "favoritesActiveTab") {
-          const myFavoritesRecipes = await getUsersFavoriteRecipes();
-          setArrToRender(myFavoritesRecipes);
+          const { result } = await getUsersFavoriteRecipes();
+          setArrToRender(result);
           setMessage("favoritesActiveTab", setMessageEmptyData);
         } else if (activeTab === "followersActiveTab") {
-          const userFollowers = await getUsersFollowersByUserId(id);
-          setArrToRender(userFollowers);
+          const { result } = await getUsersFollowersByUserId(ownerId);
+          setArrToRender(result);
           setMessage("followersActiveTab", setMessageEmptyData);
         } else {
-          const myOwnRecipes = await getOwnUsersRecipes();
-          setArrToRender(myOwnRecipes);
+          const { result } = await getOwnUsersRecipes();
+          setArrToRender(result);
         }
       } catch (error) {
         console.log(error.message);
@@ -100,14 +93,14 @@ const ListItems = ({ activeTab, updating, onUpdating }) => {
   }, [activeTab, id, updating]);
 
   return arrToRender.length > 0 ? (
-    <ul className={styles.myRecipesList}>
+    <ul className={styles.recipesList}>
       {arrToRender.map((item) =>
         activeTab === "favoritesActiveTab" ||
         activeTab === "recipiesActiveTab" ? (
           <RecipePreview
             img={item.thumb}
             recipeName={item.title}
-            text={item.description}
+            text={item.instructions}
             id={item._id}
             key={item._id}
             handleDeleteRecipe={handleDeleteRecipeById}
@@ -116,11 +109,11 @@ const ListItems = ({ activeTab, updating, onUpdating }) => {
           <UserPreview
             avatar={item.avatar}
             name={item.name}
-            ownRecipes={item.ownRecipes}
+            ownRecipes={item.totalRecipes}
             isFollow={item.isFollow}
-            recipesPhotos={item.recipesPhotos}
-            id={item.id}
-            key={item.id}
+            recipes={item.recipes}
+            id={item._id}
+            key={item._id}
             onClick={
               item.isFollow ? handleUnfollowUserById : handleFollowUserById
             }
