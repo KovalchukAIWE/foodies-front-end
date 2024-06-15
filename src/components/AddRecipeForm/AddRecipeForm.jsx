@@ -29,10 +29,8 @@ const AddRecipeForm = () => {
     mode: "onBlur",
   });
   const {
-    formState: { errors, isSubmitSuccessful },
+    formState: { isSubmitSuccessful },
   } = methods;
-
-  console.log("errors :>> ", errors);
 
   const categoryRef = useRef();
 
@@ -50,9 +48,6 @@ const AddRecipeForm = () => {
     const ingredients = selectedIngredients.map((ing) => {
       return { id: ing.id, measure: ing.measure };
     });
-
-    console.log({ ...data, ingredients });
-
     const formData = {
       title: data.title,
       category: data.category,
@@ -66,7 +61,7 @@ const AddRecipeForm = () => {
     try {
       createRecipe(formData);
     } catch (error) {
-      // переписати
+      // переписати на сповіщення
       alert("Error: " + error.response.data.message);
     }
   };
@@ -78,11 +73,11 @@ const AddRecipeForm = () => {
   }, [isSubmitSuccessful, navigate, userId]);
 
   const handleReset = () => {
+    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
     methods.reset();
     setImagePreview(null);
     setSelectedIngredients([]);
     setCookingTime(10);
-    categoryRef.current.clearValue();
   };
 
   return (
