@@ -1,6 +1,7 @@
 .userCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 64px;
 
   @media (min-width: 768px) {
@@ -10,5 +11,6 @@
   @media (min-width: 1440px) {
     flex-direction: row;
     gap: 40px;
+    align-items: flex-start;
   }
 }

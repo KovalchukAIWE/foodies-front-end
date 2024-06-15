@@ -1,11 +1,12 @@
 import styles from "./UserPreview.module.css";
+// import { nanoid } from "nanoid";
 
 const UserPreview = ({
   avatar,
   name,
   ownRecipes,
   isFollow,
-  recipesPhotos,
+  recipes,
   id,
   onClick,
   // total,
@@ -35,9 +36,9 @@ const UserPreview = ({
         </div>
       </div>
       <ul className={styles.recipesPhotosList}>
-        {recipesPhotos.map(({ img, title }) => (
-          <li className={styles.recipePhotoItem} key={img}>
-            <img src={img} alt={title} className={styles.recipePreviewPhoto} />
+        {recipes.map(({ thumb, _id, name }) => (
+          <li className={styles.recipePhotoItem} key={_id}>
+            <img src={thumb} alt={name} className={styles.recipePreviewPhoto} />
           </li>
         ))}
       </ul>
