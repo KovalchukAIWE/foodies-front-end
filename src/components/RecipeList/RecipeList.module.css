@@ -6,6 +6,10 @@
   margin-bottom: 32px;
 }
 
+.text {
+  font-size: 26px;
+}
+
 @media (min-width: 768px) {
   .resipeList {
     display: flex;
