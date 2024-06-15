@@ -1,9 +1,14 @@
 .recipeCard {
   display: flex;
-  gap: 16px;
+  justify-content: space-between;
+  width: 303px;
+
+  @media (min-width: 375px) {
+    width: 343px;
+  }
 
   @media (min-width: 768px) {
-    gap: 32px;
+    width: 100%;
   }
 }
 
@@ -19,6 +24,7 @@
 .recipeImg {
   width: 75px;
   height: 75px;
+  border-radius: 15px;
 
   @media (min-width: 768px) {
     width: 100px;
@@ -88,9 +94,9 @@
     border: 1px solid #050505;
     background-color: #050505;
 
-    .recipe-card-icon {
-      fill: #050505;
-      stroke: #ffffff;
+    .recipeCardIcon {
+      fill: #ffffff;
+      stroke: #050505;
     }
   }
 
@@ -104,8 +110,8 @@
   width: 16px;
   height: 16px;
 
-  fill: #ffffff;
-  stroke: #050505;
+  fill: #050505;
+  stroke: #ffffff;
 
   @media (min-width: 768px) {
     width: 18px;

@@ -1,4 +1,6 @@
 import styles from "./RecipePreview.module.css";
+import icons from "../../assets/img/icons-sprite.svg";
+import { Link } from "react-router-dom";
 
 const RecipePreview = ({ img, text, recipeName, id, handleDeleteRecipe }) => {
   return (
@@ -11,15 +13,15 @@ const RecipePreview = ({ img, text, recipeName, id, handleDeleteRecipe }) => {
         </div>
       </div>
       <div className={styles.recipeButtonsBox}>
-        <button
-          type="button"
+        <Link
+          to={`/recipe/${id}`}
           className={styles.recipeBtn}
           aria-label="watch the details of the recipe"
         >
-          <svg className="recipe-card-icon">
-            <use href="./img/symbol-defs.svg#arrow-icon"></use>
+          <svg className={styles.recipeCardIcon}>
+            <use href={`${icons}#arrow-up-right`}></use>
           </svg>
-        </button>
+        </Link>
         <button
           type="button"
           className={styles.recipeBtn}
@@ -27,7 +29,7 @@ const RecipePreview = ({ img, text, recipeName, id, handleDeleteRecipe }) => {
           onClick={() => handleDeleteRecipe(id)}
         >
           <svg className={styles.recipeCardIcon}>
-            <use href="./img/symbol-defs.svg#icon-trash"></use>
+            <use href={`${icons}#trash`}></use>
           </svg>
         </button>
       </div>

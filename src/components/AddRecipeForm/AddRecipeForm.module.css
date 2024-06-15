@@ -2,19 +2,31 @@
   position: relative;
 }
 
-/* className={styles.errorContainer} */
-
 .error {
   position: absolute;
-  bottom: -24px;
+  bottom: -18px;
   left: 0;
 
   font-size: 12px;
   color: #db0000;
+
+  @media screen and (min-width: 768px) {
+    bottom: -24px;
+  }
+}
+
+.errorIngr {
+  bottom: -22px;
+  @media screen and (min-width: 768px) {
+    bottom: -24px;
+  }
 }
 
 .errorInputArea {
-  bottom: -40px;
+  bottom: -36px;
+  @media screen and (min-width: 768px) {
+    bottom: -40px;
+  }
 }
 
 .form {
@@ -147,12 +159,25 @@
 
 .inputArea {
   width: 270px;
-  height: 20px;
+  height: 24px;
   color: inherit;
 
   @media screen and (min-width: 768px) {
     width: 550px;
   }
+  transition: height var(--transition-func);
+}
+
+.inputArea:focus {
+  height: 140px;
+
+  @media screen and (min-width: 768px) {
+    height: 96px;
+  }
+}
+
+.inputAreaBig {
+  height: auto;
 }
 
 .ingredientsQuantity {

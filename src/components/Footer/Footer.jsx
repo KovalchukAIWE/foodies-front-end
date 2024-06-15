@@ -1,5 +1,6 @@
 import css from './Footer.module.css';
 import Container from '../Container/Container';
+import sprite from '../../assets/img/icons-sprite.svg';
 
 const Footer = () => {
   return (
@@ -19,7 +20,7 @@ const Footer = () => {
                 rel='noopener noreferrer'
                 className={css.footerSocialLink}>
                 <svg className={css.footerSocialIcon}>
-                  <use href='/vite.svg#Facebook'></use>
+                  <use href={`${sprite}#facebook`}></use>
                 </svg>
               </a>
             </li>
@@ -30,7 +31,7 @@ const Footer = () => {
                 rel='noopener noreferrer'
                 className={css.footerSocialLink}>
                 <svg className={css.footerSocialIcon}>
-                  <use href='/vite.svg#instagram'></use>
+                  <use href={`${sprite}#instagram`}></use>
                 </svg>
               </a>
             </li>
@@ -41,7 +42,7 @@ const Footer = () => {
                 rel='noopener noreferrer'
                 className={css.footerSocialLink}>
                 <svg className={css.footerSocialIcon}>
-                  <use href='/vite.svg#youtube'></use>
+                  <use href={`${sprite}#youtube`}></use>
                 </svg>
               </a>
             </li>
