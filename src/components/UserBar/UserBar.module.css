@@ -1,11 +1,15 @@
 .userBar {
-  min-width: 148px;
+  min-width: 122px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #050505;
   border-radius: 30px;
+
+  @media screen and (min-width: 576px) {
+    min-width: 148px;
+  }
 }
 
 .userBarDropdown {
@@ -16,8 +20,12 @@
 }
 
 .userBarAvatar {
-  width: 50px;
+  width: 32px;
   border-radius: 50%;
+
+  @media screen and (min-width: 576px) {
+    width: 50px;
+  }
 }
 
 .userBarName {
@@ -47,8 +55,12 @@
   border: 1px solid #ffffff33;
   padding: 16px;
   border-radius: 15px;
-  width: 148px;
+  width: 122px;
   background-color: #050505;
+
+  @media screen and (min-width: 576px) {
+    min-width: 148px;
+  }
 }
 
 .dropdownItem {

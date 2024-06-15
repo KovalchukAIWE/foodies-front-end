@@ -1,14 +1,16 @@
+import { NavLink } from "react-router-dom";
 import styles from "./Nav.module.css";
 
 const Nav = () => {
+  
   return (
     <div className={styles.nav}>
-      <button type="button" className={styles.navLink}>
+      <NavLink to="/" className={styles.navLink}>
         Home
-      </button>
-      <button type="button" className={styles.navLink}>
+      </NavLink>
+      <NavLink to="/" className={styles.navLink}>
         Add recipe
-      </button>
+      </NavLink>
     </div>
   );
 };

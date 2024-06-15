@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./UserBar.module.css";
-import noImage from "../../images/avatar.png";
+import noImage from "../../assets/img/noUserPhoto.webp";
 import Modal from "../Modal/Modal";
 import LogOutModal from "../LogOutModal/LogOutModal";
 

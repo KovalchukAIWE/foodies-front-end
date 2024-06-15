@@ -5,9 +5,10 @@ import styles from "./Header.module.css";
 import Nav from "../Nav/Nav";
 import AuthBar from "../AuthBar/AuthBar";
 import UserBar from "../UserBar/UserBar";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const Header = () => {
-  const [isLogged] = useState(false);
+  const [isLogged] = useState(true);
 
   return (
     <Container>
@@ -17,6 +18,7 @@ const Header = () => {
             <Logo />
             <Nav />
             <UserBar />
+            <BurgerMenu />
           </>
         ) : (
           <>
