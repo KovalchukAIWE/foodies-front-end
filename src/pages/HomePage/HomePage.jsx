@@ -101,6 +101,7 @@ const HomePage = () => {
                   onSelectedArea={handleSelectedArea}
                   onSelectedIngredient={handleSelectedIngredient}
                   onSetPage={handleSetPage}
+                  page={page}
                   totalPage={totalPage}
                   onBack={handleBack}
                   recipes={recipes}
