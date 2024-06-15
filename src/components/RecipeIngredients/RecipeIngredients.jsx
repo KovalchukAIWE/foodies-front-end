@@ -7,6 +7,7 @@ const RecipeIngredients = ({ ingredient }) => {
         <img
           src={ingredient.img}
           alt={ingredient.name}
+          className={styles.ingrImg}
         />
       </div>
       <div className={`${styles.ingrDescr} text`}>
