@@ -23,12 +23,13 @@ const AddIngredients = ({
 
   const ingredientRef = useRef();
 
-  setValue("ingredientsCount", selectedIngredients.length);
+  setValue("ingredientsArrayCount", selectedIngredients.length);
+  const ingredient = watch("ingredient");
+  const measure = watch("measure");
+
+  let ingredientReq = ingredient?.value && !measure?.length;
 
   const handleAddIngredient = async () => {
-    const ingredient = watch("ingredient");
-    const measure = watch("measure");
-
     if (ingredient && measure) {
       const imgSrc = ingredientsList.find(
         (el) => el._id === ingredient.value
@@ -39,12 +40,14 @@ const AddIngredients = ({
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
 
-      await setValue("ingredientsCount", selectedIngredients.length);
-      trigger("ingredientsCount");
+      await setValue("ingredientsArrayCount", selectedIngredients.length);
+      trigger("ingredientsArrayCount");
       ingredientRef.current.clearValue();
       setValue("measure", "");
     }
   };
+
+  console.log("ingredientReq :>> ", ingredientReq);
 
   const handleRemoveIngredient = (ingId) => {
     setSelectedIngredients(
@@ -75,25 +78,30 @@ const AddIngredients = ({
           />
         </div>
         <div className={styles.addOptionsWrapper}>
-          <input
-            type="text"
-            {...register("measure")}
-            name="measure"
-            placeholder="Enter quantity"
-            className={`${styles.ingredientsQuantity} text`}
-          />
+          <div className={styles.errorContainer}>
+            <input
+              type="text"
+              {...register("measure")}
+              name="measure"
+              placeholder="Enter quantity"
+              className={`${styles.ingredientsQuantity} text`}
+            />
+            <span className={`${styles.error} ${styles.errorIngr}`}>
+              {ingredientReq ? "Quantity is required" : ""}
+            </span>
+          </div>
         </div>
       </div>
       <div className={styles.errorContainer}>
         <input
           type="hidden"
-          {...register("ingredientsCount")}
+          {...register("ingredientsArrayCount")}
           value={selectedIngredients.length}
-          name="ingredientsCount"
+          name="ingredientsArrayCount"
         />
-        {errors.ingredientsCount && (
+        {errors.ingredientsArrayCount && (
           <span className={`${styles.error} ${styles.errorIngr}`}>
-            {errors.ingredientsCount?.message}
+            {errors.ingredientsArrayCount?.message}
           </span>
         )}
         <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
