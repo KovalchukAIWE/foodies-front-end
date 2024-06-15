@@ -3,7 +3,7 @@ import noImage from "../../images/no-image.jpg";
 import styles from "./CategoryList.module.css";
 import { CategoriesButton } from "../Buttons/Buttons.jsx";
 
-const CategoryList = ({ name, image, index }) => {
+const CategoryList = ({ name, image, index, onShowAllCategories }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -14,14 +14,9 @@ const CategoryList = ({ name, image, index }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // const handleClickButton = () => {
-  //   console.log("Clicked");
-  // };
-
   const handleClickButton = () => {
     if (name === "All categories") {
-      console.log("Show all categories");
-      // Logic to show all categories
+      onShowAllCategories();
     } else {
       console.log("Clicked");
     }
@@ -45,6 +40,7 @@ const CategoryList = ({ name, image, index }) => {
       case 3:
       case 7:
       case 9:
+      case 14:
         imageClass = styles.largeImage;
         break;
 
@@ -67,6 +63,7 @@ const CategoryList = ({ name, image, index }) => {
         break;
       case 2:
       case 7:
+      case 14:
         imageClass = styles.largeImageTablet;
         break;
       default:
@@ -84,9 +81,11 @@ const CategoryList = ({ name, image, index }) => {
     <li className={`${styles.categoryItem} ${imageClass}`}>
       <div className={styles.categoryContentWrapper}>
         {name === "All categories" ? (
-          <div className={styles.allCategoriesText}>
-            <p>All Categories</p>
-          </div>
+          <button type="button" onClick={handleClickButton}>
+            <div className={styles.allCategoriesText}>
+              <p>All Categories</p>
+            </div>
+          </button>
         ) : (
           <img
             src={image ? image : noImage}
