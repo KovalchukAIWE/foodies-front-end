@@ -21,3 +21,9 @@ export const setMessage = (tabId, setter) => {
       );
   }
 };
+
+export const setNumberOfRecipesUserCard = () => {
+  if (window.innerWidth < 768) return 0;
+  if (window.innerWidth >= 768 && window.innerWidth < 1440) return 3;
+  if (window.innerWidth > 1440) return 4;
+};
