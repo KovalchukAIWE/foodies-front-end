@@ -11,6 +11,9 @@ const Recipes = ({
   onSelectedIngredient,
   onBack,
   recipes,
+  onSetPage,
+  page,
+  totalPage,
 }) => {
   return (
     <>
@@ -35,7 +38,11 @@ const Recipes = ({
         />
         <div>
           <RecipeList recipes={recipes} />
-          <RecipePagination />
+          <RecipePagination
+            onChangePage={onSetPage}
+            currentPage={page}
+            totalPage={totalPage}
+          />
         </div>
       </div>
     </>
