@@ -1,3 +1,7 @@
+.userInfoBox {
+  min-width: 300px;
+}
+
 .profileCard {
   display: flex;
   gap: 16px;
@@ -91,6 +95,8 @@
   pointer-events: none;
   top: 63px;
   left: 26px;
+  transition-duration: 300ms;
+
   @media (min-width: 768px) {
     top: 98px;
     left: 41px;
@@ -168,6 +174,7 @@
   color: #fff;
 
   cursor: pointer;
+  transition-duration: 300ms;
 
   &:hover,
   &:focus {

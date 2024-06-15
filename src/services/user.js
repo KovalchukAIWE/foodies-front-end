@@ -45,7 +45,7 @@ export const getUsersFollowingsByUserId = async () => {
   return data;
 };
 
-export const setFollowUserByUserId = async ({ body }) => {
+export const setFollowUserByUserId = async (body) => {
   const { data } = await foodiesApiClient.patch(`users/follow`, body);
   return data;
 };
