@@ -32,7 +32,7 @@ const App = () => {
     dispatch(getAllIngredients());
 
     //
-    dispatch(logIn({ email: "user2@gmail.com", password: "123456" }));
+    // dispatch(logIn({ email: "user2@gmail.com", password: "123456" }));
   }, [dispatch]);
 
   return isRefreshing ? (
