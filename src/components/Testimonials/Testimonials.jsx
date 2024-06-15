@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './Testimonials.module.css';
-import Container from '../Container/Container';
 import sprite from '../../assets/img/icons-sprite.svg';
 import { getTestimonials } from '../../services/testimonials';
 
@@ -44,35 +43,33 @@ const Testimonials = () => {
   };
 
   return (
-    <Container>
-      <div className={styles.testimonials}>
-        <div className={styles.testimonialsSection}>
-          <h2 className={styles.sectionSubtitle}>What our customers say</h2>
-          <h1 className={styles.sectionTitle}>Testimonials</h1>
-          <svg className={styles.testimonialQuote}>
-            <use href={`${sprite}#quotes`}></use>
-          </svg>
-          {testimonials.length > 0 ? (
-            <Slider
-              {...settings}
-              className={styles.testimonialSlick}>
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={styles.testimonialSlide}>
-                  <p className={styles.testimonialText}>{testimonial.text}</p>
-                  <h3 className={styles.testimonialAuthor}>
-                    {testimonial.author}
-                  </h3>
-                </div>
-              ))}
-            </Slider>
-          ) : (
-            <p className={styles.testimonialText}>No comments</p>
-          )}
-        </div>
+    <div className={styles.testimonials}>
+      <div className={styles.testimonialsSection}>
+        <h2 className={styles.sectionSubtitle}>What our customers say</h2>
+        <h1 className={styles.sectionTitle}>Testimonials</h1>
+        <svg className={styles.testimonialQuote}>
+          <use href={`${sprite}#quotes`}></use>
+        </svg>
+        {testimonials.length > 0 ? (
+          <Slider
+            {...settings}
+            className={styles.testimonialSlick}>
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className={styles.testimonialSlide}>
+                <p className={styles.testimonialText}>{testimonial.text}</p>
+                <h3 className={styles.testimonialAuthor}>
+                  {testimonial.author}
+                </h3>
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <p className={styles.testimonialText}>No comments</p>
+        )}
       </div>
-    </Container>
+    </div>
   );
 };
 
