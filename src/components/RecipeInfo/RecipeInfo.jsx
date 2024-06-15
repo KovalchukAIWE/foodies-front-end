@@ -54,7 +54,7 @@ const RecipeInfo = ({ isAuthenticated }) => {
             onClick={handleAuthorClick}
             className={css.recipeAuthor}>
             <img
-              src={recipe.owner.avatar || '../../images/owner.jpg'}
+              src={recipe.owner.avatar || 'https://via.placeholder.com/50x50'}
               alt={recipe.owner.name}></img>
             <div>
               <p className={css.btnAuthorText}>Created by:</p>
