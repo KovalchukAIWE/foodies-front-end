@@ -14,7 +14,7 @@ const RecipeCard = ({ recipe }) => {
       />
       <div className={styles.recipeCardContainer}>
         <h3 className={styles.recipeCardTitle}>{recipe.title}</h3>
-        <p className={styles.recipeCardDescription}>{recipe.instructions}</p>
+        <p className={styles.recipeCardDescription}>{recipe.description}</p>
         <div className={styles.recipeCardBox}>
           <button type="button" className={styles.recipeCardAuthor}>
             <img

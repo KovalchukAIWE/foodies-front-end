@@ -1,5 +1,5 @@
 .recipeCard {
-  width: 100%;
+  width: 340px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -92,7 +92,7 @@
 
 @media (min-width: 768px) {
   .recipeCard {
-    width: 342px;
+    /* width: 342px; */
     display: flex;
     flex-direction: column;
     gap: 16px;
