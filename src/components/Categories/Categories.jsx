@@ -35,7 +35,7 @@ const Categories = ({ categories }) => {
   }
 
   const categoriesToRender = showAllCategories
-    ? categories
+    ? categories.sort((a, b) => a.name.localeCompare(b.name))
     : width < 768
     ? [
         ...sortedCategories.slice(0, 8),
