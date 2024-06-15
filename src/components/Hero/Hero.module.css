@@ -1,12 +1,15 @@
 .hero {
+  padding-top: 20px;
+}
+
+.heroWrapper {
   width: 100%;
   padding: 194px 16px 100px;
   background-color: #050505;
   border-radius: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px auto 0;
+  justify-content: center;
+  margin: 0 auto;
 
   @media screen and (min-width: 768px) {
     padding: 217px 0 91px;
@@ -16,6 +19,14 @@
     max-width: 1400px;
     padding: 154px 0 82px;
   }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  width: 100%;
 }
 
 .heroTitle {
@@ -58,6 +69,7 @@
 
 .heroImages {
   display: flex;
+  align-items: center;
   margin-top: 30px;
 
   @media screen and (min-width: 1440px) {
@@ -75,11 +87,8 @@
 
 .heroImageSm {
   width: 77px;
-  height: fit-content;
-  margin-top: 90px;
 
   @media screen and (min-width: 768px) {
     width: 150px;
-    margin-top: 135px;
   }
 }

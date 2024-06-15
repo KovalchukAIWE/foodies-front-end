@@ -1,4 +1,4 @@
-.signUpFormInput {
+.signInFormInput {
   border: 1px solid #0505051f;
   padding: 16px 18px;
   border-radius: 30px;
@@ -6,11 +6,11 @@
   margin-bottom: 14px;
 }
 
-.signUpFormError {
+.signInFormError {
   color: tomato;
 }
 
-.signUpFormButton {
+.signInFormButton {
   margin-top: 26px;
 
   @media screen and (min-width: 768px) {

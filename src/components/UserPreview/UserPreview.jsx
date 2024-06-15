@@ -1,5 +1,8 @@
 import styles from "./UserPreview.module.css";
-// import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
+import { setNumberOfRecipesUserCard } from "../../helpers/helpers";
+import noUserPhoto from "../../assets/img/noUserPhoto.webp";
+import icons from "../../assets/img/icons-sprite.svg";
 
 const UserPreview = ({
   avatar,
@@ -18,7 +21,7 @@ const UserPreview = ({
       <div className={styles.userInfo}>
         <div className={styles.previewPhotoWrapper}>
           <img
-            src={avatar}
+            src={avatar ? avatar : noUserPhoto}
             alt={name}
             className={styles.userSmallPhotoPreview}
           />
@@ -36,18 +39,27 @@ const UserPreview = ({
         </div>
       </div>
       <ul className={styles.recipesPhotosList}>
-        {recipes.map(({ thumb, _id, name }) => (
-          <li className={styles.recipePhotoItem} key={_id}>
-            <img src={thumb} alt={name} className={styles.recipePreviewPhoto} />
-          </li>
-        ))}
+        {recipes &&
+          recipes
+            .slice(0, setNumberOfRecipesUserCard())
+            .map(({ thumb, _id, title }) => (
+              <li className={styles.recipePhotoItem} key={_id}>
+                <Link to={`/recipe/${_id}`}>
+                  <img
+                    src={thumb}
+                    alt={title}
+                    className={styles.recipePreviewPhoto}
+                  />
+                </Link>
+              </li>
+            ))}
       </ul>
 
-      <button className={styles.linkToUserProfile}>
+      <Link to={`/user/${id}`} className={styles.linkToUserProfile}>
         <svg className={styles.linkToUserProfileIcon}>
-          <use className="./img/symbol-defs.svg#arrow-icon"></use>
+          <use href={`${icons}#arrow-up-right`}></use>
         </svg>
-      </button>
+      </Link>
     </div>
   );
 };

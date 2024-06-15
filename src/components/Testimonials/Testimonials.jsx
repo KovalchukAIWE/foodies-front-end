@@ -8,15 +8,17 @@ import { getTestimonials } from '../../services/testimonials';
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
         const data = await getTestimonials();
         if (Array.isArray(data) && data.length > 0) {
-          const formattedTestimonials = data.map((item) => ({
-            text: item.testimonial,
-            author: item.owner.name,
+          const formattedTestimonials = data.map(({ testimonial, owner }) => ({
+            text: testimonial,
+            author: owner.name,
           }));
           setTestimonials(formattedTestimonials);
         } else {
@@ -24,7 +26,10 @@ const Testimonials = () => {
         }
       } catch (error) {
         console.error('Error fetching testimonials:', error);
+        setError('Error fetching testimonials');
         setTestimonials([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -41,6 +46,14 @@ const Testimonials = () => {
     autoplaySpeed: 5000,
     pauseOnHover: true,
   };
+
+  if (loading) {
+    return <p className={styles.testimonialText}>Loading...</p>;
+  }
+
+  if (error) {
+    return <p className={styles.testimonialText}>{error}</p>;
+  }
 
   return (
     <div className={styles.testimonials}>

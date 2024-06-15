@@ -23,7 +23,7 @@ const UserInfo = ({
   };
 
   return (
-    <div>
+    <div className={styles.userInfoBox}>
       <div className={styles.profileCard}>
         <div className={styles.profilePhotoBox}>
           <div className={styles.imageWrapper}>

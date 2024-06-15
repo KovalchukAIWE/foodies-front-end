@@ -2,12 +2,9 @@
   display: flex;
   justify-content: space-between;
   width: 303px;
+  gap: 16px;
 
   @media (min-width: 375px) {
-    width: 343px;
-  }
-
-  @media (min-width: 768px) {
     width: 100%;
   }
 }
@@ -88,6 +85,7 @@
   height: 36px;
   background-color: inherit;
   cursor: pointer;
+  transition-duration: 300ms;
 
   &:hover,
   &:focus {
@@ -112,6 +110,7 @@
 
   fill: #050505;
   stroke: #ffffff;
+  transition-duration: 300ms;
 
   @media (min-width: 768px) {
     width: 18px;
