@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './Testimonials.module.css';
 import Container from '../Container/Container';
+import sprite from '../../assets/img/icons-sprite.svg';
 import { getTestimonials } from '../../services/testimonials';
 
 const Testimonials = () => {
@@ -49,7 +50,7 @@ const Testimonials = () => {
           <h2 className={styles.sectionSubtitle}>What our customers say</h2>
           <h1 className={styles.sectionTitle}>Testimonials</h1>
           <svg className={styles.testimonialQuote}>
-            <use href='/vite.svg#untitled'></use>
+            <use href={`${sprite}#quotes`}></use>
           </svg>
           {testimonials.length > 0 ? (
             <Slider
