@@ -5,24 +5,41 @@ import styles from "./Categories.module.css";
 import Container from "../Container/Container";
 
 const Categories = ({ categories }) => {
-  // console.log(categories);
+  const excludedCategories = ["chicken", "soup", "vegan", "vegetarian"];
+
+  const filteredCategories = categories.filter(
+    (category) => !excludedCategories.includes(category.name.toLowerCase())
+  );
+
+  const sortedCategories = filteredCategories.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
+  if (sortedCategories.length === 11) {
+    sortedCategories.push({
+      _id: "all-categories",
+      name: "All categories",
+      image: null,
+    });
+  }
+
   return (
-    <Container>
-      <section className={styles.categoriesContainer}>
-        <div>
+    <section className={styles.categoriesContainer}>
+      <Container>
+        <div className={styles.categoriesWrapper}>
           <MainTitle text="Categories" />
           <SubTitle
             text="Discover a limitless world of culinary possibilities
        and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
           />
           <ul className={styles.categoriesGrid}>
-            {categories.map(({ _id, name, image }, index) => (
+            {sortedCategories.map(({ _id, name, image }, index) => (
               <CategoryList key={_id} name={name} image={image} index={index} />
             ))}
           </ul>
         </div>
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

@@ -1,5 +1,6 @@
 import styles from "./Buttons.module.css";
 import sprite from "../../assets/img/icons-sprite.svg";
+import arrowUpRight from "../../assets/img/icons-sprite.svg";
 
 export const SignUpButton = ({ onClick, text }) => {
   return (
@@ -25,10 +26,12 @@ export const HeroButton = ({ onClick, text }) => {
   );
 };
 
-export const CategoriesButton = ({ onClick, text }) => {
+export const CategoriesButton = ({ onClick }) => {
   return (
     <button type="button" onClick={onClick} className={styles.categoriesButton}>
-      {text}
+      <svg className={styles.categoriesButtonArrow}>
+        <use href={`${arrowUpRight}#arrow-up-right`}></use>
+      </svg>
     </button>
   );
 };
