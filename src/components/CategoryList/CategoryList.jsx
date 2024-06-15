@@ -40,6 +40,7 @@ const CategoryList = ({ name, image, index, onShowAllCategories }) => {
       case 3:
       case 7:
       case 9:
+      case 14:
         imageClass = styles.largeImage;
         break;
 
@@ -62,6 +63,7 @@ const CategoryList = ({ name, image, index, onShowAllCategories }) => {
         break;
       case 2:
       case 7:
+      case 14:
         imageClass = styles.largeImageTablet;
         break;
       default:
