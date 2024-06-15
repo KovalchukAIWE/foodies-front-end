@@ -16,10 +16,13 @@
   letter-spacing: -0.02em;
   padding: 14px;
   border-radius: 30px;
-  color: #ffffff;
+  color: currentColor;
 }
 
 .navLink:hover {
-  color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid #05050533;
+}
+
+.active {
+  border: 1px solid #05050533;
 }

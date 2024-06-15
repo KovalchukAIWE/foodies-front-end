@@ -19,10 +19,20 @@ const userSlice = createSlice({
   initialState: {
     user: initialUser,
     token: null,
+    isModalSignInOpen: false,
+    isModalSignUpOpen: false,
     isLoggedIn: false,
     isRefreshing: true,
     isLoading: false,
     errorMessage: "",
+  },
+  reducers: {
+    setModalSignInStatus: (state, { payload }) => {
+      state.isModalSignInOpen = payload;
+    },
+    setModalSignUpStatus: (state, { payload }) => {
+      state.isModalSignUpOpen = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -74,3 +84,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { setModalSignInStatus, setModalSignUpStatus } = userSlice.actions;

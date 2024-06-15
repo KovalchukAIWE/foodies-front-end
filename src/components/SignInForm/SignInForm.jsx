@@ -12,7 +12,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-const SignInForm = ({ onClose }) => {
+const SignInForm = ({ onSubmit }) => {
   const {
     handleSubmit,
     register,
@@ -20,12 +20,6 @@ const SignInForm = ({ onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = (data) => {
-    // Handle form submission here (e.g., send data to server)
-    console.log(data);
-    onClose();
-  };
 
   return (
     <div className={styles.signInForm}>

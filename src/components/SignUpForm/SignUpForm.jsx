@@ -5,7 +5,7 @@ import { FormButton } from "../Buttons/Buttons";
 import styles from "./SignUpForm.module.css";
 
 const schema = yup.object().shape({
-  firstName: yup.string().required("Name is required"),
+  name: yup.string().required("Name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
     .string()
@@ -13,7 +13,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 
-const SignUpForm = ({ onClose }) => {
+const SignUpForm = ({ onSubmit }) => {
   const {
     handleSubmit,
     register,
@@ -21,12 +21,6 @@ const SignUpForm = ({ onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = (data) => {
-    // Handle form submission here (e.g., send data to server)
-    console.log(data);
-    onClose();
-  };
 
   return (
     <div className={styles.signUpForm}>
@@ -37,10 +31,10 @@ const SignUpForm = ({ onClose }) => {
               className={styles.signUpFormInput}
               type="text"
               placeholder="Name*"
-              {...register("firstName")}
+              {...register("name")}
             />
             <p className={styles.signUpFormError}>
-              {errors.firstName && errors.firstName.message}
+              {errors.name && errors.name.message}
             </p>
           </div>
 

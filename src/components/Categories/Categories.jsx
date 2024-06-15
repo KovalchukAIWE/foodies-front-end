@@ -5,7 +5,7 @@ import styles from "./Categories.module.css";
 import Container from "../Container/Container";
 import { useState, useEffect } from "react";
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, onSelectedCategory }) => {
   const excludedCategories = ["chicken", "soup", "vegan", "vegetarian"];
   const [width, setWidth] = useState(window.innerWidth);
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -60,6 +60,7 @@ const Categories = ({ categories }) => {
             {categoriesToRender.map(({ _id, name, image }, index) => (
               <CategoryList
                 key={_id}
+                onSelectedCategory={onSelectedCategory}
                 name={name}
                 image={image}
                 index={index}
