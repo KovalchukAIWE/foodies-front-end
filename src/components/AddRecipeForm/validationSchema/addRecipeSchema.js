@@ -35,6 +35,15 @@ const addRecipeSchema = yup
     category: yup.string().required("Category is required"),
     time: yup.string().min(1, "Cooking time must be at least 1 min").required(),
     ingredientsCount: yup.number().min(1, "Ingredient is required").required(),
+    // ingredients: yup
+    //   .array()
+    //   .min(1, "At least one ingredient must be added")
+    //   .of(
+    //     yup.object().shape({
+    //       id: yup.string().required("Ingredient ID is required"),
+    //       measure: yup.string().required("Quantity is required"),
+    //     })
+    //   ),
     instructions: yup
       .string()
       .required("Recipe preparation is required")
