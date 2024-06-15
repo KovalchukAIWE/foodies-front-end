@@ -40,7 +40,7 @@ const AddIngredients = ({
       ]);
 
       await setValue("ingredientsCount", selectedIngredients.length);
-      trigger();
+      trigger("ingredientsCount");
       ingredientRef.current.clearValue();
       setValue("measure", "");
     }

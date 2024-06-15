@@ -32,7 +32,7 @@ const SelectCategory = forwardRef(function SelectCategory(
           })}
           onChange={(selectedOption) => {
             selectedOption ? setValue("category", selectedOption.label) : null;
-            trigger();
+            trigger("category");
           }}
           styles={selectStyles}
         />

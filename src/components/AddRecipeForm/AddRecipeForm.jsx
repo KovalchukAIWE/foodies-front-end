@@ -24,7 +24,10 @@ import RecipePreparation from "./RecipePreparation/RecipePreparation";
 import RecipeTitle from "./RecipeTitle/RecipeTitle";
 
 const AddRecipeForm = () => {
-  const methods = useForm({ resolver: yupResolver(addRecipeSchema) });
+  const methods = useForm({
+    resolver: yupResolver(addRecipeSchema),
+    mode: "onBlur",
+  });
   const {
     formState: { errors, isSubmitSuccessful },
   } = methods;
@@ -79,7 +82,6 @@ const AddRecipeForm = () => {
     setImagePreview(null);
     setSelectedIngredients([]);
     setCookingTime(10);
-    //methods.setValue("category", "");
     categoryRef.current.clearValue();
   };
 

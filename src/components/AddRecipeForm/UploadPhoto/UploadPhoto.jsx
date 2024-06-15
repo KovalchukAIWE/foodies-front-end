@@ -18,7 +18,7 @@ const UploadPhoto = ({ imagePreview, setImagePreview }) => {
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
       await setValue("thumb", e.target.files[0]);
-      trigger();
+      trigger("thumb");
     }
   };
 
