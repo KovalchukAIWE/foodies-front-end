@@ -54,7 +54,7 @@ const RecipeInfo = ({ isAuthenticated }) => {
             onClick={handleAuthorClick}
             className={css.recipeAuthor}>
             <img
-              src={recipe.owner.avatar || '../../../public/owner.jpg'}
+              src={recipe.owner.avatar || '../../images/owner.jpg'}
               alt={recipe.owner.name}></img>
             <div>
               <p className={css.btnAuthorText}>Created by:</p>
@@ -67,8 +67,7 @@ const RecipeInfo = ({ isAuthenticated }) => {
           <ul className={css.recipeIngredientsList}>
             {recipe.ingredients.map((ingredient) => (
               <RecipeIngredients
-                key={ingredient.id}
-                id={ingredient.id}
+                key={ingredient._id}
                 ingredient={ingredient}
               />
             ))}
