@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import Select from "react-select";
 
 import { selectStyles } from "../../../css/selectStyles";
@@ -8,12 +9,18 @@ import IngredientCard from "../IngredientCard/IngredientCard";
 
 const AddIngredients = ({
   ingredientsList,
-  register,
-  setValue,
-  watch,
   selectedIngredients,
   setSelectedIngredients,
 }) => {
+  const {
+    register,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
+
+  setValue("ingredientsCount", selectedIngredients.length);
+
   const handleAddIngredient = () => {
     const ingredient = watch("ingredient");
     const measure = watch("measure");
@@ -27,6 +34,8 @@ const AddIngredients = ({
         ...selectedIngredients,
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
+
+      setValue("ingredientsCount", selectedIngredients.length);
 
       setValue("ingredient", "");
       setValue("measure", "");
@@ -43,7 +52,9 @@ const AddIngredients = ({
     <div className={styles.addIngredientsWrapper}>
       <div className={styles.ingredientsOptionsWrapper}>
         <div className={styles.addOptionsWrapper}>
-          <label htmlFor="ingredients">Ingredients</label>
+          <label htmlFor="ingredients" className={styles.labelText}>
+            Ingredients
+          </label>
           <Select
             name={"ingredients"}
             placeholder={"Add the ingredient"}
@@ -67,7 +78,21 @@ const AddIngredients = ({
           />
         </div>
       </div>
-      <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
+      <div className={styles.errorContainer}>
+        <input
+          type="hidden"
+          {...register("ingredientsCount")}
+          value={selectedIngredients.length}
+          name="ingredientsCount"
+        />
+        {errors.ingredientsCount && (
+          <span className={styles.error}>
+            {errors.ingredientsCount?.message}
+          </span>
+        )}
+        <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
+      </div>
+
       {selectedIngredients.length ? (
         <ul className={styles.ingrList}>
           {selectedIngredients.map((ingredient) => {

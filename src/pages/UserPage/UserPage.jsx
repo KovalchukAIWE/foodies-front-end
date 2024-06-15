@@ -23,7 +23,7 @@ const UserPage = () => {
       try {
         setIsLoading(true);
         const result = await getUserDataByUserId(id);
-        setUser(result);
+        setUser(result.user);
       } catch (error) {
         setError(error.message);
       } finally {
