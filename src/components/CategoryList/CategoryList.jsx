@@ -3,7 +3,13 @@ import noImage from "../../images/no-image.jpg";
 import styles from "./CategoryList.module.css";
 import { CategoriesButton } from "../Buttons/Buttons.jsx";
 
-const CategoryList = ({ name, image, index, onShowAllCategories }) => {
+const CategoryList = ({
+  name,
+  image,
+  index,
+  onShowAllCategories,
+  onSelectedCategory,
+}) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -96,7 +102,7 @@ const CategoryList = ({ name, image, index, onShowAllCategories }) => {
         {name !== "All categories" && (
           <div className={styles.categoriesBottomContainer}>
             <p className={styles.categoryName}>{name}</p>
-            <CategoriesButton onClick={handleClickButton} />
+            <CategoriesButton onClick={onSelectedCategory} name={name} />
           </div>
         )}
       </div>

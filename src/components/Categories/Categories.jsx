@@ -2,10 +2,9 @@ import MainTitle from "../MainTitle/MainTitle.jsx";
 import SubTitle from "../Subtitle/Subtitle.jsx";
 import CategoryList from "../CategoryList/CategoryList.jsx";
 import styles from "./Categories.module.css";
-import Container from "../Container/Container";
 import { useState, useEffect } from "react";
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, onSelectedCategory }) => {
   const excludedCategories = ["chicken", "soup", "vegan", "vegetarian"];
   const [width, setWidth] = useState(window.innerWidth);
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -49,26 +48,25 @@ const Categories = ({ categories }) => {
 
   return (
     <section className={styles.categoriesContainer}>
-      <Container>
-        <div className={styles.categoriesWrapper}>
-          <MainTitle text="Categories" />
-          <SubTitle
-            text="Discover a limitless world of culinary possibilities
+      <div className={styles.categoriesWrapper}>
+        <MainTitle text="Categories" />
+        <SubTitle
+          text="Discover a limitless world of culinary possibilities
        and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
-          />
-          <ul className={styles.categoriesGrid}>
-            {categoriesToRender.map(({ _id, name, image }, index) => (
-              <CategoryList
-                key={_id}
-                name={name}
-                image={image}
-                index={index}
-                onShowAllCategories={handleShowAllCategories}
-              />
-            ))}
-          </ul>
-        </div>
-      </Container>
+        />
+        <ul className={styles.categoriesGrid}>
+          {categoriesToRender.map(({ _id, name, image }, index) => (
+            <CategoryList
+              key={_id}
+              onSelectedCategory={onSelectedCategory}
+              name={name}
+              image={image}
+              index={index}
+              onShowAllCategories={handleShowAllCategories}
+            />
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };

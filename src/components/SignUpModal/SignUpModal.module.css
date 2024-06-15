@@ -1,0 +1,22 @@
+.signUpTitle {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  color: #050505;
+}
+
+.signUpText {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  color: #05050599;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signUpLink {
+  color: #050505;
+}

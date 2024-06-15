@@ -3,4 +3,9 @@
   font-weight: 800;
   line-height: 28px;
   letter-spacing: -0.02em;
+  color: currentColor;
+}
+
+.logo:hover {
+  color: inherit;
 }
