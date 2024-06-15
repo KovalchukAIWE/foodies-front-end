@@ -3,14 +3,15 @@ import styles from './RecipeIngredients.module.css';
 const RecipeIngredients = ({ ingredient }) => {
   return (
     <li className={styles.ingrItem}>
-      <img
-        className={styles.ingrImg}
-        src={ingredient.img}
-        alt={ingredient.name}
-      />
+      <div className={styles.ingrImgBox}>
+        <img
+          src={ingredient.img}
+          alt={ingredient.name}
+        />
+      </div>
       <div className={`${styles.ingrDescr} text`}>
         <p className={styles.ingrName}>{ingredient.name}</p>
-        <p>{ingredient.measure}</p>
+        <p className={styles.ingrMeasure}>{ingredient.measure}</p>
       </div>
     </li>
   );

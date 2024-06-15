@@ -1,14 +1,27 @@
 .ingrItem {
+  display: flex;
+  gap: 14px;
+  width: 178px;
 }
-
-.ingrImg {
+.ingrImgBox {
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 15px;
+  width: 90px;
+  height: 90px;
+  padding: 15px;
 }
 
 .ingrDescr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 .ingrName {
+  color: #050505;
 }
 
 .ingrMeasure {
+  color: rgba(5, 5, 5, 0.6);
 }
