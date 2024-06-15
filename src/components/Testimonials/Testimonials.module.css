@@ -1,71 +1,94 @@
 .testimonials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 120px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
 }
 .testimonialsSection {
-    text-align: center;
-    width: 822px;
-        position: relative;
-
+  text-align: center;
+  width: 343px;
+  position: relative;
 }
 
 .sectionSubtitle {
-font-family: "Mulish", sans-serif;
-font-size: 16px;
-line-height: 1.5;
-letter-spacing: -0.02em;
-color: rgba(5, 5, 5, 0.6);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 0.6);
 }
 
 .sectionTitle {
-    font-family: "Mulish", sans-serif;
-    font-weight: 800;
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    text-align: center;
-    color: #050505;
-    margin-top: 16px;
-    margin-bottom: 80px;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #050505;
+  margin-top: 16px;
+  margin-bottom: 80px;
 }
 
 .testimonialSlide {
-    position: relative;
+  position: relative;
 }
 
 .testimonialText {
-font-size: 24px;
-line-height: 1.5;
-letter-spacing: -0.02em;
-text-align: center;
-color: #050505;
-margin-bottom: 80px;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #050505;
+  margin-bottom: 80px;
 }
 
 .testimonialAuthor {
-font-family: "Mulish", sans-serif;
-font-weight: 800;
-font-size: 20px;
-line-height: 1.2;
-letter-spacing: -0.02em;
-text-transform: uppercase;
-color: #050505;
-margin-bottom: 40px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+  margin-bottom: 40px;
 }
 
 .testimonialQuote {
-    width: 59px;
-    height: 48px;
-    fill: #E9E9E9;
-    position: absolute;
-    top: 76px;
-    left: 40px;
+  width: 59px;
+  height: 48px;
+  fill: #e9e9e9;
+  position: absolute;
+  top: 76px;
+  left: 40px;
 }
 
 .testimonialSlick li button:before {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .testimonialsSection {
+    width: 704px;
+  }
+  .sectionSubtitle {
     font-size: 16px;
+    line-height: 1.5;
+  }
+  .sectionTitle {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+  .testimonialText {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .testimonialAuthor {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .testimonialsSection {
+    width: 822px;
+  }
 }

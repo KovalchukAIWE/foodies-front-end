@@ -1,57 +1,34 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './Testimonials.module.css';
 import Container from '../Container/Container';
+import { getTestimonials } from '../../services/testimonials';
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('/api/testimonials')
-      .then((response) => {
-        const data = response.data;
-        if (Array.isArray(data)) {
-          setTestimonials(data);
+    const fetchTestimonials = async () => {
+      try {
+        const data = await getTestimonials();
+        if (Array.isArray(data) && data.length > 0) {
+          const formattedTestimonials = data.map((item) => ({
+            text: item.testimonial,
+            author: item.owner.name,
+          }));
+          setTestimonials(formattedTestimonials);
         } else {
-          // Якщо дані не є масивом, встановлюємо фіктивні дані
-          setTestimonials([
-            {
-              text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-              author: 'LARRY PAGEIM',
-            },
-            {
-              text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-              author: 'LARRY PAGEIM',
-            },
-            {
-              text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-              author: 'LARRY PAGEIM',
-            },
-          ]);
+          setTestimonials([]);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching testimonials:', error);
-        // Використовуємо фіктивні дані у разі помилки
-        setTestimonials([
-          {
-            text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-            author: 'LARRY PAGEIM',
-          },
-          {
-            text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-            author: 'LARRY PAGEIM',
-          },
-          {
-            text: 'Thank you for the wonderful recipe for feta pasta with tomatoes and basil. It turned out to be not only tasty, but also incredibly colorful. This has become a favorite family meal!',
-            author: 'LARRY PAGEIM',
-          },
-        ]);
-      });
+        setTestimonials([]);
+      }
+    };
+
+    fetchTestimonials();
   }, []);
 
   const settings = {
@@ -69,12 +46,12 @@ const Testimonials = () => {
     <Container>
       <section className={styles.testimonials}>
         <div className={styles.testimonialsSection}>
-          <h2 className={styles.sectionSubtitle}>What our customer say</h2>
+          <h2 className={styles.sectionSubtitle}>What our customers say</h2>
           <h1 className={styles.sectionTitle}>Testimonials</h1>
           <svg className={styles.testimonialQuote}>
             <use href='/vite.svg#untitled'></use>
           </svg>
-          {Array.isArray(testimonials) && testimonials.length > 0 ? (
+          {testimonials.length > 0 ? (
             <Slider
               {...settings}
               className={styles.testimonialSlick}>
@@ -90,7 +67,7 @@ const Testimonials = () => {
               ))}
             </Slider>
           ) : (
-            <p>There are currently no reviews.</p>
+            <p className={styles.testimonialText}>No comments</p>
           )}
         </div>
       </section>
