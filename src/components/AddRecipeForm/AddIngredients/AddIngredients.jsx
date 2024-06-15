@@ -23,13 +23,22 @@ const AddIngredients = ({
 
   const ingredientRef = useRef();
 
-  setValue("ingredientsArrayCount", selectedIngredients.length);
-  const ingredient = watch("ingredient");
+  const ingredient = watch("ingredientsSelect");
   const measure = watch("measure");
 
-  let ingredientReq = ingredient?.value && !measure?.length;
+  let ingredientValid = "";
+  if (ingredient?.value && !measure?.length) {
+    ingredientValid = "Quantity is required";
+  }
+
+  if (selectedIngredients.find((el) => el.id === ingredient?.value)) {
+    ingredientValid = "Already exist";
+  }
 
   const handleAddIngredient = async () => {
+    if (selectedIngredients.find((el) => el.id === ingredient?.value)) {
+      return;
+    }
     if (ingredient && measure) {
       const imgSrc = ingredientsList.find(
         (el) => el._id === ingredient.value
@@ -40,14 +49,11 @@ const AddIngredients = ({
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
 
-      await setValue("ingredientsArrayCount", selectedIngredients.length);
-      trigger("ingredientsArrayCount");
       ingredientRef.current.clearValue();
-      setValue("measure", "");
+      await setValue("measure", "");
+      trigger("ingredients");
     }
   };
-
-  console.log("ingredientReq :>> ", ingredientReq);
 
   const handleRemoveIngredient = (ingId) => {
     setSelectedIngredients(
@@ -59,12 +65,12 @@ const AddIngredients = ({
     <div className={styles.addIngredientsWrapper}>
       <div className={styles.ingredientsOptionsWrapper}>
         <div className={styles.addOptionsWrapper}>
-          <label htmlFor="ingredients" className={styles.labelText}>
+          <label htmlFor="ingredientsSelect" className={styles.labelText}>
             Ingredients
           </label>
           <Select
-            {...register("ingredient")}
-            name={"ingredients"}
+            {...register("ingredientsSelect")}
+            name={"ingredientsSelect"}
             placeholder={"Add the ingredient"}
             selectedOption={null}
             ref={ingredientRef}
@@ -72,7 +78,7 @@ const AddIngredients = ({
               return { value: option._id, label: option.name };
             })}
             onChange={(selectedOption) => {
-              setValue("ingredient", selectedOption);
+              setValue("ingredientsSelect", selectedOption);
             }}
             styles={selectStyles}
           />
@@ -87,21 +93,15 @@ const AddIngredients = ({
               className={`${styles.ingredientsQuantity} text`}
             />
             <span className={`${styles.error} ${styles.errorIngr}`}>
-              {ingredientReq ? "Quantity is required" : ""}
+              {ingredientValid ?? ingredientValid}
             </span>
           </div>
         </div>
       </div>
       <div className={styles.errorContainer}>
-        <input
-          type="hidden"
-          {...register("ingredientsArrayCount")}
-          value={selectedIngredients.length}
-          name="ingredientsArrayCount"
-        />
-        {errors.ingredientsArrayCount && (
+        {errors.ingredients && (
           <span className={`${styles.error} ${styles.errorIngr}`}>
-            {errors.ingredientsArrayCount?.message}
+            {errors.ingredients?.message}
           </span>
         )}
         <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
@@ -109,11 +109,12 @@ const AddIngredients = ({
 
       {selectedIngredients.length ? (
         <ul className={styles.ingrList}>
-          {selectedIngredients.map((ingredient) => {
+          {selectedIngredients.map((ingredient, index) => {
             return (
               <IngredientCard
                 key={ingredient.id}
                 id={ingredient.id}
+                index={index}
                 ingredient={ingredient}
                 handleRemoveIngredient={handleRemoveIngredient}
               />

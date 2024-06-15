@@ -45,16 +45,13 @@ const AddRecipeForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const ingredients = selectedIngredients.map((ing) => {
-      return { id: ing.id, measure: ing.measure };
-    });
     const formData = {
       title: data.title,
       category: data.category,
       instructions: data.instructions,
       description: data.description,
       time: data.time,
-      ingredients,
+      ingredients: data.ingredients,
       thumb: data.thumb,
     };
 
