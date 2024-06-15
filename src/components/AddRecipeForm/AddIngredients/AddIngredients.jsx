@@ -23,12 +23,22 @@ const AddIngredients = ({
 
   const ingredientRef = useRef();
 
-  setValue("ingredientsCount", selectedIngredients.length);
+  const ingredient = watch("ingredientsSelect");
+  const measure = watch("measure");
+
+  let ingredientValid = "";
+  if (ingredient?.value && !measure?.length) {
+    ingredientValid = "Quantity is required";
+  }
+
+  if (selectedIngredients.find((el) => el.id === ingredient?.value)) {
+    ingredientValid = "Already exist";
+  }
 
   const handleAddIngredient = async () => {
-    const ingredient = watch("ingredient");
-    const measure = watch("measure");
-
+    if (selectedIngredients.find((el) => el.id === ingredient?.value)) {
+      return;
+    }
     if (ingredient && measure) {
       const imgSrc = ingredientsList.find(
         (el) => el._id === ingredient.value
@@ -39,10 +49,9 @@ const AddIngredients = ({
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
 
-      await setValue("ingredientsCount", selectedIngredients.length);
-      trigger("ingredientsCount");
       ingredientRef.current.clearValue();
-      setValue("measure", "");
+      await setValue("measure", "");
+      trigger("ingredients");
     }
   };
 
@@ -56,12 +65,12 @@ const AddIngredients = ({
     <div className={styles.addIngredientsWrapper}>
       <div className={styles.ingredientsOptionsWrapper}>
         <div className={styles.addOptionsWrapper}>
-          <label htmlFor="ingredients" className={styles.labelText}>
+          <label htmlFor="ingredientsSelect" className={styles.labelText}>
             Ingredients
           </label>
           <Select
-            {...register("ingredient")}
-            name={"ingredients"}
+            {...register("ingredientsSelect")}
+            name={"ingredientsSelect"}
             placeholder={"Add the ingredient"}
             selectedOption={null}
             ref={ingredientRef}
@@ -69,31 +78,30 @@ const AddIngredients = ({
               return { value: option._id, label: option.name };
             })}
             onChange={(selectedOption) => {
-              setValue("ingredient", selectedOption);
+              setValue("ingredientsSelect", selectedOption);
             }}
             styles={selectStyles}
           />
         </div>
         <div className={styles.addOptionsWrapper}>
-          <input
-            type="text"
-            {...register("measure")}
-            name="measure"
-            placeholder="Enter quantity"
-            className={`${styles.ingredientsQuantity} text`}
-          />
+          <div className={styles.errorContainer}>
+            <input
+              type="text"
+              {...register("measure")}
+              name="measure"
+              placeholder="Enter quantity"
+              className={`${styles.ingredientsQuantity} text`}
+            />
+            <span className={`${styles.error} ${styles.errorIngr}`}>
+              {ingredientValid ?? ingredientValid}
+            </span>
+          </div>
         </div>
       </div>
       <div className={styles.errorContainer}>
-        <input
-          type="hidden"
-          {...register("ingredientsCount")}
-          value={selectedIngredients.length}
-          name="ingredientsCount"
-        />
-        {errors.ingredientsCount && (
+        {errors.ingredients && (
           <span className={`${styles.error} ${styles.errorIngr}`}>
-            {errors.ingredientsCount?.message}
+            {errors.ingredients?.message}
           </span>
         )}
         <AddIngrButton text="Add ingredient" onClick={handleAddIngredient} />
@@ -101,11 +109,12 @@ const AddIngredients = ({
 
       {selectedIngredients.length ? (
         <ul className={styles.ingrList}>
-          {selectedIngredients.map((ingredient) => {
+          {selectedIngredients.map((ingredient, index) => {
             return (
               <IngredientCard
                 key={ingredient.id}
                 id={ingredient.id}
+                index={index}
                 ingredient={ingredient}
                 handleRemoveIngredient={handleRemoveIngredient}
               />

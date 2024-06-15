@@ -45,16 +45,13 @@ const AddRecipeForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const ingredients = selectedIngredients.map((ing) => {
-      return { id: ing.id, measure: ing.measure };
-    });
     const formData = {
       title: data.title,
       category: data.category,
       instructions: data.instructions,
       description: data.description,
       time: data.time,
-      ingredients,
+      ingredients: data.ingredients,
       thumb: data.thumb,
     };
 
@@ -87,40 +84,26 @@ const AddRecipeForm = () => {
         className={styles.form}
         autoComplete="off"
       >
-        {/* UPLOAD PHOTO */}
         <UploadPhoto
           imagePreview={imagePreview}
           setImagePreview={setImagePreview}
         />
         <div className={styles.formOptionals}>
-          {/* RECIPE TITLE*/}
           <RecipeTitle />
-
           <div className={styles.formOptionsWrapper}>
-            {/* RECIPE DESCRIPTION */}
             <RecipeDescription />
-
-            {/* SELECT CATEGORY */}
             <SelectCategory categoriesList={categoriesList} ref={categoryRef} />
-
-            {/* COOKING TIMER */}
             <CookingTimeCounter
               cookingTime={cookingTime}
               setCookingTime={setCookingTime}
             />
-
-            {/* SELECT INGREDIENTS */}
             <AddIngredients
               ingredientsList={ingredientsList}
               selectedIngredients={selectedIngredients}
               setSelectedIngredients={setSelectedIngredients}
             />
           </div>
-
-          {/* RECIPE PREPARATION */}
           <RecipePreparation />
-
-          {/* FORM BUTTONS */}
           <div className={styles.bottomBtns}>
             <DeleteButton onClick={handleReset} />
             <button type="submit" className={styles.submitBtn}>
