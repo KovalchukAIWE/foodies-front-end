@@ -87,10 +87,12 @@ const CategoryList = ({
     <li className={`${styles.categoryItem} ${imageClass}`}>
       <div className={styles.categoryContentWrapper}>
         {name === "All categories" ? (
-          <button type="button" onClick={handleClickButton}>
-            <div className={styles.allCategoriesText}>
-              <p>All Categories</p>
-            </div>
+          <button
+            className={styles.allCategoriesText}
+            type="button"
+            onClick={handleClickButton}
+          >
+            All Categories
           </button>
         ) : (
           <img
