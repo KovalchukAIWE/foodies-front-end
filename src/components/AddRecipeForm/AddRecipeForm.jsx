@@ -1,146 +1,135 @@
-import { useForm } from "react-hook-form";
-import Select from "react-select";
+import { FormProvider, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import addRecipeSchema from "./validationSchema/addRecipeSchema";
 
-import { selectStyles } from "../../css/selectStyles";
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import RecipeDescription from "./RecipeDescription/RecipeDescription";
 import { DeleteButton } from "../Buttons/Buttons";
-import CookingTimeConter from "./CookingTimeConter/CookingTimeConter";
+import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
-import { useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   selectCategories,
   selectIngredients,
 } from "../../redux/recipes/selectors";
+import { selectUser } from "../../redux/user/selectors";
+import { createRecipe } from "../../services/recipes";
+import SelectCategory from "./SelectCategory/SelectCategory";
+import RecipePreparation from "./RecipePreparation/RecipePreparation";
+import RecipeTitle from "./RecipeTitle/RecipeTitle";
 
 const AddRecipeForm = () => {
+  const methods = useForm({
+    resolver: yupResolver(addRecipeSchema),
+    mode: "onBlur",
+  });
   const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm();
-  console.log(errors);
+    formState: { isSubmitSuccessful },
+  } = methods;
+
+  const categoryRef = useRef();
 
   const categoriesList = useSelector(selectCategories);
   const ingredientsList = useSelector(selectIngredients);
+  const { id: userId } = useSelector(selectUser);
 
-  const [cookingTime, setCookingTime] = useState(5);
+  const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [imagePreview, setImagePreview] = useState(null);
 
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
 
-  const symbRecipeDescrCount = watch("description")?.length;
-  const symbRecipePrepCount = watch("instructions")?.length;
+  const onSubmit = (data) => {
+    const ingredients = selectedIngredients.map((ing) => {
+      return { id: ing.id, measure: ing.measure };
+    });
+    const formData = {
+      title: data.title,
+      category: data.category,
+      instructions: data.instructions,
+      description: data.description,
+      time: data.time,
+      ingredients,
+      thumb: data.thumb,
+    };
+
+    try {
+      createRecipe(formData);
+    } catch (error) {
+      // переписати на сповіщення
+      alert("Error: " + error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      navigate(`/user/${userId}`);
+    }
+  }, [isSubmitSuccessful, navigate, userId]);
+
+  const handleReset = () => {
+    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
+    methods.reset();
+    setImagePreview(null);
+    setSelectedIngredients([]);
+    setCookingTime(10);
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={styles.form}
-      autoComplete="off"
-    >
-      <UploadPhoto />
-      <div className={styles.formOptionals}>
-        <input
-          type="text"
-          {...register("title", { required: true })}
-          placeholder="THE NAME OF THE RECIPE"
-          className={styles.recipeName}
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className={styles.form}
+        autoComplete="off"
+      >
+        {/* UPLOAD PHOTO */}
+        <UploadPhoto
+          imagePreview={imagePreview}
+          setImagePreview={setImagePreview}
         />
+        <div className={styles.formOptionals}>
+          {/* RECIPE TITLE*/}
+          <RecipeTitle />
 
-        <div className={styles.formOptionsWrapper}>
-          <div className={`${styles.inputAreaWrapper} ${styles.recipeDescr}`}>
-            <input
-              type="text"
-              {...register(
-                "description",
-                { required: true },
-                { maxLength: 220 }
-              )}
-              placeholder="Enter a description of the dish"
-              className={` ${styles.inputArea} text`}
+          <div className={styles.formOptionsWrapper}>
+            {/* RECIPE DESCRIPTION */}
+            <RecipeDescription />
+
+            {/* SELECT CATEGORY */}
+            <SelectCategory categoriesList={categoriesList} ref={categoryRef} />
+
+            {/* COOKING TIMER */}
+            <CookingTimeCounter
+              cookingTime={cookingTime}
+              setCookingTime={setCookingTime}
             />
-            <p className={`${styles.symbCounter} text`}>
-              <span
-                className={`${styles.symbCounter} text ${
-                  symbRecipeDescrCount > 0 ? styles.symbBold : ""
-                }`}
-              >
-                {symbRecipeDescrCount || 0}
-              </span>
-              /200
-            </p>
-          </div>
-          <div className={styles.addOptionsWrapper}>
-            <label htmlFor="category">Category</label>
-            <Select
-              name={"category"}
-              placeholder={"Select a category"}
-              selectedOption={null}
-              options={categoriesList.map((option) => {
-                return { value: option._id, label: option.name };
-              })}
-              {...register("category", { required: true })}
-              onChange={(selectedOption) =>
-                setValue("category", selectedOption.label)
-              }
-              styles={selectStyles}
+
+            {/* SELECT INGREDIENTS */}
+            <AddIngredients
+              ingredientsList={ingredientsList}
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
             />
           </div>
 
-          <CookingTimeConter
-            cookingTime={cookingTime}
-            setCookingTime={setCookingTime}
-            // {...register("time", { required: true })}
-          />
+          {/* RECIPE PREPARATION */}
+          <RecipePreparation />
 
-          <AddIngredients
-            ingredientsList={ingredientsList}
-            register={register}
-            setValue={setValue}
-            watch={watch}
-            selectedIngredients={selectedIngredients}
-            setSelectedIngredients={setSelectedIngredients}
-          />
-        </div>
-
-        <div className={styles.recipePreparation}>
-          <label htmlFor="instructions">Recipe Preparation</label>
-          <div className={styles.inputAreaWrapper}>
-            <textarea
-              {...register(
-                "instructions",
-                { required: true },
-                { maxLength: 220 }
-              )}
-              placeholder="Enter recipe"
-              className={`${styles.inputArea} text`}
-            />
-            <p className={`${styles.symbCounter} text`}>
-              <span
-                className={`${styles.symbCounter} text ${
-                  symbRecipePrepCount > 0 ? styles.symbBold : ""
-                }`}
-              >
-                {symbRecipePrepCount || 0}
-              </span>
-              /200
-            </p>
+          {/* FORM BUTTONS */}
+          <div className={styles.bottomBtns}>
+            <DeleteButton onClick={handleReset} />
+            <button type="submit" className={styles.submitBtn}>
+              Publish
+            </button>
           </div>
         </div>
-        <div className={styles.bottomBtns}>
-          <DeleteButton />
-          <button type="submit" className={styles.submitBtn}>
-            Publish
-          </button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </FormProvider>
   );
 };
 

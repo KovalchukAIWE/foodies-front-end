@@ -1,0 +1,22 @@
+.recipePagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.recipePaginationButton {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.17px;
+  line-height: 143%;
+  padding: 15px 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  background: none;
+}
+.recipePaginationButton:hover {
+  border: 1px solid rgba(5, 5, 5, 0.9);
+}
+.recipePaginationButton.active {
+  border: 1px solid rgba(5, 5, 5, 0.9);
+}

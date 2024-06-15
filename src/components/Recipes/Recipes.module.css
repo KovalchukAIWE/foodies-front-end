@@ -1,7 +1,51 @@
+.recipesNav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.backButton {
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.28px;
+  line-height: 129%;
+  border: 0;
+  background: none;
+}
+
+.recipesArrowLeft {
+  width: 18px;
+  aspect-ratio: 1;
+  object-fit: auto;
+}
+
+.resipesTitleContainer {
+  width: 343px;
+  margin-bottom: 32px;
+}
+
 .resipesContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .backButton {
+    white-space: initial;
+  }
+
+  .recipesNav {
+    margin-bottom: 20px;
+  }
+
+  .resipesTitleContainer {
+    width: 540px;
+    margin-bottom: 40px;
+  }
 }
 
 @media (min-width: 1440px) {

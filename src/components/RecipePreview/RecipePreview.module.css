@@ -1,0 +1,120 @@
+.recipeCard {
+  display: flex;
+  justify-content: space-between;
+  width: 303px;
+
+  @media (min-width: 375px) {
+    width: 343px;
+  }
+
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+}
+
+.imageTextWrapper {
+  display: flex;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.recipeImg {
+  width: 75px;
+  height: 75px;
+  border-radius: 15px;
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.recipeTextBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (min-width: 768px) {
+    gap: 10px;
+  }
+}
+
+.recipeTitle {
+  font-family: "Mulish", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 120%;
+  }
+}
+
+.recipeText {
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 143%;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 0.8);
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+.recipeButtonsBox {
+  display: flex;
+  gap: 4px;
+}
+
+.recipeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid rgba(5, 5, 5, 0.1);
+  border-radius: 30px;
+  padding: 10px;
+  width: 36px;
+  height: 36px;
+  background-color: inherit;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #050505;
+    background-color: #050505;
+
+    .recipeCardIcon {
+      fill: #ffffff;
+      stroke: #050505;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.recipeCardIcon {
+  width: 16px;
+  height: 16px;
+
+  fill: #050505;
+  stroke: #ffffff;
+
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+}

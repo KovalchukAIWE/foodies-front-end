@@ -60,20 +60,21 @@
   justify-content: center;
   align-items: center;
 
-  padding: 8px 12px;
+  padding: 13px;
 
-  background-color: var(--white-30);
-  border-radius: 30px;
+  background-color: transparent;
+  border-radius: 50%;
   border: 1px solid var(--white-40);
-
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.43;
-  letter-spacing: -0.017em;
-  color: var(--white);
 
   transition: color var(--transition-func), border-color var(--transition-func),
     background-color var(--transition-func);
+}
+
+.categoriesButtonArrow {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  fill: #ffffff;
 }
 
 .addIngrButton {
@@ -252,13 +253,13 @@
     margin-top: 0;
   }
 
-  .categoriesButton {
+  /* .categoriesButton {
     padding: 10px 14px;
 
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.025em;
-  }
+  } */
 
   .addIngrButton svg {
     width: 22px;

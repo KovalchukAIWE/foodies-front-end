@@ -1,25 +1,25 @@
 import { foodiesApiClient, setAuthHeader } from "./apiClient.js";
 
 export const registerUser = async (credentials) => {
-  const { data } = await foodiesApiClient.post("user/signup", credentials);
+  const { data } = await foodiesApiClient.post("users/signup", credentials);
   setAuthHeader(data.token);
   return data;
 };
 
 export const logInUser = async (credentials) => {
-  const { data } = await foodiesApiClient.post("user/signin", credentials);
+  const { data } = await foodiesApiClient.post("users/signin", credentials);
   setAuthHeader(data.token);
   return data;
 };
 
 export const refreshUser = async (token) => {
   setAuthHeader(token);
-  const { data } = await foodiesApiClient.get("user/current");
+  const { data } = await foodiesApiClient.get("users/current");
   return data;
 };
 
 export const logOutUser = async () => {
-  await foodiesApiClient.post("user/signout");
+  await foodiesApiClient.post("users/signout");
   setAuthHeader();
 };
 
@@ -28,35 +28,29 @@ export const getUserDataByUserId = async (userId) => {
   return data;
 };
 
-export const setUsersAvatarByUserId = async ({ userId, avatar }) => {
+export const setUsersAvatarByUserId = async ({ avatar }) => {
   const formData = new FormData();
   formData.append("avatar", avatar);
-  const { data } = await foodiesApiClient.patch(
-    `user/${userId}/avatar`,
-    formData
-  );
+  const { data } = await foodiesApiClient.patch(`users/avatar`, formData);
   return data;
 };
 
-export const getUsersFollowersByUserId = async (userId) => {
-  const { data } = await foodiesApiClient.get(`user/${userId}/followers`);
+export const getUsersFollowersByUserId = async () => {
+  const { data } = await foodiesApiClient.get(`users/followers`);
   return data;
 };
 
-export const getUsersFollowingsByUserId = async (userId) => {
-  const { data } = await foodiesApiClient.get(`user/${userId}/followings`);
+export const getUsersFollowingsByUserId = async () => {
+  const { data } = await foodiesApiClient.get(`users/followings`);
   return data;
 };
 
-export const setFollowUserByUserId = async ({ userId, body }) => {
-  const { data } = await foodiesApiClient.patch(`user/${userId}/follow`, body);
+export const setFollowUserByUserId = async ({ body }) => {
+  const { data } = await foodiesApiClient.patch(`users/follow`, body);
   return data;
 };
 
-export const setUnfollowUserByUserId = async (userId, body) => {
-  const { data } = await foodiesApiClient.patch(
-    `user/${userId}/unfollow`,
-    body
-  );
+export const setUnfollowUserByUserId = async (body) => {
+  const { data } = await foodiesApiClient.patch(`users/unfollow`, body);
   return data;
 };

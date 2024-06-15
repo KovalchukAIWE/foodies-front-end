@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-
 import Hero from "../../components/Hero/Hero.jsx";
 import Categories from "../../components/Categories/Categories.jsx";
 import Recipes from "../../components/Recipes/Recipes.jsx";
@@ -102,6 +101,7 @@ const HomePage = () => {
                   onSelectedArea={handleSelectedArea}
                   onSelectedIngredient={handleSelectedIngredient}
                   onSetPage={handleSetPage}
+                  page={page}
                   totalPage={totalPage}
                   onBack={handleBack}
                   recipes={recipes}
