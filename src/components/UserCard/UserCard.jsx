@@ -19,7 +19,6 @@ const UserCard = ({
 }) => {
   const { id: ownerId } = useSelector(selectUser);
   const { id } = useParams();
-  console.log(ownerId);
 
   return (
     <div className={styles.userCard}>
@@ -35,7 +34,7 @@ const UserCard = ({
         isOwner={id === ownerId}
         isFollowing={isFollowing}
       />
-      <div>
+      <div className={styles.tabsListContainer}>
         <TabsList isOwner={id === ownerId} />
       </div>
     </div>

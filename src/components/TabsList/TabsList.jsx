@@ -16,6 +16,10 @@ const TabsList = ({ isOwner }) => {
     setUpdating(bool);
   };
 
+  const handleActiveTab = (newActiveTab) => {
+    setActiveTab(newActiveTab);
+  };
+
   return (
     <div className={styles.tabsContainer}>
       <ul className={styles.profileTabsList}>
@@ -77,6 +81,7 @@ const TabsList = ({ isOwner }) => {
           activeTab={activeTab}
           updating={updating}
           onUpdating={handleUpdating}
+          setterActiveTab={handleActiveTab}
         />
       </div>
     </div>

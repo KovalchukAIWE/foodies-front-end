@@ -14,3 +14,11 @@
     align-items: flex-start;
   }
 }
+
+.tabsListContainer {
+  width: 100%;
+
+  @media (min-width: 1440px) {
+    width: 66%;
+  }
+}
