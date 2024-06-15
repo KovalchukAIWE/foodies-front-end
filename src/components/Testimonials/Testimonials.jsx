@@ -45,7 +45,7 @@ const Testimonials = () => {
 
   return (
     <Container>
-      <section className={styles.testimonials}>
+      <div className={styles.testimonials}>
         <div className={styles.testimonialsSection}>
           <h2 className={styles.sectionSubtitle}>What our customers say</h2>
           <h1 className={styles.sectionTitle}>Testimonials</h1>
@@ -71,7 +71,7 @@ const Testimonials = () => {
             <p className={styles.testimonialText}>No comments</p>
           )}
         </div>
-      </section>
+      </div>
     </Container>
   );
 };
