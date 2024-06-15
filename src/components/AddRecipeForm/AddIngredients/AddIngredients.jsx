@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import Select from "react-select";
 
@@ -16,12 +17,15 @@ const AddIngredients = ({
     register,
     watch,
     setValue,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
+  const ingredientRef = useRef();
+
   setValue("ingredientsCount", selectedIngredients.length);
 
-  const handleAddIngredient = () => {
+  const handleAddIngredient = async () => {
     const ingredient = watch("ingredient");
     const measure = watch("measure");
 
@@ -35,16 +39,16 @@ const AddIngredients = ({
         { id: ingredient.value, name: ingredient.label, img: imgSrc, measure },
       ]);
 
-      setValue("ingredientsCount", selectedIngredients.length);
-
-      setValue("ingredient", "");
+      await setValue("ingredientsCount", selectedIngredients.length);
+      trigger("ingredientsCount");
+      ingredientRef.current.clearValue();
       setValue("measure", "");
     }
   };
 
-  const handleRemoveIngredient = (ingredientId) => {
-    return setSelectedIngredients(
-      selectedIngredients.filter((ing) => ing.id !== ingredientId)
+  const handleRemoveIngredient = (ingId) => {
+    setSelectedIngredients(
+      selectedIngredients.filter((ing) => ing.id !== ingId)
     );
   };
 
@@ -56,13 +60,14 @@ const AddIngredients = ({
             Ingredients
           </label>
           <Select
+            {...register("ingredient")}
             name={"ingredients"}
             placeholder={"Add the ingredient"}
             selectedOption={null}
+            ref={ingredientRef}
             options={ingredientsList.map((option) => {
               return { value: option._id, label: option.name };
             })}
-            {...register("ingredient")}
             onChange={(selectedOption) => {
               setValue("ingredient", selectedOption);
             }}
@@ -73,6 +78,7 @@ const AddIngredients = ({
           <input
             type="text"
             {...register("measure")}
+            name="measure"
             placeholder="Enter quantity"
             className={`${styles.ingredientsQuantity} text`}
           />
@@ -86,7 +92,7 @@ const AddIngredients = ({
           name="ingredientsCount"
         />
         {errors.ingredientsCount && (
-          <span className={styles.error}>
+          <span className={`${styles.error} ${styles.errorIngr}`}>
             {errors.ingredientsCount?.message}
           </span>
         )}

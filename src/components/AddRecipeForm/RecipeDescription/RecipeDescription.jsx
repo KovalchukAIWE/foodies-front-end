@@ -20,7 +20,9 @@ const RecipeDescription = () => {
         <textarea
           {...register("description")}
           placeholder="Enter a description of the dish"
-          className={` ${styles.inputArea} text`}
+          className={` ${styles.inputArea} text ${
+            wordsRecipeDescrCount ? styles.inputAreaBig : ""
+          }`}
         />
         {errors.description && (
           <span className={`${styles.error} ${styles.errorInputArea}`}>

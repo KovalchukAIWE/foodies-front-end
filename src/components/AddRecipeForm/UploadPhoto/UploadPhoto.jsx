@@ -6,20 +6,19 @@ import sprite from "../../../assets/img/icons-sprite.svg";
 
 const UploadPhoto = ({ imagePreview, setImagePreview }) => {
   const {
-    register,
     setValue,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
-  const { ...rest } = register("thumb");
-
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
 
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
-      setValue("thumb", e.target.files[0]);
+      await setValue("thumb", e.target.files[0]);
+      trigger("thumb");
     }
   };
 
@@ -55,7 +54,6 @@ const UploadPhoto = ({ imagePreview, setImagePreview }) => {
             id="thumb"
             accept="image/*"
             name="thumb"
-            {...rest}
             onChange={handleImageChange}
             hidden
           />

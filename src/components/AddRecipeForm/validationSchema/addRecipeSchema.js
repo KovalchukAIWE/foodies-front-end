@@ -1,12 +1,5 @@
 import * as yup from "yup";
 
-// const recipeIngredientsSchema = yup
-//   .object({
-//     id: yup.string().required(),
-//     measure: yup.string().required(),
-//   })
-//   .required();
-
 yup.addMethod(yup.string, "wordsMaxCount", function (maxWords, errorMessage) {
   return this.test(`test-words-count`, errorMessage, function (value) {
     const { path, createError } = this;
