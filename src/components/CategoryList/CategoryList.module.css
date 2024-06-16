@@ -85,12 +85,20 @@
 
 .allCategories {
   display: flex;
-  padding: 0px 79px 0px 80px;
+  min-width: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
   background: #050505;
+
+  @media screen and (min-width: 768px) {
+    min-width: 342px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 325px;
+  }
 }
 
 .allCategoriesText {
@@ -100,4 +108,16 @@
   line-height: 1.2;
   letter-spacing: -0.4px;
   text-transform: uppercase;
+}
+
+.allCategoriesButton {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
 }

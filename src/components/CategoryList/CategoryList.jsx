@@ -46,7 +46,8 @@ const CategoryList = ({
       case 3:
       case 7:
       case 9:
-      case 14:
+      case 13:
+        // case 14:
         imageClass = styles.largeImage;
         break;
 
@@ -87,10 +88,12 @@ const CategoryList = ({
     <li className={`${styles.categoryItem} ${imageClass}`}>
       <div className={styles.categoryContentWrapper}>
         {name === "All categories" ? (
-          <button type="button" onClick={handleClickButton}>
-            <div className={styles.allCategoriesText}>
-              <p>All Categories</p>
-            </div>
+          <button
+            type="button"
+            onClick={handleClickButton}
+            className={`${styles.allCategoriesText} ${styles.all}`}
+          >
+            <p>All Categories</p>
           </button>
         ) : (
           <img
