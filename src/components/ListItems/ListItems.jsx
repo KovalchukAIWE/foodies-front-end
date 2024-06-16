@@ -32,11 +32,6 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
   );
 
   const setDataForPagination = ({ total, limit, page }) => {
-    console.log(total);
-    console.log(limit);
-
-    console.log(page);
-
     setTotalItems(total);
     setItemsLimit(limit);
     setPageItems(page);
@@ -66,7 +61,7 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
 
   const handleUnfollowUserById = async (id) => {
     try {
-      const response = await setUnfollowUserByUserId(id);
+      const response = await setUnfollowUserByUserId({ id });
       console.log(response);
 
       onUpdating(true);
