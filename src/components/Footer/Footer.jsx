@@ -1,6 +1,7 @@
 import css from './Footer.module.css';
 import Container from '../Container/Container';
 import sprite from '../../assets/img/icons-sprite.svg';
+import Copyright from '../Copyright/Copyright';
 
 const Footer = () => {
   return (
@@ -12,7 +13,6 @@ const Footer = () => {
             className={css.logoFooter}>
             Foodies
           </a>
-
           <ul className={css.footerSocialList}>
             <li className={css.footerSocialItem}>
               <a
@@ -49,11 +49,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className={css.footerCopyrightBlock}>
-          <p className={css.footerCopyright}>
-            @2024, Foodies. All rights reserved
-          </p>
-        </div>
+        <Copyright />
       </footer>
     </Container>
   );
