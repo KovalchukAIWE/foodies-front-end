@@ -13,6 +13,7 @@ const RecipePreview = ({
   id,
   title,
   handleDeleteRecipe,
+  isOwner,
 }) => {
   return (
     <li key={id} className={styles.recipeCard}>
@@ -33,16 +34,18 @@ const RecipePreview = ({
             <use href={`${icons}#arrow-up-right`}></use>
           </svg>
         </Link>
-        <button
-          type="button"
-          className={styles.recipeBtn}
-          aria-label="delete recipe from my recipies"
-          onClick={() => handleDeleteRecipe(id)}
-        >
-          <svg className={styles.recipeCardIcon}>
-            <use href={`${icons}#trash`}></use>
-          </svg>
-        </button>
+        {isOwner && (
+          <button
+            type="button"
+            className={styles.recipeBtn}
+            aria-label="delete recipe from my recipies"
+            onClick={() => handleDeleteRecipe(id)}
+          >
+            <svg className={styles.recipeCardIcon}>
+              <use href={`${icons}#trash`}></use>
+            </svg>
+          </button>
+        )}
       </div>
     </li>
   );

@@ -19,7 +19,13 @@ import styles from "./ListItems.module.css";
 import { useParams } from "react-router-dom";
 import ListPagination from "../ListPagination/ListPagination";
 
-const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
+const ListItems = ({
+  activeTab,
+  setterActiveTab,
+  updating,
+  onUpdating,
+  isOwner,
+}) => {
   const { id } = useParams();
   const { id: ownerId } = useSelector(selectUser);
   const [arrToRender, setArrToRender] = useState([]);
@@ -128,6 +134,7 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
               key={item._id}
               title={item.title}
               handleDeleteRecipe={handleDeleteRecipeById}
+              isOwner={isOwner}
             />
           ) : (
             <UserPreview
