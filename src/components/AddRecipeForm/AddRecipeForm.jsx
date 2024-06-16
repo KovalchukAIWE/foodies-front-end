@@ -6,10 +6,13 @@ import { toast } from "react-toastify";
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import RecipeTitle from "./RecipeTitle/RecipeTitle";
 import RecipeDescription from "./RecipeDescription/RecipeDescription";
-import { DeleteButton } from "../Buttons/Buttons";
+import SelectCategory from "./SelectCategory/SelectCategory";
 import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
+import RecipePreparation from "./RecipePreparation/RecipePreparation";
+import { DeleteButton } from "../Buttons/Buttons";
 
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,11 +23,8 @@ import {
 } from "../../redux/recipes/selectors";
 import { selectUser } from "../../redux/user/selectors";
 import { createRecipe } from "../../services/recipes";
-import SelectCategory from "./SelectCategory/SelectCategory";
-import RecipePreparation from "./RecipePreparation/RecipePreparation";
-import RecipeTitle from "./RecipeTitle/RecipeTitle";
 
-const AddRecipeForm = () => {
+const AddRecipeForm = ({ onHandleSubmit }) => {
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
     mode: "onBlur",
@@ -36,9 +36,9 @@ const AddRecipeForm = () => {
   const ingredientsList = useSelector(selectIngredients);
   const { id: userId } = useSelector(selectUser);
 
+  const [imagePreview, setImagePreview] = useState(null);
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [imagePreview, setImagePreview] = useState(null);
 
   const navigate = useNavigate();
 
@@ -62,13 +62,14 @@ const AddRecipeForm = () => {
     };
 
     try {
+      await onHandleSubmit(true);
       const result = await createRecipe(formData);
       if (result) {
-        handleReset();
-        toast.success("Your own recipe was published");
+        toast.success("Your recipe was published");
         navigate(`/user/${userId}`);
       }
     } catch (error) {
+      console.log("onSubmit err :>> ", error);
       toast.error("Uuups..." + error.response.data.message);
     }
   };
