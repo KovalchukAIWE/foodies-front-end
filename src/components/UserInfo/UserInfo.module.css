@@ -110,7 +110,7 @@
 }
 
 .name {
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
   font-weight: 800;
   font-size: 18px;
   line-height: 133%;
@@ -131,7 +131,7 @@
 }
 
 .infoKey {
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 150%;
@@ -145,7 +145,7 @@
 }
 
 .infoValue {
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 143%;

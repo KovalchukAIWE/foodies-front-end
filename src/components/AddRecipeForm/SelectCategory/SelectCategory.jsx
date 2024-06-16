@@ -27,6 +27,7 @@ const SelectCategory = forwardRef(function SelectCategory(
           placeholder={"Select a category"}
           selectedOption={null}
           ref={ref}
+          id="category"
           options={categoriesList.map((option) => {
             return { value: option._id, label: option.name };
           })}

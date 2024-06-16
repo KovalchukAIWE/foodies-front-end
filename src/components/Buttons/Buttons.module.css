@@ -67,6 +67,11 @@
   width: 100%;
 }
 
+.formButton.disabled {
+  background-color: #05050533;
+  cursor: not-allowed;
+}
+
 .formButtonCancel {
   display: flex;
   justify-content: center;

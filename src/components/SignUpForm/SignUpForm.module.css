@@ -1,13 +1,25 @@
 .signUpFormInput {
-  border: 1px solid #0505051f;
+  border: 1px solid #050505;
   padding: 16px 18px;
   border-radius: 30px;
   width: 100%;
   margin-bottom: 14px;
+  color: #050505cc;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+}
+
+.signUpFormGroup {
+  position: relative;
 }
 
 .signUpFormError {
+  position: absolute;
+  bottom: 0;
   color: tomato;
+  font-size: 10px;
 }
 
 .signUpFormButton {
@@ -16,4 +28,19 @@
   @media screen and (min-width: 768px) {
     margin-top: 18px;
   }
+}
+
+.passwordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggleIcon {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
