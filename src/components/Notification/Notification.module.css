@@ -1,0 +1,16 @@
+.button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.Toastify__toast--dark {
+  background: #000000;
+  color: #ffffff;
+}
+
+.toastContainer {
+  z-index: 10000;
+}
