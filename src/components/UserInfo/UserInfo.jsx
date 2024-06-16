@@ -16,12 +16,22 @@ const UserInfo = ({
   followings,
   isOwner,
   isFollowing,
+  onIsUpdating,
   id,
 }) => {
   const dispatch = useDispatch();
 
-  const updateUserPhoto = () => {
-    dispatch(setUsersAvatar);
+  const updateUserPhoto = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      dispatch(setUsersAvatar({ avatar: file, userId: id }))
+        .then(() => {
+          onIsUpdating(true);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
 
   return (
@@ -36,8 +46,9 @@ const UserInfo = ({
             />
           </div>
           {isOwner && (
-            <form onSubmit={updateUserPhoto}>
+            <form>
               <input
+                onChange={updateUserPhoto}
                 type="file"
                 className={styles.addProfilePhotoInput}
                 id="add-profile-photo-btn"
