@@ -134,9 +134,14 @@ export const FollowButton = ({ onClick, text }) => {
   );
 };
 
-export const FormButton = ({ onClick, text }) => {
+export const FormButton = ({ onClick, text, disabled }) => {
   return (
-    <button type="submit" onClick={onClick} className={styles.formButton}>
+    <button
+      type="submit"
+      onClick={onClick}
+      className={`${styles.formButton} ${disabled ? styles.disabled : ""}`}
+      disabled={disabled}
+    >
       {text}
     </button>
   );

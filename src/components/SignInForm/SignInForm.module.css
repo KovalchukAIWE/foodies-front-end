@@ -29,3 +29,18 @@
     margin-top: 18px;
   }
 }
+
+.passwordContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggleIcon {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
