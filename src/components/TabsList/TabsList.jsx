@@ -82,6 +82,7 @@ const TabsList = ({ isOwner }) => {
           updating={updating}
           onUpdating={handleUpdating}
           setterActiveTab={handleActiveTab}
+          isOwner={isOwner}
         />
       </div>
     </div>

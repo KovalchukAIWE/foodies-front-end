@@ -19,7 +19,13 @@ import styles from "./ListItems.module.css";
 import { useParams } from "react-router-dom";
 import ListPagination from "../ListPagination/ListPagination";
 
-const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
+const ListItems = ({
+  activeTab,
+  setterActiveTab,
+  updating,
+  onUpdating,
+  isOwner,
+}) => {
   const { id } = useParams();
   const { id: ownerId } = useSelector(selectUser);
   const [arrToRender, setArrToRender] = useState([]);
@@ -32,11 +38,6 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
   );
 
   const setDataForPagination = ({ total, limit, page }) => {
-    console.log(total);
-    console.log(limit);
-
-    console.log(page);
-
     setTotalItems(total);
     setItemsLimit(limit);
     setPageItems(page);
@@ -66,7 +67,7 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
 
   const handleUnfollowUserById = async (id) => {
     try {
-      const response = await setUnfollowUserByUserId(id);
+      const response = await setUnfollowUserByUserId({ id });
       console.log(response);
 
       onUpdating(true);
@@ -131,7 +132,9 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
               text={item.description}
               id={item._id}
               key={item._id}
+              title={item.title}
               handleDeleteRecipe={handleDeleteRecipeById}
+              isOwner={isOwner}
             />
           ) : (
             <UserPreview

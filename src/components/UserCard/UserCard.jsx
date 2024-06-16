@@ -30,7 +30,7 @@ const UserCard = ({
         favorites={favoriteRecipesCount}
         followers={followersCount}
         followings={followingCount}
-        id={ownerId}
+        id={id}
         isOwner={id === ownerId}
         isFollowing={isFollowing}
       />
