@@ -17,18 +17,18 @@
 }
 
 .menu {
-  gap: 22px;
   position: fixed;
   top: -40px;
-  right: -100%;
+  right: 0;
+  transform: translateX(100%);
   width: 100%;
   height: 100vh;
   background-color: #050505;
-  transition: right 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
-.open {
-  right: 0;
+.menu.open {
+  transform: translateX(0);
 }
 
 .closeButton {
@@ -46,11 +46,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 22px;
 }
 
 .burgerMenuIcon {
-  stroke: #ffffff;
-  fill: #ffffff;
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .burgerMenuNavLink {
@@ -76,5 +77,23 @@
 
 .burgerMenuLogo {
   margin-left: 24px;
-  margin-top: 31px;
+  margin-top: 49px;
+}
+
+.burgerMenuLogo a {
+  color: #ffffff;
+}
+
+.burgerMenuImages {
+  display: flex;
+  align-items: center;
+  margin-top: 130px;
+}
+
+.burgerMenuImageLarge {
+  width: 190px;
+}
+
+.burgerMenuImageSm {
+  width: 77px;
 }
