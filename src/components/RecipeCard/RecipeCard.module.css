@@ -48,7 +48,6 @@
   gap: 8px;
   font-size: 16px;
   font-weight: 700;
-  color: var(--color-light-black);
 }
 .authorAvatar {
   width: 40px;
@@ -61,11 +60,11 @@
 }
 
 .recipeIconCircle {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border: 1px solid rgba(5, 5, 5, 0.1);
   border-radius: 50%;
-  padding: 12px;
+  padding: 9px;
 }
 .recipeIconCircle:hover {
   background-color: #050505;
@@ -73,11 +72,11 @@
 }
 .recipeIconCircle:active,
 .recipeIconCircleActive {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border: 1px solid rgba(5, 5, 5, 0.1);
   border-radius: 50%;
-  padding: 12px;
+  padding: 9px;
   background-color: #050505;
   color: #ffffff;
 }
@@ -103,9 +102,32 @@
     flex-direction: column;
     gap: 16px;
   }
+  .recipeIconCircle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(5, 5, 5, 0.1);
+    border-radius: 50%;
+    padding: 11px;
+  }
+  .recipeIconCircle:active,
+  .recipeIconCircleActive {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(5, 5, 5, 0.1);
+    border-radius: 50%;
+    padding: 11px;
+    background-color: #050505;
+    color: #ffffff;
+  }
   .recipeSocialIcon {
     width: 18px;
     height: 18px;
+  }
+  .recipeSocialIcon:active,
+  .recipeSocialIconActive {
+    width: 18px;
+    height: 18px;
+    fill: #ffffff;
   }
 }
 
