@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import Hero from '../../components/Hero/Hero.jsx';
-import Categories from '../../components/Categories/Categories.jsx';
-import Recipes from '../../components/Recipes/Recipes.jsx';
-import Testimonials from '../../components/Testimonials/Testimonials.jsx';
-import Loader from '../../components/Loader/Loader.jsx';
-import { getTestimonials } from '../../services/testimonials.js';
-import { getCategories } from '../../services/categories.js';
-import { getAllRecipes } from '../../services/recipes.js';
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import Hero from "../../components/Hero/Hero.jsx";
+import Categories from "../../components/Categories/Categories.jsx";
+import Recipes from "../../components/Recipes/Recipes.jsx";
+import Testimonials from "../../components/Testimonials/Testimonials.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
+import { getTestimonials } from "../../services/testimonials.js";
+import { getCategories } from "../../services/categories.js";
+import { getAllRecipes } from "../../services/recipes.js";
 
-import css from './HomePage.module.css';
-import Container from '../../components/Container/Container.jsx';
+import css from "./HomePage.module.css";
+import Container from "../../components/Container/Container.jsx";
 
 const HomePage = () => {
   const [categories, setCategories] = useState(null);
@@ -25,7 +25,7 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const isMobile = useMediaQuery({ query: '(max-width: 677px)' });
+  const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
   const limit = isMobile ? 8 : 12;
 
   useEffect(() => {
