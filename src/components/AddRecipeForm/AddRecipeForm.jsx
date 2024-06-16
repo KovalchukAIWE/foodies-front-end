@@ -1,6 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addRecipeSchema from "./validationSchema/addRecipeSchema";
+import { toast } from "react-toastify";
 
 import styles from "./AddRecipeForm.module.css";
 
@@ -10,7 +11,7 @@ import { DeleteButton } from "../Buttons/Buttons";
 import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -28,9 +29,6 @@ const AddRecipeForm = () => {
     resolver: yupResolver(addRecipeSchema),
     mode: "onBlur",
   });
-  const {
-    formState: { isSubmitSuccessful },
-  } = methods;
 
   const categoryRef = useRef();
 
@@ -44,7 +42,15 @@ const AddRecipeForm = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const handleReset = () => {
+    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
+    methods.reset();
+    setImagePreview(null);
+    setSelectedIngredients([]);
+    setCookingTime(10);
+  };
+
+  const onSubmit = async (data) => {
     const formData = {
       title: data.title,
       category: data.category,
@@ -56,25 +62,15 @@ const AddRecipeForm = () => {
     };
 
     try {
-      createRecipe(formData);
+      const result = await createRecipe(formData);
+      if (result) {
+        handleReset();
+        toast.success("Your own recipe was published");
+        navigate(`/user/${userId}`);
+      }
     } catch (error) {
-      // переписати на сповіщення
-      alert("Error: " + error.response.data.message);
+      toast.error("Uuups..." + error.response.data.message);
     }
-  };
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      navigate(`/user/${userId}`);
-    }
-  }, [isSubmitSuccessful, navigate, userId]);
-
-  const handleReset = () => {
-    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
-    methods.reset();
-    setImagePreview(null);
-    setSelectedIngredients([]);
-    setCookingTime(10);
   };
 
   return (
