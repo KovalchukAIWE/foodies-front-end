@@ -89,11 +89,11 @@ const CategoryList = ({
       <div className={styles.categoryContentWrapper}>
         {name === "All categories" ? (
           <button
+            className={styles.allCategoriesText}
             type="button"
             onClick={handleClickButton}
-            className={`${styles.allCategoriesText} ${styles.all}`}
           >
-            <p>All Categories</p>
+            All Categories
           </button>
         ) : (
           <img
