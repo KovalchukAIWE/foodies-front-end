@@ -61,11 +61,11 @@ const RecipeInfo = ({ isAuthenticated }) => {
           onClick={() => console.log('Add to favorites')}
         />
 
-        {showSignInModal && (
-          <Modal onClose={() => setShowSignInModal(false)}>
-            <SignInModal />
-          </Modal>
-        )}
+        <Modal
+          isOpen={showSignInModal}
+          onClose={() => setShowSignInModal(false)}>
+          <SignInModal />
+        </Modal>
       </div>
     </div>
   );
