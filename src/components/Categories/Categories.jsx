@@ -21,12 +21,12 @@ const Categories = ({ categories, onSelectedCategory }) => {
     (category) => !excludedCategories.includes(category.name.toLowerCase())
   );
 
-  const sortedCategories = filteredCategories.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  // const sortedCategories = filteredCategories.sort((a, b) =>
+  //   a.name.localeCompare(b.name)
+  // );
 
-  if (!showAllCategories && sortedCategories.length === 11) {
-    sortedCategories.push({
+  if (!showAllCategories && filteredCategories.length === 11) {
+    filteredCategories.push({
       _id: "all-categories",
       name: "All categories",
       image: null,
@@ -34,13 +34,14 @@ const Categories = ({ categories, onSelectedCategory }) => {
   }
 
   const categoriesToRender = showAllCategories
-    ? categories.sort((a, b) => a.name.localeCompare(b.name))
+    ? // ? categories.sort((a, b) => a.name.localeCompare(b.name))
+      categories
     : width < 768
     ? [
-        ...sortedCategories.slice(0, 8),
-        sortedCategories.find((cat) => cat.name === "All categories"),
+        ...categories.slice(0, 8),
+        categories.find((cat) => cat.name === "All categories"),
       ]
-    : sortedCategories;
+    : filteredCategories;
 
   const handleShowAllCategories = () => {
     setShowAllCategories(true);

@@ -46,7 +46,8 @@ const CategoryList = ({
       case 3:
       case 7:
       case 9:
-      case 14:
+      case 13:
+        // case 14:
         imageClass = styles.largeImage;
         break;
 
