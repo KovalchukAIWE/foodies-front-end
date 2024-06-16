@@ -14,15 +14,6 @@
   border-bottom: 1px solid rgba(5, 5, 5, 0.1);
 }
 
-.logoFooter {
-  font-weight: 800;
-  font-size: 20px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-  color: #050505;
-}
-
 .footerSocialList {
   display: flex;
   align-items: flex-start;
@@ -58,10 +49,6 @@
   .footerSocialItem {
     width: 40px;
     height: 40px;
-  }
-  .logoFooter {
-    font-size: 24px;
-    line-height: 1.16667;
   }
   .footer {
     margin-bottom: 32px;
