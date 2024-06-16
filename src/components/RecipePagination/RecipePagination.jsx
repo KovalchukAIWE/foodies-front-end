@@ -22,6 +22,10 @@ const RecipePagination = ({ onChangePage, currentPage, totalPage }) => {
     (_, index) => startPage + index
   );
 
+  if (totalPage <= 1) {
+    return null;
+  }
+
   return (
     <>
       <nav className={styles.recipePagination}>

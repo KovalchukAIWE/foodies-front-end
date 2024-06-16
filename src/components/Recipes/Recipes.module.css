@@ -1,6 +1,7 @@
 .recipesNav {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  width: 343px;
   gap: 6px;
   margin-bottom: 16px;
 }
@@ -36,8 +37,9 @@
 @media (max-width: 767px) {
   .recipesBox {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    width: 345px;
+    /* width: 345px; */
   }
 }
 @media (min-width: 768px) {
