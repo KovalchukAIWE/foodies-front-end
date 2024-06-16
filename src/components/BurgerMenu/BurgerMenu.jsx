@@ -2,6 +2,7 @@ import { useState } from "react";
 import sprite from "../../assets/img/icons-sprite.svg";
 import styles from "./BurgerMenu.module.css";
 import { NavLink } from "react-router-dom";
+import Logo from "../Logo/Logo";
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,9 @@ const BurgerMenu = () => {
       </button>
       {isOpen && (
         <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
+          <div className={styles.burgerMenuLogo}>
+            <Logo />
+          </div>
           <button className={styles.closeButton} onClick={toggleMenu}>
             <svg
               className={styles.burgerMenuIconClose}
@@ -34,12 +38,14 @@ const BurgerMenu = () => {
               <use href={`${sprite}#close`}></use>
             </svg>
           </button>
-          <NavLink to="/" className={styles.burgerMenuNavLink}>
-            Home
-          </NavLink>
-          <NavLink to="/" className={styles.burgerMenuNavLink}>
-            Add recipe
-          </NavLink>
+          <div className={styles.burgerMenuLinks}>
+            <NavLink to="/" className={styles.burgerMenuNavLink}>
+              Home
+            </NavLink>
+            <NavLink to="/" className={styles.burgerMenuNavLink}>
+              Add recipe
+            </NavLink>
+          </div>
         </div>
       )}
     </div>

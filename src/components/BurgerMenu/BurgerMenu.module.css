@@ -17,10 +17,6 @@
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 22px;
   position: fixed;
   top: -40px;
@@ -44,6 +40,14 @@
   margin: 10px 20px 0 0;
 }
 
+.burgerMenuLinks {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .burgerMenuIcon {
   stroke: #ffffff;
   fill: #ffffff;
@@ -51,6 +55,11 @@
 
 .burgerMenuNavLink {
   color: #ffffff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.02em;
 }
 
 .burgerMenuNavLink:hover {
@@ -62,5 +71,10 @@
   fill: #ffffff;
   position: absolute;
   right: 24px;
-  top: 29px;
+  top: 49px;
+}
+
+.burgerMenuLogo {
+  margin-left: 24px;
+  margin-top: 31px;
 }
