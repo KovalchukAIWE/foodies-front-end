@@ -8,6 +8,7 @@ import css from './RecipeInfo.module.css';
 import RecipeIngredients from '../RecipeIngredients/RecipeIngredients';
 import RecipeMainInfo from '../RecipeMainInfo/RecipeMainInfo';
 import RecipePreparation from '../RecipePreparation/RecipePreparation';
+import Loader from '../Loader/Loader';
 
 const RecipeInfo = ({ isAuthenticated }) => {
   const { id } = useParams();
@@ -34,7 +35,7 @@ const RecipeInfo = ({ isAuthenticated }) => {
   };
 
   if (!recipe) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
