@@ -21,10 +21,6 @@ const Categories = ({ categories, onSelectedCategory }) => {
     (category) => !excludedCategories.includes(category.name.toLowerCase())
   );
 
-  // const sortedCategories = filteredCategories.sort((a, b) =>
-  //   a.name.localeCompare(b.name)
-  // );
-
   if (!showAllCategories && filteredCategories.length === 11) {
     filteredCategories.push({
       _id: "all-categories",
@@ -34,8 +30,7 @@ const Categories = ({ categories, onSelectedCategory }) => {
   }
 
   const categoriesToRender = showAllCategories
-    ? // ? categories.sort((a, b) => a.name.localeCompare(b.name))
-      categories
+    ? categories
     : width < 768
     ? [
         ...categories.slice(0, 8),
