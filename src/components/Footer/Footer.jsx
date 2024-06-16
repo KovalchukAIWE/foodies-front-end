@@ -8,10 +8,11 @@ const Footer = () => {
       <footer className={css.footer}>
         <div className={css.footerContent}>
           <a
-            href='#'
+            href='index.html'
             className={css.logoFooter}>
             Foodies
           </a>
+
           <ul className={css.footerSocialList}>
             <li className={css.footerSocialItem}>
               <a
