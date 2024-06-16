@@ -6,6 +6,8 @@ import SignInModal from '../SignInModal/SignInModal';
 import { AddToFavButton } from '../Buttons/Buttons';
 import css from './RecipeInfo.module.css';
 import RecipeIngredients from '../RecipeIngredients/RecipeIngredients';
+import RecipeMainInfo from '../RecipeMainInfo/RecipeMainInfo';
+import RecipePreparation from '../RecipePreparation/RecipePreparation';
 
 const RecipeInfo = ({ isAuthenticated }) => {
   const { id } = useParams();
@@ -43,40 +45,15 @@ const RecipeInfo = ({ isAuthenticated }) => {
         className={css.recipeImage}
       />
       <div className={css.recipeDetails}>
-        <div className={css.recipeTitleAndAuthor}>
-          <h2 className={css.recipeTitle}>{recipe.title}</h2>
-          <div className={css.categoryAndTime}>
-            <p className={css.recipeCategory}>{recipe.category}</p>
-            <p className={css.recipeTime}>{recipe.time} min</p>
-          </div>
-          <p className={css.recipeDescription}>{recipe.description}</p>
-          <button
-            onClick={handleAuthorClick}
-            className={css.recipeAuthor}>
-            <img
-              src={recipe.owner.avatar || 'https://via.placeholder.com/50x50'}
-              alt={recipe.owner.name}></img>
-            <div>
-              <p className={css.btnAuthorText}>Created by:</p>
-              <p className={css.recipeAuthorName}>{recipe.owner.name}</p>
-            </div>
-          </button>
-        </div>
-        <div className={css.recipeDetailsIngredients}>
-          <h3 className={css.recipeTitleIngredients}>Ingredients</h3>
-          <ul className={css.recipeIngredientsList}>
-            {recipe.ingredients.map((ingredient) => (
-              <RecipeIngredients
-                key={ingredient._id}
-                ingredient={ingredient}
-              />
-            ))}
-          </ul>
-        </div>
-        <div className={css.recipeDetailsInstructions}>
-          <h3 className={css.recipeTitleInstructions}>Recipe Preparation</h3>
-          <p className={css.recipeInstructions}>{recipe.instructions}</p>
-        </div>
+        <RecipeMainInfo
+          recipe={recipe}
+          handleAuthorClick={handleAuthorClick}
+        />
+
+        <RecipeIngredients ingredients={recipe.ingredients} />
+
+        <RecipePreparation recipe={recipe} />
+
         <AddToFavButton
           recipe={recipe}
           className={css.addToFavButton}
