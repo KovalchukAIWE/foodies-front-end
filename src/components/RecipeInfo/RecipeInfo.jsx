@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { getDataRecipeById } from '../../services/recipes';
 import Modal from '../Modal/Modal';
 import SignInModal from '../SignInModal/SignInModal';
@@ -9,16 +10,25 @@ import RecipeIngredients from '../RecipeIngredients/RecipeIngredients';
 import RecipeMainInfo from '../RecipeMainInfo/RecipeMainInfo';
 import RecipePreparation from '../RecipePreparation/RecipePreparation';
 import Loader from '../Loader/Loader';
+import {
+  selectIsLoggedIn,
+  selectIsModalSignInOpen,
+} from '../../redux/user/selectors';
+import { setModalSignInStatus } from '../../redux/user/slice';
 
-const RecipeInfo = ({ isAuthenticated }) => {
+const RecipeInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isSignInModalOpen = useSelector(selectIsModalSignInOpen);
   const [recipe, setRecipe] = useState(null);
-  const [showSignInModal, setShowSignInModal] = useState(false);
 
   useEffect(() => {
+    console.log('Fetching recipe data for ID:', id);
     getDataRecipeById(id)
       .then((data) => {
+        console.log('Fetched recipe data:', data);
         setRecipe(data);
       })
       .catch((err) => {
@@ -27,11 +37,15 @@ const RecipeInfo = ({ isAuthenticated }) => {
   }, [id]);
 
   const handleAuthorClick = () => {
-    if (isAuthenticated) {
-      navigate(`/user/${recipe.owner}`);
+    if (isLoggedIn) {
+      navigate(`/user/${recipe.owner._id}`);
     } else {
-      setShowSignInModal(true);
+      dispatch(setModalSignInStatus(true));
     }
+  };
+
+  const closeSignInModal = () => {
+    dispatch(setModalSignInStatus(false));
   };
 
   if (!recipe) {
@@ -63,8 +77,8 @@ const RecipeInfo = ({ isAuthenticated }) => {
         />
 
         <Modal
-          isOpen={showSignInModal}
-          onClose={() => setShowSignInModal(false)}>
+          isOpen={isSignInModalOpen}
+          onClose={closeSignInModal}>
           <SignInModal />
         </Modal>
       </div>
