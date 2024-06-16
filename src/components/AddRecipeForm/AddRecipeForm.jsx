@@ -1,16 +1,20 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addRecipeSchema from "./validationSchema/addRecipeSchema";
+import { toast } from "react-toastify";
 
 import styles from "./AddRecipeForm.module.css";
 
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import RecipeTitle from "./RecipeTitle/RecipeTitle";
 import RecipeDescription from "./RecipeDescription/RecipeDescription";
-import { DeleteButton } from "../Buttons/Buttons";
+import SelectCategory from "./SelectCategory/SelectCategory";
 import CookingTimeCounter from "./CookingTimeCounter/CookingTimeCounter";
 import AddIngredients from "./AddIngredients/AddIngredients";
+import RecipePreparation from "./RecipePreparation/RecipePreparation";
+import { DeleteButton } from "../Buttons/Buttons";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -19,18 +23,12 @@ import {
 } from "../../redux/recipes/selectors";
 import { selectUser } from "../../redux/user/selectors";
 import { createRecipe } from "../../services/recipes";
-import SelectCategory from "./SelectCategory/SelectCategory";
-import RecipePreparation from "./RecipePreparation/RecipePreparation";
-import RecipeTitle from "./RecipeTitle/RecipeTitle";
 
-const AddRecipeForm = () => {
+const AddRecipeForm = ({ onHandleSubmit }) => {
   const methods = useForm({
     resolver: yupResolver(addRecipeSchema),
     mode: "onBlur",
   });
-  const {
-    formState: { isSubmitSuccessful },
-  } = methods;
 
   const categoryRef = useRef();
 
@@ -38,13 +36,21 @@ const AddRecipeForm = () => {
   const ingredientsList = useSelector(selectIngredients);
   const { id: userId } = useSelector(selectUser);
 
+  const [imagePreview, setImagePreview] = useState(null);
   const [cookingTime, setCookingTime] = useState(10);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [imagePreview, setImagePreview] = useState(null);
 
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const handleReset = () => {
+    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
+    methods.reset();
+    setImagePreview(null);
+    setSelectedIngredients([]);
+    setCookingTime(10);
+  };
+
+  const onSubmit = async (data) => {
     const formData = {
       title: data.title,
       category: data.category,
@@ -56,25 +62,16 @@ const AddRecipeForm = () => {
     };
 
     try {
-      createRecipe(formData);
+      await onHandleSubmit(true);
+      const result = await createRecipe(formData);
+      if (result) {
+        toast.success("Your recipe was published");
+        navigate(`/user/${userId}`);
+      }
     } catch (error) {
-      // переписати на сповіщення
-      alert("Error: " + error.response.data.message);
+      console.log("onSubmit err :>> ", error);
+      toast.error("Uuups..." + error.response.data.message);
     }
-  };
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      navigate(`/user/${userId}`);
-    }
-  }, [isSubmitSuccessful, navigate, userId]);
-
-  const handleReset = () => {
-    categoryRef.current.getValue()[0] ? categoryRef.current.clearValue() : null;
-    methods.reset();
-    setImagePreview(null);
-    setSelectedIngredients([]);
-    setCookingTime(10);
   };
 
   return (

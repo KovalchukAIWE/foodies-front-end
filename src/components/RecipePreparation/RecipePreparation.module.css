@@ -1,0 +1,31 @@
+.recipeDetailsInstructions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.recipeTitleInstructions {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #050505;
+}
+.recipeInstructions {
+  font-size: 14px;
+  line-height: 1.42857;
+}
+
+@media screen and (min-width: 768px) {
+  .recipeDetailsInstructions {
+    gap: 20px;
+  }
+  .recipeTitleInstructions {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .recipeInstructions {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

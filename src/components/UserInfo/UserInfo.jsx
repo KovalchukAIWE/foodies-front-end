@@ -1,6 +1,7 @@
 import styles from "./UserInfo.module.css";
 import noUserPhoto from "../../assets/img/noUserPhoto.webp";
 import addPhotoIcon from "../../assets/img/icons-sprite.svg";
+import UserInfoBtn from "../UserInfoBtn/UserInfoBtn";
 
 import { useDispatch } from "react-redux";
 import { setUsersAvatar } from "../../redux/user/operations";
@@ -15,11 +16,22 @@ const UserInfo = ({
   followings,
   isOwner,
   isFollowing,
+  onIsUpdating,
+  id,
 }) => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
-  const updateUserPhoto = () => {
-    dispatch(setUsersAvatar);
+  const updateUserPhoto = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      dispatch(setUsersAvatar({ avatar: file, userId: id }))
+        .then(() => {
+          onIsUpdating(true);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
 
   return (
@@ -34,8 +46,9 @@ const UserInfo = ({
             />
           </div>
           {isOwner && (
-            <form onSubmit={updateUserPhoto}>
+            <form>
               <input
+                onChange={updateUserPhoto}
                 type="file"
                 className={styles.addProfilePhotoInput}
                 id="add-profile-photo-btn"
@@ -82,9 +95,7 @@ const UserInfo = ({
           )}
         </ul>
       </div>
-      <button type="button" className={styles.profileBtn} onClick={() => {}}>
-        {isOwner ? "Log Out" : `${isFollowing ? "Unfollow" : "Follow"}`}
-      </button>
+      <UserInfoBtn id={id} isFollowing={isFollowing} isOwner={isOwner} />
     </div>
   );
 };
