@@ -32,7 +32,13 @@
   flex-direction: column;
   margin-bottom: 40px;
 }
-
+@media (max-width: 767px) {
+  .recipesBox {
+    display: flex;
+    flex-direction: column;
+    width: 345px;
+  }
+}
 @media (min-width: 768px) {
   .backButton {
     white-space: initial;
