@@ -19,7 +19,7 @@ const Recipes = ({
   totalPage,
 }) => {
   return (
-    <>
+    <div className={styles.recipesBox}>
       <div className={styles.recipesNav}>
         <button className={styles.backButton} type="button" onClick={onBack}>
           <svg className={styles.recipesArrowLeft}>
@@ -48,7 +48,7 @@ const Recipes = ({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

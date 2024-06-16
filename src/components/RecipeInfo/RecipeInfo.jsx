@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   getDataRecipeById,
   addRecipeToFavorite,
   deleteRecipeFromFavorite,
   getUsersFavoriteRecipes,
-} from '../../services/recipes';
-import Modal from '../Modal/Modal';
-import SignInModal from '../SignInModal/SignInModal';
-import { AddToFavButton } from '../Buttons/Buttons';
-import css from './RecipeInfo.module.css';
-import RecipeIngredients from '../RecipeIngredients/RecipeIngredients';
-import RecipeMainInfo from '../RecipeMainInfo/RecipeMainInfo';
-import RecipePreparation from '../RecipePreparation/RecipePreparation';
-import Loader from '../Loader/Loader';
+} from "../../services/recipes";
+import Modal from "../Modal/Modal";
+import SignInModal from "../SignInModal/SignInModal";
+import { AddToFavButton } from "../Buttons/Buttons";
+import css from "./RecipeInfo.module.css";
+import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
+import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
+import RecipePreparation from "../RecipePreparation/RecipePreparation";
+import Loader from "../Loader/Loader";
 import {
   selectIsLoggedIn,
   selectIsModalSignInOpen,
-} from '../../redux/user/selectors';
-import { setModalSignInStatus } from '../../redux/user/slice';
+} from "../../redux/user/selectors";
+import { setModalSignInStatus } from "../../redux/user/slice";
 
 const RecipeInfo = () => {
   const { id } = useParams();
@@ -39,7 +39,7 @@ const RecipeInfo = () => {
           await checkIfFavorite(data._id);
         }
       } catch (err) {
-        console.error('Failed to fetch recipe', err);
+        console.error("Failed to fetch recipe", err);
       }
     };
 
@@ -54,12 +54,12 @@ const RecipeInfo = () => {
         setIsFavorite(favoriteRecipeIds.includes(recipeId));
       } else {
         console.error(
-          'Favorites response does not contain a valid result array:',
+          "Favorites response does not contain a valid result array:",
           favorites
         );
       }
     } catch (error) {
-      console.error('Failed to check if recipe is favorite', error);
+      console.error("Failed to check if recipe is favorite", error);
     }
   };
 
@@ -76,7 +76,7 @@ const RecipeInfo = () => {
       await addRecipeToFavorite(recipe._id);
       setIsFavorite(true);
     } catch (error) {
-      console.error('Failed to add recipe to favorites', error);
+      console.error("Failed to add recipe to favorites", error);
     }
   };
 
@@ -85,7 +85,7 @@ const RecipeInfo = () => {
       await deleteRecipeFromFavorite(recipe._id);
       setIsFavorite(false);
     } catch (error) {
-      console.error('Failed to remove recipe from favorites', error);
+      console.error("Failed to remove recipe from favorites", error);
     }
   };
 
@@ -99,16 +99,9 @@ const RecipeInfo = () => {
 
   return (
     <div className={css.recipeInfo}>
-      <img
-        src={recipe.thumb}
-        alt={recipe.title}
-        className={css.recipeImage}
-      />
+      <img src={recipe.thumb} alt={recipe.title} className={css.recipeImage} />
       <div className={css.recipeDetails}>
-        <RecipeMainInfo
-          recipe={recipe}
-          handleAuthorClick={handleAuthorClick}
-        />
+        <RecipeMainInfo recipe={recipe} handleAuthorClick={handleAuthorClick} />
 
         <RecipeIngredients ingredients={recipe.ingredients} />
 
@@ -118,21 +111,19 @@ const RecipeInfo = () => {
           <AddToFavButton
             recipe={recipe}
             className={css.addToFavButton}
-            text='Remove from favorites'
+            text="Remove from favorites"
             onClick={handleRemoveFromFavorites}
           />
         ) : (
           <AddToFavButton
             recipe={recipe}
             className={css.addToFavButton}
-            text='Add to favorites'
+            text="Add to favorites"
             onClick={handleAddToFavorites}
           />
         )}
 
-        <Modal
-          isOpen={isSignInModalOpen}
-          onClose={closeSignInModal}>
+        <Modal isOpen={isSignInModalOpen} onClose={closeSignInModal}>
           <SignInModal />
         </Modal>
       </div>
