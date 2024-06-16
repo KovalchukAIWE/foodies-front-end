@@ -71,6 +71,7 @@ const AddIngredients = ({
           <Select
             {...register("ingredientsSelect")}
             name={"ingredientsSelect"}
+            id="ingredientsSelect"
             placeholder={"Add the ingredient"}
             selectedOption={null}
             ref={ingredientRef}
