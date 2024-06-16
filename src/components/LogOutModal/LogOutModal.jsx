@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { FormButton, FormButtonCancel } from "../Buttons/Buttons";
-import styles from "./LogOutModal.module.css";
 import { logOut } from "../../redux/user/operations";
+import styles from "./LogOutModal.module.css";
 
-const LogOutModal = () => {
+const LogOutModal = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
@@ -19,7 +19,7 @@ const LogOutModal = () => {
       <div className={styles.logoutModalButton}>
         <FormButton onClick={handleLogOut} text="Log out" />
       </div>
-      <FormButtonCancel text="cancel" />
+      <FormButtonCancel onClick={onClose} text="cancel" />
     </>
   );
 };
