@@ -3,6 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FormButton } from "../Buttons/Buttons";
 import styles from "./SignUpForm.module.css";
+import { useState } from "react";
+import sprite from "../../assets/img/icons-sprite.svg";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -21,6 +23,12 @@ const SignUpForm = ({ onSubmit }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   return (
     <div className={styles.signUpForm}>
@@ -51,12 +59,24 @@ const SignUpForm = ({ onSubmit }) => {
           </div>
 
           <div className={styles.signUpFormGroup}>
-            <input
-              className={styles.signUpFormInput}
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-            />
+            <div className={styles.passwordContainer}>
+              <input
+                className={styles.signUpFormInput}
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                {...register("password")}
+              />
+              <svg
+                className={styles.passwordToggleIcon}
+                onClick={togglePasswordVisibility}
+              >
+                <use
+                  href={`${sprite}#${
+                    showPassword ? "eye-open" : "eye-private"
+                  }`}
+                />
+              </svg>
+            </div>
             <p className={styles.signUpFormError}>
               {errors.password && errors.password.message}
             </p>
