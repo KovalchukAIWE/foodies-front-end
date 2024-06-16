@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FormButton } from "../Buttons/Buttons";
-import styles from "./SignUpForm.module.css";
 import { useState } from "react";
 import sprite from "../../assets/img/icons-sprite.svg";
+import styles from "./SignUpForm.module.css";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -19,9 +19,10 @@ const SignUpForm = ({ onSubmit }) => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -82,7 +83,7 @@ const SignUpForm = ({ onSubmit }) => {
             </p>
           </div>
           <div className={styles.signUpFormButton}>
-            <FormButton text="Create" />
+            <FormButton text="Create" disabled={!isValid} />
           </div>
         </form>
       </div>

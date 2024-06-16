@@ -2,7 +2,6 @@ import { useState } from "react";
 import sprite from "../../assets/img/icons-sprite.svg";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import { Link } from "react-router-dom";
 import imageLarge from "../../images/hero-img-large.png";
 import imageSmall from "../../images/hero-img-small.png";
 import styles from "./BurgerMenu.module.css";
@@ -23,9 +22,7 @@ const BurgerMenu = () => {
       </button>
       <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
         <div className={styles.burgerMenuLogo}>
-          <Link to="/">
-            <Logo />
-          </Link>
+          <Logo />
         </div>
         <button className={styles.closeButton} onClick={toggleMenu}>
           <svg className={styles.burgerMenuIconClose} width={28} height={28}>
