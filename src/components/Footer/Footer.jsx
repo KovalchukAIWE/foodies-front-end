@@ -10,6 +10,7 @@ const Footer = () => {
       <footer className={css.footer}>
         <div className={css.footerContent}>
           <FooterLogo />
+
           <ul className={css.footerSocialList}>
             <li className={css.footerSocialItem}>
               <a
