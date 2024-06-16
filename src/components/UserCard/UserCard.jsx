@@ -6,7 +6,6 @@ import { selectUser } from "../../redux/user/selectors";
 import { useParams } from "react-router-dom";
 
 const UserCard = ({
-  onIsUpdating,
   user: {
     name,
     avatar,
@@ -17,6 +16,7 @@ const UserCard = ({
     followingCount,
     isFollowing,
   },
+  handleUpdatingAvatar,
 }) => {
   const { id: ownerId } = useSelector(selectUser);
   const { id } = useParams();
@@ -25,6 +25,7 @@ const UserCard = ({
     <div className={styles.userCard}>
       <UserInfo
         name={name}
+        handleUpdatingAvatar={handleUpdatingAvatar}
         userPhoto={avatar}
         email={email}
         myRecipes={ownRecipesCount}
@@ -34,7 +35,6 @@ const UserCard = ({
         id={id}
         isOwner={id === ownerId}
         isFollowing={isFollowing}
-        onIsUpdating={onIsUpdating}
       />
       <div className={styles.tabsListContainer}>
         <TabsList isOwner={id === ownerId} />

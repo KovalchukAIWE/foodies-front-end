@@ -16,7 +16,7 @@ const UserInfo = ({
   followings,
   isOwner,
   isFollowing,
-  onIsUpdating,
+  handleUpdatingAvatar,
   id,
 }) => {
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const UserInfo = ({
     const file = e.target.files[0];
     if (file) {
       dispatch(setUsersAvatar({ avatar: file, userId: id }))
-        .then(() => {
-          onIsUpdating(true);
+        .then(({ payload: { avatar } }) => {
+          handleUpdatingAvatar(avatar);
         })
         .catch((error) => {
           console.error("Error:", error);
