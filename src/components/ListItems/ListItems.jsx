@@ -126,6 +126,7 @@ const ListItems = ({ activeTab, setterActiveTab, updating, onUpdating }) => {
               text={item.description}
               id={item._id}
               key={item._id}
+              title={item.title}
               handleDeleteRecipe={handleDeleteRecipeById}
             />
           ) : (
