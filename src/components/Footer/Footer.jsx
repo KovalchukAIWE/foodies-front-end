@@ -2,17 +2,14 @@ import css from './Footer.module.css';
 import Container from '../Container/Container';
 import sprite from '../../assets/img/icons-sprite.svg';
 import Copyright from '../Copyright/Copyright';
+import FooterLogo from './FooterLogo';
 
 const Footer = () => {
   return (
     <Container>
       <footer className={css.footer}>
         <div className={css.footerContent}>
-          <a
-            href='index.html'
-            className={css.logoFooter}>
-            Foodies
-          </a>
+          <FooterLogo />
           <ul className={css.footerSocialList}>
             <li className={css.footerSocialItem}>
               <a
