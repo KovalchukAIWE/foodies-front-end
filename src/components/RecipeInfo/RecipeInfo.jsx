@@ -25,10 +25,8 @@ const RecipeInfo = () => {
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    console.log('Fetching recipe data for ID:', id);
     getDataRecipeById(id)
       .then((data) => {
-        console.log('Fetched recipe data:', data);
         setRecipe(data);
       })
       .catch((err) => {
@@ -64,11 +62,8 @@ const RecipeInfo = () => {
           recipe={recipe}
           handleAuthorClick={handleAuthorClick}
         />
-
         <RecipeIngredients ingredients={recipe.ingredients} />
-
         <RecipePreparation recipe={recipe} />
-
         <AddToFavButton
           recipe={recipe}
           className={css.addToFavButton}
