@@ -43,7 +43,7 @@ const addRecipeSchema = yup
           measure: yup.string().required("Quantity is required"),
         })
       )
-      .required("Recipe must has at least 1 ingredient"),
+      .required("Recipe must have at least 1 ingredient"),
     instructions: yup
       .string()
       .required("Recipe preparation is required")
