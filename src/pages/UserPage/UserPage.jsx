@@ -14,11 +14,14 @@ import css from "./UserPage.module.css";
 const UserPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(true);
   const [error, setError] = useState(null);
 
   const { id } = useParams();
 
   useEffect(() => {
+    if (!isUpdating) return;
+
     (async () => {
       try {
         setIsLoading(true);
@@ -28,10 +31,14 @@ const UserPage = () => {
         setError(error.message);
       } finally {
         setIsLoading(false);
+        setIsUpdating(false);
       }
     })();
-  }, [id]);
+  }, [id, isUpdating]);
 
+  const handleIsUpdating = (state) => {
+    setIsUpdating(state);
+  };
   return (
     <>
       <section className={css.sectionUser}>
@@ -39,7 +46,7 @@ const UserPage = () => {
           <PathInfo pageName="Profile" />
           <MainTitle text="Profile" />
           <Subtitle text="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us." />
-          {user && <UserCard user={user} />}
+          {user && <UserCard user={user} onIsUpdating={handleIsUpdating} />}
 
           {/* Поміняти на компонент нотифікашки */}
           {error && <p>{error}</p>}
