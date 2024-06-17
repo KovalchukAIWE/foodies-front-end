@@ -4,24 +4,24 @@
   line-height: 1.16667;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #050505;
+  color: var(--main-black);
 }
 .recipeCategory {
-  border: 1px solid rgba(5, 5, 5, 0.12);
+  border: 1px solid var(--border-grey-12);
   border-radius: 20px;
   padding: 10px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.6);
+  color: var(--text-grey);
   text-align: center;
 }
 .recipeTime {
-  border: 1px solid rgba(5, 5, 5, 0.12);
+  border: 1px solid var(--border-grey-12);
   border-radius: 20px;
   padding: 10px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.6);
+  color: var(--text-grey);
   text-align: center;
 }
 .categoryAndTime {
@@ -52,7 +52,7 @@
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.9);
+  color: var(--black-90);
 }
 .recipeTitleAndAuthor {
   display: flex;
