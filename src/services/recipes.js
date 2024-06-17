@@ -24,13 +24,25 @@ export const getPopularRecipes = async () => {
   return data;
 };
 
-export const getUsersFavoriteRecipes = async () => {
-  const { data } = await foodiesApiClient.get("recipes/favorites");
+export const getUsersFavoriteRecipes = async ({ limit, page }) => {
+  const { data } = await foodiesApiClient.get(
+    "recipes/favorites",
+
+    {
+      params: { limit, page },
+    }
+  );
   return data;
 };
 
-export const getOwnUsersRecipes = async () => {
-  const { data } = await foodiesApiClient.get("recipes/my");
+export const getOwnUsersRecipes = async ({ limit, page }) => {
+  const { data } = await foodiesApiClient.get(
+    "recipes/my",
+
+    {
+      params: { limit, page },
+    }
+  );
   return data;
 };
 

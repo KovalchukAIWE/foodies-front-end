@@ -13,12 +13,12 @@ import {
 } from "../../services/recipes.js";
 
 import css from "./RecipePage.module.css";
+import { toast } from "react-toastify";
 
 const RecipePage = () => {
   const [recipe, setRecipe] = useState(null);
   const [popularRecipes, setPopularRecipes] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const { id } = useParams();
 
@@ -29,7 +29,7 @@ const RecipePage = () => {
         const result = await getPopularRecipes();
         setPopularRecipes(result);
       } catch (error) {
-        setError(error.message);
+        toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -43,7 +43,7 @@ const RecipePage = () => {
         const result = await getDataRecipeById(id);
         setRecipe(result);
       } catch (error) {
-        setError(error.message);
+        toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -68,8 +68,7 @@ const RecipePage = () => {
           {Array.isArray(popularRecipes) && (
             <PopularRecipes recipes={popularRecipes} />
           )}
-          {/* Поміняти на компонент нотифікашки */}
-          {error && <p>{error}</p>}
+
           {isLoading && <Loader />}
         </Container>
       </section>

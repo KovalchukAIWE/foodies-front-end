@@ -5,6 +5,7 @@ import UserInfoBtn from "../UserInfoBtn/UserInfoBtn";
 
 import { useDispatch } from "react-redux";
 import { setUsersAvatar } from "../../redux/user/operations";
+import { toast } from "react-toastify";
 
 const UserInfo = ({
   name,
@@ -16,20 +17,20 @@ const UserInfo = ({
   followings,
   isOwner,
   isFollowing,
-  onIsUpdating,
+  handleUpdatingAvatar,
   id,
 }) => {
   const dispatch = useDispatch();
-
   const updateUserPhoto = (e) => {
     const file = e.target.files[0];
     if (file) {
       dispatch(setUsersAvatar({ avatar: file, userId: id }))
-        .then(() => {
-          onIsUpdating(true);
+        .then(({ payload: { avatar } }) => {
+          handleUpdatingAvatar(avatar);
+          toast.success("Avatar changed!");
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .catch(() => {
+          toast.error("Anything went wrong");
         });
     }
   };

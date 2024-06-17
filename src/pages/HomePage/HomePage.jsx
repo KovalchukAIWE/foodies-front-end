@@ -11,6 +11,7 @@ import { getAllRecipes } from "../../services/recipes.js";
 
 import css from "./HomePage.module.css";
 import Container from "../../components/Container/Container.jsx";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const [categories, setCategories] = useState(null);
@@ -23,7 +24,6 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
   const limit = isMobile ? 8 : 12;
@@ -37,7 +37,7 @@ const HomePage = () => {
         setTestimonials(testimonials);
         setCategories(categories);
       } catch (error) {
-        setError(error.message);
+        toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -59,7 +59,7 @@ const HomePage = () => {
         setTotalPage(total);
         setRecipes(result);
       } catch (error) {
-        setError(error.message);
+        toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -122,8 +122,7 @@ const HomePage = () => {
           )}
         </Container>
       </section>
-      {/* Поміняти на компонент нотифікашки */}
-      {error && <p>{error}</p>}
+
       {isLoading && <Loader />}
     </>
   );
