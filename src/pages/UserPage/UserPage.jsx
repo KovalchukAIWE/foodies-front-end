@@ -10,12 +10,12 @@ import { getUserDataByUserId } from "../../services/user.js";
 import Loader from "../../components/Loader/Loader.jsx";
 
 import css from "./UserPage.module.css";
+import { toast } from "react-toastify";
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // const [isUpdating, setIsUpdating] = useState(true);
-  const [error, setError] = useState(null);
 
   const { id } = useParams();
 
@@ -28,7 +28,7 @@ const UserPage = () => {
         const result = await getUserDataByUserId(id);
         setUser(result.user);
       } catch (error) {
-        setError(error.message);
+        toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
         // setIsUpdating(false);
@@ -50,8 +50,6 @@ const UserPage = () => {
             <UserCard user={user} handleUpdatingAvatar={handleUpdatingAvatar} />
           )}
 
-          {/* Поміняти на компонент нотифікашки */}
-          {error && <p>{error}</p>}
           {isLoading && <Loader />}
         </Container>
       </section>

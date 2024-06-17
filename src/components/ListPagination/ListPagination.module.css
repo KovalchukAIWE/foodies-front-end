@@ -18,7 +18,8 @@
   transition-duration: 300ms;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.current {
     border-color: #050505;
   }
 }

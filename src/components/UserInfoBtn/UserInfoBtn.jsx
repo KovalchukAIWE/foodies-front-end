@@ -7,31 +7,39 @@ import {
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/user/operations";
 import styles from "./UserInfoBtn.module.css";
+import { toast } from "react-toastify";
 
 const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+
   const [buttonText, setButtonText] = useState(
-    initialIsFollowing ? "Unfollow" : "Follow"
+    isFollowing ? "Unfollow" : "Follow"
   );
   const dispatch = useDispatch();
 
   const handleFollowUserById = async (id) => {
     try {
-      await setFollowUserByUserId({ id });
-      setIsFollowing(true);
-      setButtonText("Unfollow");
+      const { follow } = await setFollowUserByUserId({ id });
+      if (follow) {
+        toast.success("Follow success!");
+        setIsFollowing(true);
+        setButtonText("Unfollow");
+      }
     } catch (error) {
-      console.log(error.message);
+      toast.error("Anything went wrong!");
     }
   };
 
   const handleUnfollowUserById = async (id) => {
     try {
-      await setUnfollowUserByUserId({ id });
-      setIsFollowing(false);
-      setButtonText("Follow");
+      const { unfollow } = await setUnfollowUserByUserId({ id });
+      if (unfollow) {
+        setIsFollowing(false);
+        setButtonText("Follow");
+        toast.success("Unfollow success!");
+      }
     } catch (error) {
-      console.log(error.message);
+      toast.error("Anything went wrong!");
     }
   };
 
