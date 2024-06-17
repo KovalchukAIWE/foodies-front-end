@@ -9,7 +9,7 @@ const MobileMenu = ({ onToggleMenu, isOpen }) => {
   return (
     <div className={styles.burgerMenu}>
       <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
-        <div className={styles.burgerMenuLogo}>
+        <div onClick={onToggleMenu} className={styles.burgerMenuLogo}>
           <Logo />
         </div>
         <button className={styles.closeButton} onClick={onToggleMenu}>
@@ -18,10 +18,18 @@ const MobileMenu = ({ onToggleMenu, isOpen }) => {
           </svg>
         </button>
         <div className={styles.burgerMenuLinks}>
-          <NavLink to="/" className={styles.burgerMenuNavLink}>
+          <NavLink
+            to="/"
+            onClick={onToggleMenu}
+            className={styles.burgerMenuNavLink}
+          >
             Home
           </NavLink>
-          <NavLink to="/add-recipe" className={styles.burgerMenuNavLink}>
+          <NavLink
+            to="/recipe/add"
+            onClick={onToggleMenu}
+            className={styles.burgerMenuNavLink}
+          >
             Add recipe
           </NavLink>
           <div className={styles.burgerMenuImages}>

@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "./UserBar.module.css";
-import noImage from "../../assets/img/noUserPhoto.webp";
 import Modal from "../Modal/Modal";
 import LogOutModal from "../LogOutModal/LogOutModal";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/selectors";
 import { Link } from "react-router-dom";
+import noImage from "../../assets/img/noUserPhoto.webp";
+import arrowUp from "../../assets/img/icons-sprite.svg";
+import arrowUpRight from "../../assets/img/icons-sprite.svg";
+import styles from "./UserBar.module.css";
 
 const UserBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -47,22 +49,13 @@ const UserBar = () => {
         <div className={styles.userBarDropdown}>
           <p className={styles.userBarName}>{name}</p>
           <svg
+            width={18}
+            height={18}
             className={`${styles.userBarArrow} ${
               showDropdown ? styles.open : ""
             }`}
-            width="12"
-            height="6"
-            viewBox="0 0 12 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M1.5 0.75L6 5.25L10.5 0.75"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <use href={`${arrowUp}#arrow-up`}></use>
           </svg>
         </div>
       </button>
@@ -82,6 +75,9 @@ const UserBar = () => {
             >
               Log Out
             </button>
+            <svg className={styles.dropdownArrow} width={18} height={18}>
+              <use href={`${arrowUpRight}#arrow-up-right`}></use>
+            </svg>
           </div>
         </div>
       )}
