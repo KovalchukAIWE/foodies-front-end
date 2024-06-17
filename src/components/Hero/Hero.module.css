@@ -12,7 +12,7 @@
 .heroWrapper {
   width: 100%;
   padding: 194px 16px 100px;
-  background-color: #050505;
+  background-color: var(--main-black);
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -42,7 +42,7 @@
   line-height: 40px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -63,7 +63,7 @@
   letter-spacing: -0.02em;
   margin-bottom: 20px;
   text-align: center;
-  color: #ffffffcc;
+  color: var(--white-80);
 
   @media screen and (min-width: 768px) {
     font-size: 16px;

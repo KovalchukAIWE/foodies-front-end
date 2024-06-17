@@ -4,7 +4,7 @@
   line-height: 40px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #050505;
+  color: var(--main-black);
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
@@ -18,7 +18,7 @@
   line-height: 24px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #050505;
+  color: var(--main-black);
   margin-bottom: 32px;
 
   @media screen and (min-width: 768px) {

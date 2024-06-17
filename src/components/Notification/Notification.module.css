@@ -1,6 +1,6 @@
 .button {
   background-color: #000000;
-  color: #ffffff;
+  color: var(--white);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -8,7 +8,7 @@
 
 .Toastify__toast--dark {
   background: #000000;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .toastContainer {

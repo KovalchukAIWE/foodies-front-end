@@ -5,7 +5,7 @@
   width: 100%;
 
   &:not(:first-of-type) {
-    border-top: 1px solid rgba(5, 5, 5, 0.1);
+    border-top: 1px solid var(--border-grey-10);
   }
 
   &:first-of-type {
@@ -54,7 +54,7 @@
   line-height: 120%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #050505;
+  color: var(--main-black);
 }
 
 .recipesCountText {
@@ -65,11 +65,11 @@
   font-size: 14px;
   line-height: 143%;
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.6);
+  color: var(--text-grey);
 }
 
 .userPreviewBtn {
-  border: 1px solid rgba(5, 5, 5, 0.12);
+  border: 1px solid var(--border-grey-12);
   border-radius: 30px;
   padding: 8px 16px;
   width: 92px;
@@ -86,13 +86,13 @@
   line-height: 150%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: rgba(5, 5, 5, 0.9);
+  color: var(--black-90);
   transition-duration: 300ms;
 
   &:hover,
   &:focus {
-    color: #ffffff;
-    background-color: #050505;
+    color: var(--white);
+    background-color: var(--main-black);
   }
 }
 
@@ -120,7 +120,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid rgba(5, 5, 5, 0.1);
+  border: 1px solid var(--border-grey-10);
   border-radius: 30px;
   padding: 10px;
   width: 36px;
@@ -131,12 +131,12 @@
 
   &:hover,
   &:focus {
-    border: 1px solid #050505;
-    background-color: #050505;
+    border: 1px solid var(--main-black);
+    background-color: var(--main-black);
 
     .linkToUserProfileIcon {
-      fill: #ffffff;
-      stroke: #050505;
+      fill: var(--white);
+      stroke: var(--main-black);
     }
   }
 
@@ -150,8 +150,8 @@
   width: 16px;
   height: 16px;
 
-  fill: #050505;
-  stroke: #ffffff;
+  fill: var(--main-black);
+  stroke: var(--white);
   transition-duration: 300ms;
 
   @media (min-width: 768px) {

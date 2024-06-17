@@ -6,11 +6,11 @@
   text-transform: uppercase;
 }
 .dark {
-  color: #050505;
+  color: var(--main-black);
 }
 
 .grey {
-  color: rgba(5, 5, 5, 0.4);
+  color: var(--black-40);
 }
 
 .path {
