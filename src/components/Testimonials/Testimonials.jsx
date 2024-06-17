@@ -58,8 +58,8 @@ const Testimonials = () => {
   return (
     <div className={styles.testimonials}>
       <div className={styles.testimonialsSection}>
-        <h2 className={styles.sectionSubtitle}>What our customers say</h2>
-        <h1 className={styles.sectionTitle}>Testimonials</h1>
+        <p className={styles.sectionSubtitle}>What our customers say</p>
+        <h2 className={styles.sectionTitle}>Testimonials</h2>
         <svg className={styles.testimonialQuote}>
           <use href={`${sprite}#quotes`}></use>
         </svg>
