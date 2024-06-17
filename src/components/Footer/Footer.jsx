@@ -17,7 +17,8 @@ const Footer = () => {
                 href='https://www.facebook.com/goITclub/'
                 target='_blank'
                 rel='noopener noreferrer'
-                className={css.footerSocialLink}>
+                className={css.footerSocialLink}
+                aria-label='link to facebook'>
                 <svg className={css.footerSocialIcon}>
                   <use href={`${sprite}#facebook`}></use>
                 </svg>
@@ -28,7 +29,8 @@ const Footer = () => {
                 href='https://www.instagram.com/goitclub/'
                 target='_blank'
                 rel='noopener noreferrer'
-                className={css.footerSocialLink}>
+                className={css.footerSocialLink}
+                aria-label='link to instagram'>
                 <svg className={css.footerSocialIcon}>
                   <use href={`${sprite}#instagram`}></use>
                 </svg>
@@ -39,7 +41,8 @@ const Footer = () => {
                 href='https://www.youtube.com/c/GoIT'
                 target='_blank'
                 rel='noopener noreferrer'
-                className={css.footerSocialLink}>
+                className={css.footerSocialLink}
+                aria-label='link to youtube'>
                 <svg className={css.footerSocialIcon}>
                   <use href={`${sprite}#youtube`}></use>
                 </svg>
