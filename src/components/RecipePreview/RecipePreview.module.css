@@ -46,7 +46,7 @@
   line-height: 150%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #050505;
+  color: var(--main-black);
 
   @media (min-width: 768px) {
     font-size: 20px;
@@ -60,7 +60,7 @@
   font-size: 14px;
   line-height: 143%;
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.8);
+  color: var(--text-black);
 
   @media (min-width: 768px) {
     font-size: 16px;
@@ -78,7 +78,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid rgba(5, 5, 5, 0.1);
+  border: 1px solid var(--border-grey-10);
   border-radius: 30px;
   padding: 10px;
   width: 36px;
@@ -89,12 +89,12 @@
 
   &:hover,
   &:focus {
-    border: 1px solid #050505;
-    background-color: #050505;
+    border: 1px solid var(--main-black);
+    background-color: var(--main-black);
 
     .recipeCardIcon {
-      fill: #ffffff;
-      stroke: #050505;
+      fill: var(--white);
+      stroke: var(--main-black);
     }
   }
 
@@ -108,8 +108,8 @@
   width: 16px;
   height: 16px;
 
-  fill: #050505;
-  stroke: #ffffff;
+  fill: var(--main-black);
+  stroke: var(--white);
   transition-duration: 300ms;
 
   @media (min-width: 768px) {

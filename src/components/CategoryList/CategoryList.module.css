@@ -42,19 +42,19 @@
   padding: 8px 12px;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--white);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.32px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--white-40);
+  background: var(--white-30);
   border-radius: 30px;
   width: fit-content;
 
   @media screen and (min-width: 768px) {
     padding: 10px 14px;
-    color: #fff;
+    color: var(--white);
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.4px;
@@ -91,7 +91,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  background: #050505;
+  background: var(--main-black);
 
   @media screen and (min-width: 768px) {
     width: 342px;
@@ -103,7 +103,7 @@
 }
 
 .allCategoriesText {
-  color: #fff;
+  color: var(--white);
   font-size: 20px;
   font-weight: 800;
   line-height: 1.2;

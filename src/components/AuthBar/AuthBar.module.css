@@ -1,6 +1,6 @@
 .authBar {
   width: 159px;
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 30px;
   display: flex;
 

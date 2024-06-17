@@ -5,7 +5,7 @@
   transform: translateX(100%);
   width: 100%;
   height: 100vh;
-  background-color: #050505;
+  background-color: var(--main-black);
   transition: transform 0.3s ease-in-out;
   z-index: 999;
 }
@@ -38,7 +38,7 @@
 }
 
 .burgerMenuNavLink {
-  color: #ffffff;
+  color: var(--white);
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 700;
@@ -47,12 +47,12 @@
 }
 
 .burgerMenuNavLink:hover {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .burgerMenuIconClose {
-  stroke: #ffffff;
-  fill: #ffffff;
+  stroke: var(--white);
+  fill: var(--white);
   position: absolute;
   right: 24px;
   top: 24px;
@@ -64,7 +64,7 @@
 }
 
 .burgerMenuLogo a {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .burgerMenuImages {
