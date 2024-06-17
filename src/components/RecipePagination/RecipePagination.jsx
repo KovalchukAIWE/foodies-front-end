@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { useWindowScroll, useMediaQuery } from "@mantine/hooks";
 import styles from "./RecipePagination.module.css";
 
-const RecipePagination = ({ onChangePage, currentPage, totalPage }) => {
+const RecipePagination = ({ onChangePage, currentPage, total, limit }) => {
   const maxPageButtons = 3;
   let startPage = Math.max(currentPage - 1, 1);
-  let endPage = Math.min(startPage + maxPageButtons - 1, totalPage);
+  let endPage = Math.min(
+    startPage + maxPageButtons - 1,
+    Math.ceil(total / limit)
+  );
 
   const [, scrollTo] = useWindowScroll();
   const tablet = useMediaQuery("(min-width: 768px)");
@@ -22,7 +25,7 @@ const RecipePagination = ({ onChangePage, currentPage, totalPage }) => {
     (_, index) => startPage + index
   );
 
-  if (totalPage <= 1) {
+  if (Math.ceil(total / limit) <= 1) {
     return null;
   }
 
