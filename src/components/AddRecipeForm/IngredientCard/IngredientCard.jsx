@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 
 import styles from "./IngredientCard.module.css";
 import sprite from "../../../assets/img/icons-sprite.svg";
-import defaultIngrImg from "../../../assets/img/no-ingr.png";
+import defaultIngrImg from "../../../assets/img/no-ingr.webp";
 
 const IngredientCard = ({ id, ingredient, handleRemoveIngredient, index }) => {
   const { register } = useFormContext();
@@ -30,6 +30,7 @@ const IngredientCard = ({ id, ingredient, handleRemoveIngredient, index }) => {
           e.target.onError = null;
           e.target.src = defaultIngrImg;
         }}
+        loading="lazy"
       />
       <div className={`${styles.ingrDescr} text`}>
         <p className={styles.ingrName}>{ingredient.name}</p>

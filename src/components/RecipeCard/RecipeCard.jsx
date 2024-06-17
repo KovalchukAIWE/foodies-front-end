@@ -9,6 +9,7 @@ import {
   deleteRecipeFromFavorite,
 } from "../../services/recipes";
 import sprite from "../../assets/img/icons-sprite.svg";
+import defaultAvatar from "../../assets/img/noUserPhoto.webp";
 import styles from "./RecipeCard.module.css";
 
 const RecipeCard = ({ recipe }) => {
@@ -17,7 +18,6 @@ const RecipeCard = ({ recipe }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isFavorite, setIsFavorite] = useState(recipe.favorite);
 
-  const defaultAvatar = "/src/assets/img/noUserPhoto.webp";
   const handleAuthorClick = () => {
     if (isLoggedIn) {
       navigate(`/user/${recipe.owner._id}`);
@@ -61,6 +61,8 @@ const RecipeCard = ({ recipe }) => {
         loading="lazy"
         src={recipe.thumb}
         alt={recipe.title}
+        width={343}
+        height={230}
       />
       <div className={styles.recipeCardContainer}>
         <h3 className={styles.recipeCardTitle}>{recipe.title}</h3>
@@ -74,6 +76,8 @@ const RecipeCard = ({ recipe }) => {
               src={recipe.owner.avatar || defaultAvatar}
               alt={recipe.owner.name}
               className={styles.authorAvatar}
+              width={40}
+              height={40}
             />
             <span>{recipe.owner.name}</span>
           </button>

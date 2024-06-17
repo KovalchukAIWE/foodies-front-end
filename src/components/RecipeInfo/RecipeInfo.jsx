@@ -99,7 +99,13 @@ const RecipeInfo = () => {
 
   return (
     <div className={css.recipeInfo}>
-      <img src={recipe.thumb} alt={recipe.title} className={css.recipeImage} />
+      <img
+        src={recipe.thumb}
+        alt={recipe.title}
+        className={css.recipeImage}
+        width={343}
+        height={318}
+      />
       <div className={css.recipeDetails}>
         <RecipeMainInfo recipe={recipe} handleAuthorClick={handleAuthorClick} />
 

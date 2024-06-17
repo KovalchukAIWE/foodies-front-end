@@ -1,6 +1,6 @@
 import css from "./RecipeIngredients.module.css";
 import styles from "../AddRecipeForm/IngredientCard/IngredientCard.module.css";
-import defaultIngrImg from "../../assets/img/no-ingr.png";
+import defaultIngrImg from "../../assets/img/no-ingr.webp";
 
 const RecipeIngredients = ({ ingredients }) => {
   return (
