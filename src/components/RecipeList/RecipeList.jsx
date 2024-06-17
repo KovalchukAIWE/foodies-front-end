@@ -5,11 +5,11 @@ const RecipeList = ({ recipes }) => {
   return (
     <>
       {recipes && recipes.length > 0 ? (
-        <div className={styles.resipeList}>
+        <ul className={styles.resipeList}>
           {recipes.map((recipe) => (
             <RecipeCard key={recipe._id} recipe={recipe} />
           ))}
-        </div>
+        </ul>
       ) : (
         <div className={styles.text}>Sorry, there are no such recipes</div>
       )}

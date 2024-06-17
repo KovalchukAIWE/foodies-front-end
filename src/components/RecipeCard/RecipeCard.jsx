@@ -55,7 +55,7 @@ const RecipeCard = ({ recipe }) => {
   };
 
   return (
-    <div className={styles.recipeCard}>
+    <li className={styles.recipeCard}>
       <img
         className={styles.recipeCardImg}
         loading="lazy"
@@ -111,7 +111,7 @@ const RecipeCard = ({ recipe }) => {
           </div>
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 
