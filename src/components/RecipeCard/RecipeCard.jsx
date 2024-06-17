@@ -69,6 +69,7 @@ const RecipeCard = ({ recipe }) => {
           <button
             className={styles.recipeCardAuthor}
             onClick={handleAuthorClick}
+            aria-label={`View ${recipe.owner.name}'s profile`}
           >
             <img
               src={recipe.owner.avatar || defaultAvatar}
@@ -83,6 +84,7 @@ const RecipeCard = ({ recipe }) => {
                 className={styles.recipeIconCircleActive}
                 type="button"
                 onClick={handleRemoveFromFavorites}
+                aria-label="Remove from favorites"
               >
                 <svg className={styles.recipeSocialIconActive}>
                   <use xlinkHref={`${sprite}#heart`} />
@@ -93,13 +95,14 @@ const RecipeCard = ({ recipe }) => {
                 className={styles.recipeIconCircle}
                 type="button"
                 onClick={handleAddToFavorites}
+                aria-label="Add to favorites"
               >
                 <svg className={styles.recipeSocialIcon}>
                   <use xlinkHref={`${sprite}#heart`} />
                 </svg>
               </button>
             )}
-            <button type="button">
+            <button type="button" aria-label={`View recipe ${recipe.title}`}>
               <Link to={`/recipe/${recipe._id}`}>
                 <div className={styles.recipeIconCircle}>
                   <svg className={styles.recipeSocialIcon}>
