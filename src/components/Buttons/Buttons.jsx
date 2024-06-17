@@ -34,6 +34,7 @@ export const CategoriesButton = ({ onClick, name }) => {
         onClick(name);
       }}
       className={styles.categoriesButton}
+      aria-label={`See all recipies ${name}`}
     >
       <svg className={styles.categoriesButtonArrow}>
         <use href={`${arrowUpRight}#arrow-up-right`}></use>

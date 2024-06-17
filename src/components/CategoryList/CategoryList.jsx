@@ -100,6 +100,8 @@ const CategoryList = ({
             src={image ? image : noImage}
             alt={name}
             className={styles.categoryImage}
+            width={343}
+            height={250}
           />
         )}
         {name !== "All categories" && (

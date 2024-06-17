@@ -1,11 +1,19 @@
 .logo {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
-  line-height: 28px;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
   color: currentColor;
 }
 
 .logo:hover {
   color: inherit;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: -0.03em;
+  }
 }

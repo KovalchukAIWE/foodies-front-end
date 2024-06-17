@@ -1,5 +1,6 @@
 .recipeCard {
-  width: 340px;
+  width: 100%;
+  max-width: 342px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -23,7 +24,7 @@
 
 .recipeCardDescription {
   height: 54px;
-  color: rgba(5, 5, 5, 0.8);
+  color: var(--text-black);
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -62,23 +63,23 @@
 .recipeIconCircle {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(5, 5, 5, 0.1);
+  border: 1px solid var(--border-grey-10);
   border-radius: 50%;
   padding: 9px;
 }
 .recipeIconCircle:hover {
-  background-color: #050505;
-  fill: #ffffff;
+  background-color: var(--main-black);
+  fill: var(--white);
 }
 .recipeIconCircle:active,
 .recipeIconCircleActive {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(5, 5, 5, 0.1);
+  border: 1px solid var(--border-grey-10);
   border-radius: 50%;
   padding: 9px;
-  background-color: #050505;
-  color: #ffffff;
+  background-color: var(--main-black);
+  color: var(--white);
 }
 
 .recipeSocialIcon {
@@ -86,13 +87,13 @@
   height: 16px;
 }
 .recipeSocialIcon:hover {
-  fill: #ffffff;
+  fill: var(--white);
 }
 .recipeSocialIcon:active,
 .recipeSocialIconActive {
   width: 16px;
   height: 16px;
-  fill: #ffffff;
+  fill: var(--white);
 }
 
 @media (min-width: 768px) {
@@ -105,7 +106,7 @@
   .recipeIconCircle {
     width: 42px;
     height: 42px;
-    border: 1px solid rgba(5, 5, 5, 0.1);
+    border: 1px solid var(--border-grey-10);
     border-radius: 50%;
     padding: 11px;
   }
@@ -113,11 +114,11 @@
   .recipeIconCircleActive {
     width: 42px;
     height: 42px;
-    border: 1px solid rgba(5, 5, 5, 0.1);
+    border: 1px solid var(--border-grey-10);
     border-radius: 50%;
     padding: 11px;
-    background-color: #050505;
-    color: #ffffff;
+    background-color: var(--main-black);
+    color: var(--white);
   }
   .recipeSocialIcon {
     width: 18px;
@@ -127,12 +128,13 @@
   .recipeSocialIconActive {
     width: 18px;
     height: 18px;
-    fill: #ffffff;
+    fill: var(--white);
   }
 }
 
 @media (min-width: 1440px) {
   .recipeCard {
+    max-width: none;
     width: 290px;
     display: flex;
     flex-direction: column;
