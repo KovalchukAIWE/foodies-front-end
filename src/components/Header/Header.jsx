@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import styles from "./Header.module.css";
 
-const Header = () => {
+const Header = ({ isOpen, onToggleMenu }) => {
   const isLogged = useSelector(selectIsLoggedIn);
   const [theme, setTheme] = useState("light");
   const location = useLocation();
@@ -27,7 +27,7 @@ const Header = () => {
             <Logo />
             <Nav />
             <UserBar />
-            <BurgerMenu />
+            <BurgerMenu onToggleMenu={onToggleMenu} isOpen={isOpen} />
           </>
         ) : (
           <>
