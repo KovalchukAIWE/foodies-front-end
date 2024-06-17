@@ -1,5 +1,4 @@
 import Logo from "../Logo/Logo";
-import styles from "./Header.module.css";
 import Nav from "../Nav/Nav";
 import AuthBar from "../AuthBar/AuthBar";
 import UserBar from "../UserBar/UserBar";
@@ -9,6 +8,7 @@ import { selectIsLoggedIn } from "../../redux/user/selectors";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import styles from "./Header.module.css";
 
 const Header = () => {
   const isLogged = useSelector(selectIsLoggedIn);

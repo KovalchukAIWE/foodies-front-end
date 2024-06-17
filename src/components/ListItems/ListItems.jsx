@@ -18,6 +18,7 @@ import UserPreview from "../UserPreview/UserPreview";
 import styles from "./ListItems.module.css";
 import { useParams } from "react-router-dom";
 import ListPagination from "../ListPagination/ListPagination";
+import { toast } from "react-toastify";
 
 const ListItems = ({
   activeTab,
@@ -30,19 +31,21 @@ const ListItems = ({
   const { id: ownerId } = useSelector(selectUser);
   const [arrToRender, setArrToRender] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
-  const [itemsLimit, setItemsLimit] = useState(0);
-  const [pageItems, setPageItems] = useState(0);
+  const [itemsLimit] = useState(9);
+  const [pageItems, setPageItems] = useState(1);
 
   const [messageEmptyData, setMessageEmptyData] = useState(
     "Nothing has been added to your recipes list yet. Please browse our recipes and add your favorites for easy access in the future."
   );
 
-  const setDataForPagination = ({ total, limit, page }) => {
+  const setDataForPagination = ({ total }) => {
     setTotalItems(total);
-    setItemsLimit(limit);
-    setPageItems(page);
   };
 
+  const handleChangePage = (num) => {
+    onUpdating(true);
+    setPageItems(num);
+  };
   const handleDeleteRecipeById = async (id) => {
     try {
       const response = await deleteRecipeById(id);
@@ -50,29 +53,31 @@ const ListItems = ({
 
       onUpdating(true);
     } catch (error) {
-      console.log(error.message);
+      toast.error("Anything went wrong!");
     }
   };
 
   const handleFollowUserById = async (id) => {
     try {
       const { follow } = await setFollowUserByUserId({ id });
-      console.log(follow);
+
+      if (follow) toast.success("Follow success!");
 
       onUpdating(true);
     } catch (error) {
-      console.log(error.message);
+      toast.error("Anything went wrong!");
     }
   };
 
   const handleUnfollowUserById = async (id) => {
     try {
-      const response = await setUnfollowUserByUserId({ id });
-      console.log(response);
+      const { unfollow } = await setUnfollowUserByUserId({ id });
+
+      if (unfollow) toast.success("Unfollow success!");
 
       onUpdating(true);
     } catch (error) {
-      console.log(error.message);
+      toast.error("Anything went wrong!");
     }
   };
 
@@ -90,24 +95,29 @@ const ListItems = ({
       try {
         if (activeTab === "followingActiveTab") {
           const { total, page, limit, result } =
-            await getUsersFollowingsByUserId(id);
+            await getUsersFollowingsByUserId();
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
           setMessage("followingActiveTab", setMessageEmptyData);
         } else if (activeTab === "favoritesActiveTab") {
-          const { total, page, limit, result } =
-            await getUsersFavoriteRecipes();
+          const { total, page, limit, result } = await getUsersFavoriteRecipes({
+            limit: itemsLimit,
+            page: pageItems,
+          });
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
           setMessage("favoritesActiveTab", setMessageEmptyData);
         } else if (activeTab === "followersActiveTab") {
           const { total, page, limit, result } =
-            await getUsersFollowersByUserId(id);
+            await getUsersFollowersByUserId();
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
           setMessage("followersActiveTab", setMessageEmptyData);
         } else {
-          const { total, page, limit, result } = await getOwnUsersRecipes();
+          const { total, page, limit, result } = await getOwnUsersRecipes({
+            limit: itemsLimit,
+            page: pageItems,
+          });
 
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
@@ -152,14 +162,16 @@ const ListItems = ({
           )
         )}
       </ul>
-      <div>
-        <ListPagination
-          total={totalItems}
-          page={pageItems}
-          limit={itemsLimit}
-          onPageChange={setPageItems}
-        />
-      </div>
+      {totalItems > itemsLimit && (
+        <div>
+          <ListPagination
+            total={totalItems}
+            page={pageItems}
+            limit={itemsLimit}
+            onPageChange={handleChangePage}
+          />
+        </div>
+      )}
     </>
   ) : (
     <p className={styles.emptyListMessage}>{messageEmptyData}</p>

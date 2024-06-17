@@ -26,6 +26,8 @@ const RecipePreparation = () => {
             className={`${styles.inputArea} text ${
               wordsRecipePrepCount ? styles.inputAreaBig : ""
             }`}
+            name="instructions"
+            id="instructions"
           />
           {errors.instructions && (
             <span className={`${styles.error} ${styles.errorInputArea}`}>

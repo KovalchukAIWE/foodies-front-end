@@ -66,7 +66,11 @@ const UserBar = () => {
       </button>
       {showDropdown && (
         <div className={styles.dropdownMenu}>
-          <Link className={styles.dropdownItem} to={`user/${id}`}>
+          <Link
+            onClick={toggleDropdown}
+            className={styles.dropdownItem}
+            to={`user/${id}`}
+          >
             profile
           </Link>
           <div className={styles.dropdownItemArrow}>
