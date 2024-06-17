@@ -26,8 +26,10 @@ const Header = ({ isOpen, onToggleMenu }) => {
           <>
             <Logo />
             <Nav />
-            <UserBar />
-            <BurgerMenu onToggleMenu={onToggleMenu} isOpen={isOpen} />
+            <div className={styles.userBarWrapper}>
+              <UserBar />
+              <BurgerMenu onToggleMenu={onToggleMenu} isOpen={isOpen} />
+            </div>
           </>
         ) : (
           <>

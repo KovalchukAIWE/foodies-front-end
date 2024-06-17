@@ -32,6 +32,8 @@ const UploadPhoto = ({ imagePreview, setImagePreview }) => {
                 src={imagePreview}
                 alt="Recipe Preview"
                 className={styles.imagePreview}
+                width={343}
+                height={318}
               />
             </div>
             <p className={`${styles.uploadImageText} text`}>

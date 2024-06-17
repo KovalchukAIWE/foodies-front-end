@@ -1,9 +1,16 @@
+.userBarWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
 .header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #ffffff;
+  color: var(--white);
   position: absolute;
   top: 40px;
   left: 50%;
@@ -21,5 +28,5 @@
 }
 
 .light .header {
-  color: black;
+  color: var(--main-black);
 }
