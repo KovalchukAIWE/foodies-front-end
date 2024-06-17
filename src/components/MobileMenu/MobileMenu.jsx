@@ -25,11 +25,15 @@ const MobileMenu = ({ onToggleMenu, isOpen }) => {
             Add recipe
           </NavLink>
           <div className={styles.burgerMenuImages}>
-            <img className={styles.burgerMenuImageSm} src={imageSmall} alt="" />
+            <img
+              className={styles.burgerMenuImageSm}
+              src={imageSmall}
+              alt="User avatar"
+            />
             <img
               className={styles.burgerMenuImageLarge}
               src={imageLarge}
-              alt=""
+              alt="User avatar"
             />
           </div>
         </div>

@@ -44,6 +44,8 @@ const UserInfo = ({
               src={!userPhoto ? noUserPhoto : userPhoto}
               alt="user photocard"
               className={styles.profilePhoto}
+              width={80}
+              height={80}
             />
           </div>
           {isOwner && (

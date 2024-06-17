@@ -21,6 +21,8 @@ const UserPreview = ({
             src={avatar ? avatar : noUserPhoto}
             alt={name}
             className={styles.userSmallPhotoPreview}
+            width={60}
+            height={60}
           />
         </div>
         <div className={styles.infoBox}>
@@ -46,6 +48,8 @@ const UserPreview = ({
                     src={thumb}
                     alt={title}
                     className={styles.recipePreviewPhoto}
+                    width={100}
+                    height={100}
                   />
                 </Link>
               </li>

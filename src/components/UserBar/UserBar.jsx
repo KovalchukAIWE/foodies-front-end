@@ -41,6 +41,8 @@ const UserBar = () => {
           className={styles.userBarAvatar}
           src={avatar ? avatar : noImage}
           alt={name}
+          width={32}
+          height={32}
         />
         <div className={styles.userBarDropdown}>
           <p className={styles.userBarName}>{name}</p>

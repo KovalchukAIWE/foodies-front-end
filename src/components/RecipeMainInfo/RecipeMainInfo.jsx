@@ -1,4 +1,4 @@
-import css from './RecipeMainInfo.module.css';
+import css from "./RecipeMainInfo.module.css";
 const RecipeMainInfo = ({ recipe, handleAuthorClick }) => {
   return (
     <div className={css.recipeTitleAndAuthor}>
@@ -8,12 +8,13 @@ const RecipeMainInfo = ({ recipe, handleAuthorClick }) => {
         <p className={css.recipeTime}>{recipe.time} min</p>
       </div>
       <p className={css.recipeDescription}>{recipe.description}</p>
-      <button
-        onClick={handleAuthorClick}
-        className={css.recipeAuthor}>
+      <button onClick={handleAuthorClick} className={css.recipeAuthor}>
         <img
-          src={recipe.owner.avatar || 'https://via.placeholder.com/50x50'}
-          alt={recipe.owner.name}></img>
+          src={recipe.owner.avatar || "https://via.placeholder.com/50x50"}
+          alt={recipe.owner.name}
+          width={32}
+          height={32}
+        />
         <div>
           <p className={css.btnAuthorText}>Created by:</p>
           <p className={css.recipeAuthorName}>{recipe.owner.name}</p>

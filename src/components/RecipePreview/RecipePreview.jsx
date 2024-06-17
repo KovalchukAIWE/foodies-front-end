@@ -18,7 +18,13 @@ const RecipePreview = ({
   return (
     <li key={id} className={styles.recipeCard}>
       <div className={styles.imageTextWrapper}>
-        <img src={img} alt={recipeName} className={styles.recipeImg} />
+        <img
+          src={img}
+          alt={recipeName}
+          className={styles.recipeImg}
+          width={75}
+          height={75}
+        />
         <div className={styles.recipeTextBox}>
           <h2 className={styles.recipeTitle}>{createShortTitle(title)}</h2>
           <p className={styles.recipeText}>{createShortDescription(text)}</p>
