@@ -1,0 +1,82 @@
+.menu {
+  position: fixed;
+  top: -40px;
+  right: 0;
+  transform: translateX(100%);
+  width: 100%;
+  height: 100vh;
+  background-color: #050505;
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.menu.open {
+  transform: translateX(0);
+}
+
+.closeButton {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  margin: 10px 20px 0 0;
+}
+
+.burgerMenuLinks {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.burgerMenuIcon {
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.burgerMenuNavLink {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+}
+
+.burgerMenuNavLink:hover {
+  color: #ffffff;
+}
+
+.burgerMenuIconClose {
+  stroke: #ffffff;
+  fill: #ffffff;
+  position: absolute;
+  right: 24px;
+  top: 49px;
+}
+
+.burgerMenuLogo {
+  margin-left: 24px;
+  margin-top: 49px;
+}
+
+.burgerMenuLogo a {
+  color: #ffffff;
+}
+
+.burgerMenuImages {
+  display: flex;
+  align-items: center;
+  margin-top: 130px;
+}
+
+.burgerMenuImageLarge {
+  width: 190px;
+}
+
+.burgerMenuImageSm {
+  width: 77px;
+}

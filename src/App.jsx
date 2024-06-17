@@ -2,7 +2,6 @@ import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { refresh } from "./redux/user/operations.js";
-// import { logIn } from "./redux/user/operations.js";
 import { selectIsRefreshing } from "./redux/user/selectors.js";
 import Loader from "./components/Loader/Loader.jsx";
 import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
@@ -29,9 +28,6 @@ const App = () => {
     dispatch(getAllAreas());
     dispatch(getAllCategories());
     dispatch(getAllIngredients());
-
-    //
-    // dispatch(logIn({ email: "user2@gmail.com", password: "123456" }));
   }, [dispatch]);
 
   return isRefreshing ? (

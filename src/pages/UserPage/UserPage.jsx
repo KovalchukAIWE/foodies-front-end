@@ -15,13 +15,10 @@ import { toast } from "react-toastify";
 const UserPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const [isUpdating, setIsUpdating] = useState(true);
 
   const { id } = useParams();
 
   useEffect(() => {
-    // if (!isUpdating) return;
-
     (async () => {
       try {
         setIsLoading(true);
@@ -31,7 +28,6 @@ const UserPage = () => {
         toast.error("Anything went wrong");
       } finally {
         setIsLoading(false);
-        // setIsUpdating(false);
       }
     })();
   }, [id]);

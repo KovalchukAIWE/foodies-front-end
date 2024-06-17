@@ -12,9 +12,6 @@ const UserPreview = ({
   recipes,
   id,
   onClick,
-  // total,
-  // page,
-  // limit,
 }) => {
   return (
     <div className={styles.userPreviewCard} key={id}>
