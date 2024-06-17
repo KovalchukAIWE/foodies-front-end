@@ -4,19 +4,25 @@
   gap: 6px;
 }
 .recipePaginationButton {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
   font-weight: 400;
-  text-align: center;
-  letter-spacing: 0.17px;
-  line-height: 143%;
-  padding: 15px 20px;
+  line-height: 1.43;
+  letter-spacing: 0.011em;
+  color: var(--main-black);
+
   border-radius: 50%;
-  border: 1px solid rgba(5, 5, 5, 0.1);
+  border: 1px solid var(--border-grey-10);
   background: none;
 }
 .recipePaginationButton:hover {
-  border: 1px solid rgba(5, 5, 5, 0.9);
+  border: 1px solid var(--main-black);
 }
 .recipePaginationButton.active {
-  border: 1px solid rgba(5, 5, 5, 0.9);
+  border: 1px solid var(--main-black);
 }
