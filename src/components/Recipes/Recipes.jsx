@@ -16,7 +16,8 @@ const Recipes = ({
   recipes,
   onSetPage,
   page,
-  totalPage,
+  total,
+  limit,
   categories,
 }) => {
   const getCategoryDescription = (categories, selectedCategories) => {
@@ -53,11 +54,12 @@ const Recipes = ({
         />
         <div>
           <RecipeList recipes={recipes} />
-          {totalPage > 1 && (
+          {total > limit && (
             <RecipePagination
+              limit={limit}
               onChangePage={onSetPage}
               currentPage={page}
-              totalPage={totalPage}
+              total={total}
             />
           )}
         </div>

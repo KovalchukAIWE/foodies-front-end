@@ -22,7 +22,7 @@ const HomePage = () => {
   const [selectedArea, setSelectedArea] = useState(null);
   const [selectedIngredient, setSelectedIngredient] = useState(null);
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 677px)" });
@@ -56,7 +56,7 @@ const HomePage = () => {
           page,
           limit,
         });
-        setTotalPage(total);
+        setTotal(total);
         setRecipes(result);
       } catch (error) {
         toast.error("Anything went wrong");
@@ -84,7 +84,7 @@ const HomePage = () => {
     setSelectedArea(null);
     setRecipes(null);
     setPage(1);
-    setTotalPage(0);
+    setTotal(0);
   };
 
   return (
@@ -102,7 +102,8 @@ const HomePage = () => {
                   onSelectedIngredient={handleSelectedIngredient}
                   onSetPage={handleSetPage}
                   page={page}
-                  totalPage={totalPage}
+                  total={total}
+                  limit={limit}
                   onBack={handleBack}
                   recipes={recipes}
                   categories={categories}
