@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
@@ -11,7 +10,6 @@
     display: flex;
     flex-direction: row;
     gap: 40px 20px;
-    margin-bottom: 60px;
   }
 }
 

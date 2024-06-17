@@ -50,13 +50,13 @@ const RecipeFilters = ({
           name={"Area"}
           placeholder={"Area"}
           options={areas.map((option) => {
-            return { value: option._id, label: option.name };
+            return { value: option.name, label: option.name };
           })}
           value={
             selectedArea
               ? {
                   value: selectedArea,
-                  label: areas.find((area) => area._id === selectedArea).name,
+                  label: areas.find((area) => area.name === selectedArea).name,
                 }
               : null
           }
