@@ -17,7 +17,19 @@ const Recipes = ({
   onSetPage,
   page,
   totalPage,
+  categories,
 }) => {
+  const getCategoryDescription = (categories, selectedCategories) => {
+    const category = categories.find(
+      (category) => category.name === selectedCategories
+    );
+    return category ? category.description : "";
+  };
+  const categoryDescription = getCategoryDescription(
+    categories,
+    selectedCategories
+  );
+
   return (
     <div className={styles.recipesBox}>
       <div className={styles.recipesNav}>
@@ -30,7 +42,7 @@ const Recipes = ({
       </div>
       <div className={styles.resipesTitleContainer}>
         <MainTitle text={selectedCategories} />
-        <Subtitle text="Go on a taste journey, where every sip is a sophisticated creative chord, and every dessert is an expression of the most refined gastronomic desires." />
+        <Subtitle text={categoryDescription} />
       </div>
       <div className={styles.resipesContainer}>
         <RecipeFilters
@@ -41,11 +53,13 @@ const Recipes = ({
         />
         <div>
           <RecipeList recipes={recipes} />
-          <RecipePagination
-            onChangePage={onSetPage}
-            currentPage={page}
-            totalPage={totalPage}
-          />
+          {totalPage > 1 && (
+            <RecipePagination
+              onChangePage={onSetPage}
+              currentPage={page}
+              totalPage={totalPage}
+            />
+          )}
         </div>
       </div>
     </div>

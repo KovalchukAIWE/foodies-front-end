@@ -9,6 +9,17 @@
   width: 345px;
 }
 
+@media (max-width: 767px) {
+  .selectContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+}
+
 @media (min-width: 768px) {
   .selectContainer {
     display: flex;

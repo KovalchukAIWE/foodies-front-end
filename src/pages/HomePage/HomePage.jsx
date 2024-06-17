@@ -105,6 +105,7 @@ const HomePage = () => {
                   totalPage={totalPage}
                   onBack={handleBack}
                   recipes={recipes}
+                  categories={categories}
                 />
               )
             : categories && (
