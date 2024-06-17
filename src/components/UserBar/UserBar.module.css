@@ -43,6 +43,7 @@
 
 .userBarArrow {
   transition: transform var(--transition-func);
+  fill: var(--white);
 }
 
 .userBarArrow.open {
@@ -91,14 +92,13 @@
   line-height: 18px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
-.dropdownItemArrow::after {
-  position: absolute;
-  content: url(../../images/arrow-up-right.svg);
-  left: 55px;
-  bottom: -5px;
+.dropdownArrow {
+  fill: var(--white);
 }
 
 .dropdownItemLogout {
