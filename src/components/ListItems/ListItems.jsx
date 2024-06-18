@@ -109,7 +109,7 @@ const ListItems = ({
           setMessage("favoritesActiveTab", setMessageEmptyData);
         } else if (activeTab === "followersActiveTab") {
           const { total, page, limit, result } =
-            await getUsersFollowersByUserId();
+            await getUsersFollowersByUserId(id);
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
           setMessage("followersActiveTab", setMessageEmptyData);
@@ -117,6 +117,7 @@ const ListItems = ({
           const { total, page, limit, result } = await getOwnUsersRecipes({
             limit: itemsLimit,
             page: pageItems,
+            id,
           });
 
           setArrToRender(result);
@@ -126,6 +127,7 @@ const ListItems = ({
           const { total, page, limit, result } = await getOwnUsersRecipes({
             limit: itemsLimit,
             page: pageItems,
+            id,
           });
           setArrToRender(result);
           setDataForPagination({ total, page, limit });

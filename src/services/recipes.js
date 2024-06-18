@@ -35,9 +35,9 @@ export const getUsersFavoriteRecipes = async ({ limit, page }) => {
   return data;
 };
 
-export const getOwnUsersRecipes = async ({ limit, page }) => {
+export const getOwnUsersRecipes = async ({ limit, page, id }) => {
   const { data } = await foodiesApiClient.get(
-    "recipes/my",
+    `recipes/${id}/my`,
 
     {
       params: { limit, page },

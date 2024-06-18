@@ -35,8 +35,8 @@ export const setUsersAvatarByUserId = async ({ avatar }) => {
   return data;
 };
 
-export const getUsersFollowersByUserId = async () => {
-  const { data } = await foodiesApiClient.get(`users/followers`);
+export const getUsersFollowersByUserId = async (id) => {
+  const { data } = await foodiesApiClient.get(`users/${id}/followers`);
   return data;
 };
 
