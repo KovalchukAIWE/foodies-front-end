@@ -45,10 +45,9 @@ const UserPage = () => {
           {user && (
             <UserCard user={user} handleUpdatingAvatar={handleUpdatingAvatar} />
           )}
-
-          {isLoading && <Loader />}
         </Container>
       </section>
+      {isLoading && <Loader />}
     </>
   );
 };

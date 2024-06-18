@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getDataRecipeById,
   addRecipeToFavorite,
   deleteRecipeFromFavorite,
-  getUsersFavoriteRecipes,
 } from "../../services/recipes";
 import Modal from "../Modal/Modal";
 import SignInModal from "../SignInModal/SignInModal";
@@ -14,54 +12,18 @@ import css from "./RecipeInfo.module.css";
 import RecipeIngredients from "../RecipeIngredients/RecipeIngredients";
 import RecipeMainInfo from "../RecipeMainInfo/RecipeMainInfo";
 import RecipePreparation from "../RecipePreparation/RecipePreparation";
-import Loader from "../Loader/Loader";
 import {
   selectIsLoggedIn,
   selectIsModalSignInOpen,
 } from "../../redux/user/selectors";
 import { setModalSignInStatus } from "../../redux/user/slice";
 
-const RecipeInfo = () => {
-  const { id } = useParams();
+const RecipeInfo = ({ recipe }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isSignInModalOpen = useSelector(selectIsModalSignInOpen);
-  const [recipe, setRecipe] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      try {
-        const data = await getDataRecipeById(id);
-        setRecipe(data);
-        if (isLoggedIn) {
-          await checkIfFavorite(data._id);
-        }
-      } catch (err) {
-        console.error("Failed to fetch recipe", err);
-      }
-    };
-
-    fetchRecipe();
-  }, [id, isLoggedIn]);
-
-  const checkIfFavorite = async (recipeId) => {
-    try {
-      const favorites = await getUsersFavoriteRecipes();
-      if (favorites && Array.isArray(favorites.result)) {
-        const favoriteRecipeIds = favorites.result.map((recipe) => recipe._id);
-        setIsFavorite(favoriteRecipeIds.includes(recipeId));
-      } else {
-        console.error(
-          "Favorites response does not contain a valid result array:",
-          favorites
-        );
-      }
-    } catch (error) {
-      console.error("Failed to check if recipe is favorite", error);
-    }
-  };
+  const [isFavorite, setIsFavorite] = useState(recipe.favorite);
 
   const handleAuthorClick = () => {
     if (isLoggedIn) {
@@ -72,6 +34,10 @@ const RecipeInfo = () => {
   };
 
   const handleAddToFavorites = async () => {
+    if (!isLoggedIn) {
+      dispatch(setModalSignInStatus(true));
+      return;
+    }
     try {
       await addRecipeToFavorite(recipe._id);
       setIsFavorite(true);
@@ -93,10 +59,6 @@ const RecipeInfo = () => {
     dispatch(setModalSignInStatus(false));
   };
 
-  if (!recipe) {
-    return <Loader />;
-  }
-
   return (
     <div className={css.recipeInfo}>
       <img
@@ -113,7 +75,7 @@ const RecipeInfo = () => {
 
         <RecipePreparation recipe={recipe} />
 
-        {isFavorite ? (
+        {isLoggedIn && isFavorite ? (
           <AddToFavButton
             recipe={recipe}
             className={css.addToFavButton}
@@ -129,9 +91,11 @@ const RecipeInfo = () => {
           />
         )}
 
-        <Modal isOpen={isSignInModalOpen} onClose={closeSignInModal}>
-          <SignInModal />
-        </Modal>
+        {isSignInModalOpen && !isLoggedIn && (
+          <Modal isOpen={isSignInModalOpen} onClose={closeSignInModal}>
+            <SignInModal onClose={closeSignInModal} />
+          </Modal>
+        )}
       </div>
     </div>
   );

@@ -113,12 +113,20 @@ const ListItems = ({
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
           setMessage("followersActiveTab", setMessageEmptyData);
-        } else {
+        } else if (id === ownerId) {
           const { total, page, limit, result } = await getOwnUsersRecipes({
             limit: itemsLimit,
             page: pageItems,
           });
 
+          setArrToRender(result);
+          setDataForPagination({ total, page, limit });
+        } else {
+          // оновити сервісну функцію на запит рецептів по айді юзера
+          const { total, page, limit, result } = await getOwnUsersRecipes({
+            limit: itemsLimit,
+            page: pageItems,
+          });
           setArrToRender(result);
           setDataForPagination({ total, page, limit });
         }

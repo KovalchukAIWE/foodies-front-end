@@ -10,10 +10,10 @@ import styles from "./UserInfoBtn.module.css";
 import { toast } from "react-toastify";
 
 const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
-  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+  const [isFollow, setIsFollow] = useState(initialIsFollowing);
 
   const [buttonText, setButtonText] = useState(
-    isFollowing ? "Unfollow" : "Follow"
+    isFollow ? "Unfollow" : "Follow"
   );
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
       const { follow } = await setFollowUserByUserId({ id });
       if (follow) {
         toast.success("Follow success!");
-        setIsFollowing(true);
+        setIsFollow(true);
         setButtonText("Unfollow");
       }
     } catch (error) {
@@ -34,7 +34,7 @@ const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
     try {
       const { unfollow } = await setUnfollowUserByUserId({ id });
       if (unfollow) {
-        setIsFollowing(false);
+        setIsFollow(false);
         setButtonText("Follow");
         toast.success("Unfollow success!");
       }
@@ -47,7 +47,7 @@ const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
     if (isOwner) {
       dispatch(logOut());
     } else {
-      if (isFollowing) {
+      if (isFollow) {
         handleUnfollowUserById(id);
       } else {
         handleFollowUserById(id);
@@ -56,8 +56,8 @@ const UserInfoBtn = ({ isOwner, isFollowing: initialIsFollowing, id }) => {
   };
 
   useEffect(() => {
-    setButtonText(isFollowing ? "Unfollow" : "Follow");
-  }, [isFollowing]);
+    setButtonText(isFollow ? "Unfollow" : "Follow");
+  }, [isFollow]);
 
   return (
     <button

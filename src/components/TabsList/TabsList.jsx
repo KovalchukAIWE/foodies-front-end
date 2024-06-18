@@ -32,7 +32,7 @@ const TabsList = ({ isOwner }) => {
             id="recipiesActiveTab"
             onClick={() => handleTabClick("recipiesActiveTab")}
           >
-            My recipes
+            {isOwner ? "My recipes" : "Recipes"}
           </button>
         </li>
         {isOwner && (
