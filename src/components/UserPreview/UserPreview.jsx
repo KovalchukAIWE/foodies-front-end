@@ -14,7 +14,7 @@ const UserPreview = ({
   onClick,
 }) => {
   return (
-    <div className={styles.userPreviewCard} key={id}>
+    <li className={styles.userPreviewCard} key={id}>
       <div className={styles.userInfo}>
         <div className={styles.previewPhotoWrapper}>
           <img
@@ -61,7 +61,7 @@ const UserPreview = ({
           <use href={`${icons}#arrow-up-right`}></use>
         </svg>
       </Link>
-    </div>
+    </li>
   );
 };
 

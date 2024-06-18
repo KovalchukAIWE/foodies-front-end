@@ -68,10 +68,9 @@ const RecipePage = () => {
           {Array.isArray(popularRecipes) && (
             <PopularRecipes recipes={popularRecipes} />
           )}
-
-          {isLoading && <Loader />}
         </Container>
-      </section>
+      </section>{" "}
+      {isLoading && <Loader />}
     </>
   );
 };

@@ -1,7 +1,8 @@
+import ReactDOM from "react-dom";
 import { ThreeCircles } from "react-loader-spinner";
 
 const Loader = () => {
-  return (
+  return ReactDOM.createPortal(
     <ThreeCircles
       visible={true}
       height="100"
@@ -15,8 +16,11 @@ const Loader = () => {
         alignItems: "center",
         justifyContent: "center",
         position: "fixed",
+        top: 0,
+        left: 0,
       }}
-    />
+    />,
+    document.getElementById("modal")
   );
 };
 

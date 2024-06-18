@@ -58,7 +58,9 @@ main {
   flex-direction: column;
   min-height: 100vh;
 }
-
+#modal {
+  position: relative;
+}
 .text {
   font-size: 14px;
   line-height: 1.43;
