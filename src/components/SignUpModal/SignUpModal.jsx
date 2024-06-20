@@ -1,7 +1,7 @@
 import SignUpForm from "../SignUpForm/SignUpForm";
 import { useDispatch } from "react-redux";
 import styles from "./SignUpModal.module.css";
-import { register } from "../../redux/user/operations";
+import { register, logIn } from "../../redux/user/operations";
 import {
   setModalSignInStatus,
   setModalSignUpStatus,
@@ -10,9 +10,16 @@ import {
 const SignUpModal = ({ onClose }) => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (data) => {
-    dispatch(register(data));
-    onClose();
+  const handleSubmit = async (data) => {
+    try {
+      await dispatch(register(data)).unwrap();
+      await dispatch(
+        logIn({ email: data.email, password: data.password })
+      ).unwrap();
+      onClose();
+    } catch (error) {
+      console.error("Failed to register and log in:", error);
+    }
   };
 
   const handleModalSignInOpen = () => {
