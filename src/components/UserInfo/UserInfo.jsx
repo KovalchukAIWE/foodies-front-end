@@ -1,11 +1,14 @@
 import styles from "./UserInfo.module.css";
 import noUserPhoto from "../../assets/img/noUserPhoto.webp";
 import addPhotoIcon from "../../assets/img/icons-sprite.svg";
-import UserInfoBtn from "../UserInfoBtn/UserInfoBtn";
 
 import { useDispatch } from "react-redux";
 import { setUsersAvatar } from "../../redux/user/operations";
 import { toast } from "react-toastify";
+import Modal from "../Modal/Modal";
+import LogOutModal from "../LogOutModal/LogOutModal";
+import { useState } from "react";
+import { FormButton } from "../Buttons/Buttons";
 
 const UserInfo = ({
   name,
@@ -16,7 +19,6 @@ const UserInfo = ({
   followers,
   followings,
   isOwner,
-  isFollowing,
   handleUpdatingAvatar,
   id,
 }) => {
@@ -34,6 +36,9 @@ const UserInfo = ({
         });
     }
   };
+  const [isLogOutModalOpen, setIsLogOutnModalOpen] = useState(false);
+  const openLogOutModal = () => setIsLogOutnModalOpen(true);
+  const closeLogOutModal = () => setIsLogOutnModalOpen(false);
 
   return (
     <div className={styles.userInfoBox}>
@@ -65,40 +70,32 @@ const UserInfo = ({
         </div>
         <h2 className={styles.name}>{name}</h2>
         <ul className={styles.profileInfoList}>
-          <li className="profile-info-item">
-            <p className={styles.infoKey}>
-              Email: <span className="info-value">{email}</span>
-            </p>
+          <li className={styles.infoKey}>
+            Email: <span className={styles.infoValue}>{email}</span>
           </li>
-          <li className="profile-info-item">
-            <p className={styles.infoKey}>
-              Added recipies :{" "}
-              <span className={styles.infoValue}>{myRecipes}</span>
-            </p>
+          <li className={styles.infoKey}>
+            Added recipies :{" "}
+            <span className={styles.infoValue}>{myRecipes}</span>
           </li>
           {isOwner && (
-            <li className="profile-info-item">
-              <p className={styles.infoKey}>
-                Favorites: <span className={styles.infoValue}>{favorites}</span>
-              </p>
+            <li className={styles.infoKey}>
+              Favorites: <span className={styles.infoValue}>{favorites}</span>
             </li>
           )}
-          <li className="profile-info-item">
-            <p className={styles.infoKey}>
-              Followers: <span className={styles.infoValue}>{followers}</span>
-            </p>
+          <li className={styles.infoKey}>
+            Followers: <span className={styles.infoValue}>{followers}</span>
           </li>
           {isOwner && (
-            <li className="profile-info-item">
-              <p className={styles.infoKey}>
-                Followings:{" "}
-                <span className={styles.infoValue}>{followings}</span>
-              </p>
+            <li className={styles.infoKey}>
+              Followings: <span className={styles.infoValue}>{followings}</span>
             </li>
           )}
         </ul>
       </div>
-      <UserInfoBtn id={id} isFollowing={isFollowing} isOwner={isOwner} />
+      <FormButton onClick={openLogOutModal} text="Log out" />
+      <Modal isOpen={isLogOutModalOpen} onClose={closeLogOutModal}>
+        <LogOutModal onClose={closeLogOutModal} />
+      </Modal>
     </div>
   );
 };
