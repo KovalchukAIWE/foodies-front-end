@@ -21,7 +21,7 @@ const TabsList = ({ isOwner }) => {
   };
 
   return (
-    <div className={styles.tabsContainer}>
+    <>
       <ul className={styles.profileTabsList}>
         <li className={styles.profileTabsItem}>
           <button
@@ -85,7 +85,7 @@ const TabsList = ({ isOwner }) => {
           isOwner={isOwner}
         />
       </div>
-    </div>
+    </>
   );
 };
 

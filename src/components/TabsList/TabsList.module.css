@@ -1,15 +1,10 @@
 .profileTabsList {
   display: flex;
   gap: 30px;
-
   position: relative;
-
   width: 100%;
-
   overflow-x: scroll;
-
   scroll-behavior: smooth;
-
   padding-bottom: 14px;
   margin-bottom: 32px;
 
@@ -19,11 +14,14 @@
     width: 100%;
     height: 1px;
     background-color: var(--border-grey-20);
-
     position: absolute;
     z-index: 1;
     left: 0;
     bottom: 1px;
+  }
+
+  @media screen and (min-width: 576px) {
+    overflow-x: auto;
   }
 
   @media screen and (min-width: 768px) {
@@ -43,9 +41,6 @@
 }
 
 .tabBtn {
-  /* padding-bottom: 14px; */
-
-  font-family: "Mulish", sans-serif;
   font-weight: 800;
   font-size: 18px;
   line-height: 133%;
